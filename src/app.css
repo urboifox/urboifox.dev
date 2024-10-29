@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+    :root {
+        background-color: #111;
+        color: #ddd;
+    }
+
+    body {
+        @apply font-montserrat;
+    }
+}
+
+/* hide scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
