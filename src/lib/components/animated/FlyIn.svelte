@@ -8,6 +8,7 @@
         y?: number;
         duration?: number;
         delay?: number;
+        as: keyof HTMLElementTagNameMap;
         easing?: (t: number) => number;
         children: Snippet;
     }
@@ -15,6 +16,7 @@
     const {
         y = 10,
         duration = 500,
+        as = 'div',
         delay = 1,
         easing = cubicOut,
         children,
@@ -22,6 +24,6 @@
     }: Props = $props();
 </script>
 
-<div in:fly|global={{ y, easing, duration, delay: 500 + delay }} {...rest}>
+<svelte:element this={as} in:fly|global={{ y, easing, duration, delay: 500 + delay }} {...rest}>
     {@render children()}
-</div>
+</svelte:element>

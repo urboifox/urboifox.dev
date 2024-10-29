@@ -2,14 +2,15 @@
     import gsap from 'gsap';
     import type { HTMLAttributes } from 'svelte/elements';
 
-    let container: HTMLDivElement;
+    let container: HTMLElement;
 
     interface Props extends HTMLAttributes<HTMLDivElement> {
         text: string;
         delay?: number;
+        as?: keyof HTMLElementTagNameMap;
         scrollTrigger?: boolean;
     }
-    let { text, scrollTrigger = true, delay = 0, ...rest }: Props = $props();
+    let { text, as = 'span', scrollTrigger = true, delay = 0, ...rest }: Props = $props();
 
     $effect(() => {
         let ctx = gsap.context(() => {
@@ -38,7 +39,9 @@
 
 <div bind:this={container} {...rest}>
     {#each text.split(' ') as word, i (i)}
-        <div class="char-container me-[.25em] inline-block last:me-0">{word}</div>
+        <svelte:element this={as} class="char-container me-[.25em] inline-block last:me-0">
+            {word}
+        </svelte:element>
     {/each}
 </div>
 

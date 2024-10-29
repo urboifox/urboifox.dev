@@ -12,8 +12,7 @@
     import { fade } from 'svelte/transition';
     import { cubicOut } from 'svelte/easing';
     import type { LayoutData } from './$types';
-    import { onMount, type Snippet } from 'svelte';
-    import CursorPointer from '$lib/components/animated/CursorPointer.svelte';
+    import { type Snippet } from 'svelte';
 
     // register gsap plugins
     if (typeof window !== 'undefined') {
@@ -28,7 +27,7 @@
     let { children, data }: Props = $props();
 
     // Lenis for smooth scrolling
-    onMount(() => {
+    $effect(() => {
         const lenis = new Lenis({
             duration: 2
         });
@@ -44,7 +43,6 @@
     });
 </script>
 
-<CursorPointer />
 {#key data.pathname}
     <div
         in:fade={{ duration: 500, delay: 400, easing: cubicOut }}
