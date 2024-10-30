@@ -4,17 +4,17 @@
     import '@fontsource-variable/montserrat';
     import '../app.css';
 
-    // libraries
-    import Lenis from 'lenis';
-    import gsap from 'gsap';
-    import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
+    // svelte
     import { fade } from 'svelte/transition';
     import { cubicOut } from 'svelte/easing';
     import type { LayoutData } from './$types';
     import { type Snippet } from 'svelte';
 
-    // register gsap plugins
+    // libraries
+    import Lenis from 'lenis';
+    import gsap from 'gsap';
+    import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
     if (typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
     }
@@ -26,19 +26,18 @@
 
     let { children, data }: Props = $props();
 
-    // Lenis for smooth scrolling
+    // init lenis and sync scrollTrigger with it
     $effect(() => {
         const lenis = new Lenis({
-            duration: 2
+            duration: 3,
+            easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
         });
+        lenis.on('scroll', ScrollTrigger.update);
 
-        // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
-        // This ensures Lenis's smooth scroll animation updates on each GSAP tick
         gsap.ticker.add((time) => {
-            lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+            lenis.raf(time * 1000);
         });
 
-        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
         gsap.ticker.lagSmoothing(0);
     });
 </script>
@@ -51,3 +50,15 @@
         {@render children()}
     </div>
 {/key}
+
+<style>
+    :global(body) {
+        display: grid;
+    }
+
+    /* svelte exit transitions make the elements appear below each other, which ruines the values of scrollTrigger */
+    /* this is a hack to fix that. so that the elements overlap when the transition is running */
+    div {
+        grid-area: 1/1;
+    }
+</style>

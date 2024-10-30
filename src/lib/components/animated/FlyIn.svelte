@@ -8,7 +8,7 @@
         y?: number;
         duration?: number;
         delay?: number;
-        as: keyof HTMLElementTagNameMap;
+        as?: keyof HTMLElementTagNameMap;
         easing?: (t: number) => number;
         children: Snippet;
     }

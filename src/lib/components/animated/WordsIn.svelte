@@ -22,13 +22,11 @@
                     opacity: 0,
                     duration: 0.7,
                     ease: 'power3.out',
-                    scrollTrigger: scrollTrigger
-                        ? {
-                              trigger: container,
-                              start: 'top 80%',
-                              end: 'bottom top'
-                          }
-                        : null
+                    scrollTrigger: {
+                        trigger: container,
+                        start: 'top 80%',
+                        end: 'bottom top'
+                    }
                 });
             });
         });

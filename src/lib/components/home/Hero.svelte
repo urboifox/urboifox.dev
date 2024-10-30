@@ -16,7 +16,6 @@
                     y: randomY,
                     x: randomX,
                     opacity: 0,
-                    lazy: false,
                     duration: 2,
                     scrollTrigger: {
                         trigger: '.container',
@@ -40,12 +39,7 @@
             </span>
         {/each}
     </h1>
-    <WordsIn
-        scrollTrigger={false}
-        text={'They also call me Fox'}
-        class="text-2xl text-neutral-500"
-        delay={0.5}
-    />
+    <WordsIn text={'They also call me Fox'} class="text-2xl text-neutral-500" delay={0.5} />
     <a href="/about">Go to about</a>
 </div>
 
