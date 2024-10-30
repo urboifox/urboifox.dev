@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import FlyIn from '$lib/components/animated/FlyIn.svelte';
     import Hero from '$lib/components/home/Hero.svelte';
 </script>
