@@ -8,7 +8,7 @@
         <WordsIn text={'Go Home'} delay={0.5} />
     </a>
     {#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as i (i)}
-        <FlyIn delay={i * 100} duration={1000}>
+        <FlyIn delay={i * 0.1}>
             <p class="max-w-md text-center">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima voluptate fuga
                 corporis aspernatur reprehenderit asperiores, molestias, consequatur, deserunt a

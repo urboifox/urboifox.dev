@@ -8,9 +8,8 @@
         text: string;
         delay?: number;
         as?: keyof HTMLElementTagNameMap;
-        scrollTrigger?: boolean;
     }
-    let { text, as = 'span', scrollTrigger = true, delay = 0, ...rest }: Props = $props();
+    let { text, as = 'span', delay = 0, ...rest }: Props = $props();
 
     $effect(() => {
         let ctx = gsap.context(() => {
