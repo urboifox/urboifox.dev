@@ -49,7 +49,7 @@
 <div id="hero" class="relative flex min-h-screen flex-col items-center justify-center gap-10">
     <span class="absolute -top-full aspect-square w-[50vw] rounded-full bg-accent blur-[150px]"
     ></span>
-    <div class="flex -translate-y-20 flex-col items-center gap-3 sm:gap-6 font-inria text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl uppercase">
+    <div class="flex sm:-translate-y-20 flex-col items-center gap-3 sm:gap-6 font-inria text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl uppercase">
         <h1 class="top-heading font-bold">Web &amp; Mobile</h1>
         <div class="flex sm:translate-x-20 lg:translate-x-40 items-center gap-2 sm:gap-5 lg:gap-10 text-comment">
             <h1 class="slash">//</h1>
