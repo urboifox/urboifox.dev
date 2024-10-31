@@ -5,9 +5,16 @@ export default {
 
     theme: {
         extend: {
-            colors: {},
+            colors: {
+                primary: 'var(--primary)',
+                accent: 'var(--accent)',
+                background: 'var(--background)',
+                comment: 'var(--comment)',
+                paragraph: 'var(--paragraph)'
+            },
             fontFamily: {
-                montserrat: ['Montserrat Variable', 'sans-serif']
+                montserrat: ['Montserrat Variable', 'sans-serif'],
+                inria: ['Inria Sans', 'sans-serif']
             },
             container: {
                 center: true,

@@ -12,6 +12,8 @@
         "lint": "prettier --check . && eslint ."
     },
     "devDependencies": {
+        "@fontsource-variable/montserrat": "^5.1.0",
+        "@fontsource/inria-sans": "^5.1.0",
         "@sveltejs/adapter-auto": "^3.0.0",
         "@sveltejs/kit": "^2.0.0",
         "@sveltejs/vite-plugin-svelte": "^4.0.0",
@@ -32,8 +34,10 @@
         "vite": "^5.0.3"
     },
     "dependencies": {
-        "@fontsource-variable/montserrat": "^5.1.0",
+        "clsx": "^2.1.1",
         "gsap": "^3.12.5",
-        "lenis": "^1.1.14"
+        "lenis": "^1.1.14",
+        "lucide-svelte": "^0.454.0",
+        "tailwind-merge": "^2.5.4"
     }
 }

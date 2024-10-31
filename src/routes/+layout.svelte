@@ -1,8 +1,9 @@
 <script lang="ts">
     // css and fonts
+    import '../app.css';
     import 'lenis/dist/lenis.css';
     import '@fontsource-variable/montserrat';
-    import '../app.css';
+    import '@fontsource/inria-sans';
 
     // svelte
     import { fade } from 'svelte/transition';
@@ -14,6 +15,8 @@
     import Lenis from 'lenis';
     import gsap from 'gsap';
     import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+    import GrainOverlay from '$lib/components/layout/GrainOverlay.svelte';
+    import Navbar from '$lib/components/layout/Navbar.svelte';
 
     if (typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -30,7 +33,7 @@
     $effect(() => {
         const lenis = new Lenis({
             duration: 3,
-            easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+            easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t))
         });
         lenis.on('scroll', ScrollTrigger.update);
 
@@ -42,6 +45,8 @@
     });
 </script>
 
+<GrainOverlay />
+<Navbar />
 {#key data.pathname}
     <div
         in:fade={{ duration: 500, delay: 400, easing: cubicOut }}

@@ -4,16 +4,56 @@
 
 @layer base {
     :root {
-        background-color: #111;
-        color: #ddd;
+        --background: #121212;
+        --primary: #ff3e00;
+        --accent: #fefefe;
+        --comment: #777777;
+        --paragraph: #bbbbbb;
+    }
+
+    ::selection {
+        @apply bg-primary text-accent;
     }
 
     body {
-        @apply font-montserrat;
+        @apply bg-background font-montserrat text-accent;
     }
 }
 
 /* hide scrollbar */
 ::-webkit-scrollbar {
     display: none;
+}
+@keyframes grain {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-5%, -5%);
+    }
+    20% {
+        transform: translate(-15%, 5%);
+    }
+    30% {
+        transform: translate(7%, -25%);
+    }
+    40% {
+        transform: translate(-5%, 25%);
+    }
+    50% {
+        transform: translate(-15%, 10%);
+    }
+    60% {
+        transform: translate(15%, 0%);
+    }
+    70% {
+        transform: translate(0%, 15%);
+    }
+    80% {
+        transform: translate(3%, 25%);
+    }
+    90% {
+        transform: translate(-10%, 10%);
+    }
 }
