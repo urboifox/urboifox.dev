@@ -1,22 +1,5 @@
 <script>
-    import gsap from 'gsap';
     import { Tally2 } from 'lucide-svelte';
-
-    $effect(() => {
-        const ctx = gsap.context(() => {
-            gsap.from('header', {
-                opacity: 0,
-                y: -10,
-                scrollTrigger: {
-                    trigger: 'body',
-                    start: '15% top',
-                    end: '20% top',
-                    scrub: true
-                }
-            });
-        });
-        return () => ctx.revert();
-    });
 </script>
 
 <header
@@ -24,6 +7,6 @@
 >
     <div></div>
     <button class="rotate-90 text-paragraph transition-transform duration-300 ease-in-out">
-        <Tally2 size={36} />
+        <Tally2 size={36} strokeWidth={1} />
     </button>
 </header>
