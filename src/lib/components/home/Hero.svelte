@@ -49,13 +49,17 @@
 <div id="hero" class="relative flex min-h-screen flex-col items-center justify-center gap-10">
     <span class="absolute -top-full aspect-square w-[50vw] rounded-full bg-accent blur-[150px]"
     ></span>
-    <div class="flex sm:-translate-y-20 flex-col items-center gap-3 sm:gap-6 font-inria text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl uppercase">
+    <div
+        class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
+    >
         <h1 class="top-heading font-bold">Web &amp; Mobile</h1>
-        <div class="flex sm:translate-x-20 lg:translate-x-40 items-center gap-2 sm:gap-5 lg:gap-10 text-comment">
+        <div
+            class="flex items-center gap-2 text-comment sm:translate-x-20 sm:gap-5 lg:translate-x-40 lg:gap-10"
+        >
             <h1 class="slash">//</h1>
             <h1 class="bottom-heading">
                 Developer<span
-                    class="dot ms-2 inline-block w-2 sm:w-3 aspect-square rounded-full bg-primary transition-colors duration-1000"
+                    class="dot ms-2 inline-block aspect-square w-2 rounded-full bg-primary transition-colors duration-1000 sm:w-3"
                 ></span>
             </h1>
         </div>
@@ -63,19 +67,21 @@
 
     <div class="container flex items-start justify-around gap-4">
         <div></div>
-        <div class="flex gap-10 sm:gap-32 flex-col sm:flex-row max-sm:w-full">
+        <div class="flex flex-col gap-10 max-sm:w-full sm:flex-row sm:gap-32">
             <p
-                class="description group relative max-w-80 text-sm sm:text-lg font-light leading-relaxed tracking-wider text-paragraph"
+                class="description group relative max-w-lg text-sm font-light leading-relaxed tracking-wider text-paragraph sm:text-lg"
             >
-                Hey there! I’m Mohamed Ashraf. Also known as Fox. Working as a software developer,
-                and loving to learn new technologies. :)
+                Hello stranger! I’m Mohamed Ashraf. Also known as <span class="text-primary"
+                    >Fox</span
+                >. I’m a a web & mobile apps developer, passionate
+                about <span class="text-primary"> coding </span> cool stuff. scroll down to know more about me.
                 <img
                     draggable="false"
                     src={images.foxEmoji}
                     alt="fox emoji"
                     width={160}
                     height={160}
-                    class="absolute left-0 lg:-left-40 max-lg:-bottom-40 lg:top-1/2 h-40 w-40 -translate-x-4 lg:-translate-y-1/2 object-contain opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                    class="absolute left-0 h-40 w-40 -translate-x-4 object-contain opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 max-lg:-bottom-40 lg:-left-40 lg:top-1/2 lg:-translate-y-1/2"
                 />
             </p>
             <div class="cta max-sm:self-end">
