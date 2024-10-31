@@ -75,7 +75,7 @@
                     alt="fox emoji"
                     width={160}
                     height={160}
-                    class="absolute -left-40 top-1/2 h-40 w-40 -translate-x-4 -translate-y-1/2 object-contain opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-hover:delay-200"
+                    class="absolute -left-40 top-1/2 h-40 w-40 -translate-x-4 -translate-y-1/2 object-contain opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
                 />
             </p>
             <div class="cta">
