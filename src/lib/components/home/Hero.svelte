@@ -39,14 +39,14 @@
                 y: 20,
                 scrollTrigger
             });
-        });
+        }, '#hero');
 
         return () => ctx.revert();
     });
 </script>
 
 <div id="hero" class="relative flex min-h-screen flex-col items-center justify-center gap-10">
-    <span class="absolute -top-full aspect-square w-[55vw] rounded-full bg-accent blur-[150px]"
+    <span class="absolute -top-full aspect-square w-[50vw] rounded-full bg-accent blur-[150px]"
     ></span>
     <div
         class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"

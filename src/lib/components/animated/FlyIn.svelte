@@ -25,7 +25,7 @@
                     end: 'bottom center'
                 }
             });
-        });
+        }, container);
 
         return () => ctx.revert();
     });

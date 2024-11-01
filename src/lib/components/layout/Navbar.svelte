@@ -1,17 +1,61 @@
 <script lang="ts">
     import { cn } from '$lib/utils/cn';
+    import gsap from 'gsap';
     import { X } from 'lucide-svelte';
-    import { cubicInOut } from 'svelte/easing';
+    import { cubicInOut, cubicOut } from 'svelte/easing';
     import { fade, fly } from 'svelte/transition';
 
     const SLIDE_DURATION = 1000;
     const SLIDE_DELAY = 200;
 
-    let isOpen = $state(false);
+    let isOpen = $state(true);
 
     function toggle() {
         isOpen = !isOpen;
     }
+
+    const navItems = [
+        {
+            title: 'home',
+            href: '/'
+        },
+        {
+            title: 'craft',
+            href: '/craft'
+        },
+        {
+            title: 'blog',
+            href: '/blog'
+        }
+    ] as const;
+
+    let container: HTMLDivElement;
+
+    $effect(() => {
+        if (!isOpen) return;
+        let ctx = gsap.context(() => {
+            const links = container.querySelectorAll('a');
+            gsap.utils.toArray(links).forEach((link: unknown) => {
+                if (link instanceof HTMLAnchorElement) {
+                    const spans = link.querySelectorAll('span');
+                    gsap.utils.toArray(spans).forEach((span) => {
+                        let animation = gsap.to(span as HTMLSpanElement, {
+                            paused: true,
+                            y: gsap.utils.random(-30, 30),
+                            x: gsap.utils.random(-10, 10),
+                            opacity: gsap.utils.random(0.5, 1),
+                            duration: 0.3,
+                        });
+
+                        link.addEventListener('mouseenter', () => animation.play());
+                        link.addEventListener('mouseleave', () => animation.reverse());
+                    });
+                }
+            });
+        }, container);
+
+        return () => ctx.kill();
+    });
 </script>
 
 <header
@@ -41,18 +85,43 @@
             }}
             class="fixed z-40 h-full w-1/4 bg-background-secondary"
             style="left: {i * 25}%"
-        >
-
-    </div>
+        ></div>
     {/if}
 {/each}
 
-{#if isOpen}
-    <div
-        out:fade
-        in:fade={{ delay: 5 * SLIDE_DELAY }}
-        class="fixed inset-0 z-40 flex items-center justify-center"
-    >
-        <h1 class="text-7xl">Hello world</h1>
-    </div>
-{/if}
+<div bind:this={container}>
+    {#if isOpen}
+        <div
+            out:fade
+            in:fade={{ delay: 5 * SLIDE_DELAY }}
+            class="container fixed inset-0 z-40 flex flex-col justify-center"
+        >
+            <nav>
+                <ul class="flex flex-col gap-10">
+                    {#each navItems as { title, href }, i (i)}
+                        <li
+                            in:fly|global={{
+                                x: -50,
+                                duration: 1000,
+                                easing: cubicOut,
+                                delay: i * 200 + 5 * SLIDE_DELAY
+                            }}
+                        >
+                            <a
+                                onclick={toggle}
+                                class="text-9xl capitalize text-paragraph transition-colors duration-200 hover:text-primary"
+                                {href}
+                            >
+                                {#each title.split('') as char, i (i)}
+                                    <span class="inline-block transition-all duration-200 ease-out">
+                                        {char}
+                                    </span>
+                                {/each}
+                            </a>
+                        </li>
+                    {/each}
+                </ul>
+            </nav>
+        </div>
+    {/if}
+</div>

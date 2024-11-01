@@ -28,7 +28,7 @@
                     }
                 });
             });
-        });
+        }, container);
 
         return () => ctx.revert();
     });
