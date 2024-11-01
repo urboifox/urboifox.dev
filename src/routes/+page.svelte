@@ -1,11 +1,11 @@
 <script lang="ts">
+    import MetaData from '$lib/components/common/meta-data.svelte';
     import Hero from '$lib/components/home/hero.svelte';
     import SelectedCrafts from '$lib/components/home/selected-crafts.svelte';
 </script>
 
 <svelte:head>
-    <title>Fox | Home</title>
-    <!-- add meta tags -->
+    <MetaData title="Home | Fox" />
 </svelte:head>
 
 <Hero />

@@ -28,7 +28,7 @@
     <div class="relative flex h-screen flex-row flex-nowrap overflow-hidden" bind:this={slider}>
         {#each [1, 2, 3] as i (i)}
             <div
-                class="h-screen min-w-[100vw] flex items-center justify-center bg-background-primary text-3xl"
+                class="flex h-screen min-w-[100vw] items-center justify-center bg-background-primary text-3xl"
             >
                 Slide {i}
             </div>
