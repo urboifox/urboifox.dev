@@ -8,7 +8,7 @@
     const SLIDE_DURATION = 1000;
     const SLIDE_DELAY = 200;
 
-    let isOpen = $state(true);
+    let isOpen = $state(false);
 
     function toggle() {
         isOpen = !isOpen;
