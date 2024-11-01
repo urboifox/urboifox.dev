@@ -1,16 +1,32 @@
 <script lang="ts">
     import gsap from 'gsap';
-    import Button from '../common/Button.svelte';
+    import Button from '$lib/components/common/button.svelte';
     import images from '$lib/constants/images';
+
+    let container: HTMLDivElement;
 
     $effect(() => {
         let ctx = gsap.context(() => {
             const scrollTrigger = {
-                trigger: '#hero',
+                trigger: 'body',
                 start: 'top top',
                 end: 'bottom top',
                 scrub: true
             };
+            gsap.to(container, {
+                ease: 'none',
+                y: -250,
+                scale: 0.9,
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                    pinSpacing: false,
+                    pin: true
+                }
+            });
             gsap.to('.top-heading', {
                 opacity: 0,
                 x: -50,
@@ -39,13 +55,13 @@
                 y: 20,
                 scrollTrigger
             });
-        }, '#hero');
+        });
 
         return () => ctx.revert();
     });
 </script>
 
-<div id="hero" class="relative flex min-h-screen flex-col items-center justify-center gap-10">
+<div class="relative flex min-h-screen flex-col items-center justify-center gap-10" bind:this={container}>
     <span class="absolute -top-full aspect-square w-[50vw] rounded-full bg-accent blur-[150px]"
     ></span>
     <div

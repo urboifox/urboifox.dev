@@ -1,7 +1,8 @@
 <script lang="ts">
-    import Hero from '$lib/components/home/Hero.svelte';
+    import Hero from '$lib/components/home/hero.svelte';
+    import SelectedCrafts from '$lib/components/home/selected-crafts.svelte';
 </script>
 
-<div class="h-[200vh]">
-    <Hero />
-</div>
+<Hero />
+<SelectedCrafts />
+<div class="h-screen"></div>

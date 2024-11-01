@@ -49,6 +49,7 @@
 
 <GrainOverlay />
 <Navbar />
+<!-- re-render the children when the pathname changes -->
 {#key data.pathname}
     <div
         in:fade={{ duration: 500, delay: 400, easing: cubicOut }}
