@@ -4,11 +4,13 @@
 
 @layer base {
     :root {
-        --background: #121212;
-        --primary: #ff3e00;
-        --accent: #fefefe;
-        --comment: #777777;
-        --paragraph: #bbbbbb;
+        --background: 18 18 18;
+        --background-secondary: 10 10 10;
+        --primary: 255 62 0;
+        --accent: 254 254 254;
+        --comment: 119 119 119;
+        --silver: 80 80 80;
+        --paragraph: 187 187 187;
     }
 
     ::selection {
@@ -16,7 +18,14 @@
     }
 
     body {
-        @apply bg-background font-montserrat text-accent;
+        @apply bg-background-primary font-montserrat text-accent;
+    }
+}
+
+@layer utilities {
+    .text-outline {
+        -webkit-text-stroke: 1px white;
+        color: transparent;
     }
 }
 
@@ -24,6 +33,8 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+/* animations */
 @keyframes grain {
     0%,
     100% {

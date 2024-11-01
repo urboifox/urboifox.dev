@@ -11,7 +11,7 @@
     const { children, type = 'button', ...rest }: Props = $props();
 </script>
 
-<button {type} {...rest} class={cn('border border-transparent rounded-sm px-6 py-4', rest?.class)}>
+<button {type} {...rest} class={cn('rounded-sm border border-transparent px-6 py-4', rest?.class)}>
     {@render children?.()}
 </button>
 
@@ -20,47 +20,49 @@
         border: 1px solid transparent;
         position: relative;
         transition: all 0.5s ease-in-out;
-        color: var(--paragraph);
+        color: rgb(var(--paragraph));
     }
 
-    button::before {
-        content: ' ';
-        height: 1px;
-        width: 2rem;
-        top: -1px;
-        left: 1.5rem;
-        position: absolute;
-        background: var(--comment);
-        transition:
-            width 0.5s ease-out,
-            left 0.3s ease-out;
-    }
-
+    button::before,
     button::after {
         content: ' ';
         height: 1px;
         width: 2rem;
-        right: 1.5rem;
-        bottom: -1px;
         position: absolute;
-        background: var(--comment);
+        background: rgb(var(--comment));
         transition:
             width 0.5s ease-out,
-            right 0.3s ease-out;
+            left 0.3s ease-out,
+            right 0.3s ease-out,
+            background-color .5s ease-out
+    }
+
+    button::before {
+        top: -1px;
+        left: 1.5rem;
+    }
+
+    button::after {
+        right: 1.5rem;
+        bottom: -1px;
     }
 
     button:hover {
-        border-color: var(--comment);
-        color: var(--accent);
+        border-color: rgb(var(--primary));
+        color: rgb(var(--accent));
+    }
+
+    button:hover::before,
+    button:hover::after {
+        background: rgb(var(--primary));
+        width: 0px;
     }
 
     button:hover::before {
         left: 0px;
-        width: 0px;
     }
 
     button:hover::after {
         right: 0;
-        width: 0;
     }
 </style>

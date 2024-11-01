@@ -15,6 +15,8 @@
     import Lenis from 'lenis';
     import gsap from 'gsap';
     import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+    // components
     import GrainOverlay from '$lib/components/layout/GrainOverlay.svelte';
     import Navbar from '$lib/components/layout/Navbar.svelte';
 
