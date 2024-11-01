@@ -109,7 +109,7 @@
                         >
                             <a
                                 onclick={toggle}
-                                class="text-9xl capitalize text-paragraph transition-colors duration-200 hover:text-primary"
+                                class="text-4xl sm:text-6xl md:text-7xl lg:text-9xl capitalize text-paragraph transition-colors duration-200 hover:text-primary"
                                 {href}
                             >
                                 {#each title.split('') as char, i (i)}
