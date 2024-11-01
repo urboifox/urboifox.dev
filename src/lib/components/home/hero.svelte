@@ -42,19 +42,6 @@
                 x: 20,
                 scrollTrigger
             });
-            gsap.to('.dot', {
-                opacity: 0,
-                scrollTrigger
-            });
-            gsap.to('.description', {
-                opacity: 0.5,
-                y: -20,
-                scrollTrigger
-            });
-            gsap.to('.cta', {
-                y: 20,
-                scrollTrigger
-            });
         });
 
         return () => ctx.revert();
