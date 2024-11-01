@@ -16,7 +16,6 @@
             gsap.to(container, {
                 ease: 'none',
                 y: -250,
-                scale: 0.9,
                 opacity: 0,
                 scrollTrigger: {
                     trigger: container,
