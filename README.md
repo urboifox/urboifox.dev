@@ -10,3 +10,8 @@
 - [ ] ~~add element based page transition~~ (removed for better UX)
 - [ ] add custom cursor
 - [ ] add custom scrollbar
+- [ ] blog page
+- [x] blog post page
+- [ ] add blog post page TOC
+- [ ] selected crafts section
+- [ ] crafts page
