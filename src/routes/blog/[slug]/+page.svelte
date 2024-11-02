@@ -1,10 +1,10 @@
 <script lang="ts">
-    import './prism-gruvbox-dark.css';
     import type { PageData } from './$types';
     import { ArrowLeft } from 'lucide-svelte';
     import moment from 'moment';
     import MetaData from '$lib/components/common/meta-data.svelte';
     import { lenisInstance } from '$lib/store/lenis.svelte';
+    import { themeStore } from '$lib/store/theme.svelte';
 
     interface Props {
         data: PageData;
@@ -19,6 +19,13 @@
         description={metadata.summary}
         href={url.href}
         image={metadata.image}
+    />
+
+    <link
+        rel="stylesheet"
+        href={themeStore.theme === 'dark'
+            ? '/css/prism-gruvbox-dark.css'
+            : '/css/prism-gruvbox-light.css'}
     />
 </svelte:head>
 
@@ -64,7 +71,7 @@
             </div>
         </header>
         <div
-            class="prose prose-invert w-full max-w-5xl text-paragraph prose-a:text-primary prose-code:text-orange-400 prose-hr:border-comment/50"
+            class="prose w-full max-w-5xl text-paragraph dark:prose-invert prose-a:text-primary prose-code:text-orange-400 prose-hr:border-comment/50"
         >
             <hr />
             <BlogPost />

@@ -4,6 +4,7 @@
     import { X } from 'lucide-svelte';
     import { cubicInOut, cubicOut } from 'svelte/easing';
     import { fade, fly } from 'svelte/transition';
+    import { themeStore } from '$lib/store/theme.svelte';
 
     const SLIDE_DURATION = 1000;
     const SLIDE_DELAY = 200;
@@ -31,6 +32,12 @@
 
     let container: HTMLDivElement;
 
+    function toggleTheme() {
+        themeStore.theme = themeStore.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', themeStore.theme);
+    }
+
     $effect(() => {
         if (!isOpen) return;
         let ctx = gsap.context(() => {
@@ -44,7 +51,7 @@
                             y: gsap.utils.random(-30, 30),
                             x: gsap.utils.random(-10, 10),
                             opacity: gsap.utils.random(0.5, 1),
-                            duration: 0.3,
+                            duration: 0.3
                         });
 
                         link.addEventListener('mouseenter', () => animation.play());
@@ -61,7 +68,7 @@
 <header
     class="container fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent"
 >
-    <div></div>
+    <button onclick={toggleTheme}> toggle dark more (demo) </button>
     <button
         class={cn(
             'origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
@@ -109,7 +116,7 @@
                         >
                             <a
                                 onclick={toggle}
-                                class="text-4xl sm:text-6xl md:text-7xl lg:text-9xl capitalize text-paragraph transition-colors duration-200 hover:text-primary"
+                                class="text-4xl capitalize text-paragraph transition-colors duration-200 hover:text-primary sm:text-6xl md:text-7xl lg:text-9xl"
                                 {href}
                             >
                                 {#each title.split('') as char, i (i)}

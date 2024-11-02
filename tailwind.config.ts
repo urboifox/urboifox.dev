@@ -3,7 +3,7 @@ import typography from '@tailwindcss/typography';
 
 export default {
     content: ['./src/**/*.{html,js,svelte,ts}'],
-
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
@@ -18,7 +18,8 @@ export default {
             },
             fontFamily: {
                 montserrat: ['Montserrat Variable', 'sans-serif'],
-                inria: ['Inria Sans', 'sans-serif']
+                inria: ['Inria Sans', 'sans-serif'],
+                yeseva: ['Yeseva One', 'system-ui', 'sans-serif']
             },
             container: {
                 center: true,

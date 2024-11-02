@@ -4,13 +4,21 @@
 
 @layer base {
     :root {
+        --background: 240 240 240;
+        --background-secondary: 225 225 225;
+        --primary: 255 85 0;
+        --accent: 40 40 40;
+        --comment: 140 140 140;
+        --paragraph: 80 80 80;
+    }
+
+    .dark {
         --background: 18 18 18;
         --background-secondary: 10 10 10;
         --primary: 255 62 0;
         --accent: 254 254 254;
         --comment: 119 119 119;
         --paragraph: 187 187 187;
-        scroll-behavior: smooth;
     }
 
     ::selection {
@@ -18,7 +26,7 @@
     }
 
     body {
-        @apply bg-background-primary bg-gradient-to-tr from-background-secondary to-background-primary font-montserrat text-accent;
+        @apply bg-background-primary font-montserrat text-accent transition-colors duration-300;
     }
 }
 

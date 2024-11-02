@@ -11,7 +11,7 @@
     const { children, type = 'button', ...rest }: Props = $props();
 </script>
 
-<button {type} {...rest} class={cn('rounded-sm border border-transparent px-6 py-4', rest?.class)}>
+<button {type} {...rest} class={cn('rounded-sm w-max border border-transparent px-6 py-4', rest?.class)}>
     {@render children?.()}
 </button>
 

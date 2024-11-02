@@ -47,14 +47,18 @@
     });
 </script>
 
-<div class="relative flex min-h-screen flex-col items-center justify-center gap-10" bind:this={container}>
-    <span class="absolute -top-full aspect-square w-[50vw] rounded-full bg-accent blur-[150px]"
+<div
+    class="relative flex min-h-screen flex-col items-center justify-center gap-10"
+    bind:this={container}
+>
+    <span
+        class="absolute -top-full hidden aspect-square w-[50vw] rounded-full bg-accent blur-[150px] dark:block"
     ></span>
     <div
         class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
     >
         <h1
-            class="top-heading bg-gradient-to-t from-accent/40 to-accent bg-clip-text font-bold text-transparent"
+            class="top-heading bg-gradient-to-r from-accent/60 to-accent bg-clip-text font-bold text-transparent dark:bg-gradient-to-t"
         >
             Mobile &amp; Web
         </h1>
