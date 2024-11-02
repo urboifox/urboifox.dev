@@ -48,7 +48,7 @@
 </script>
 
 <div
-    class="relative flex min-h-screen flex-col items-center justify-center gap-10"
+    class="relative flex min-h-screen flex-col items-center justify-center gap-10 bg-gradient-to-tr from-background-secondary to-background-primary"
     bind:this={container}
 >
     <span

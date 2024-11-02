@@ -5,6 +5,7 @@
     import { cubicInOut, cubicOut } from 'svelte/easing';
     import { fade, fly } from 'svelte/transition';
     import { themeStore } from '$lib/store/theme.svelte';
+    import { Moon, Sun } from 'lucide-svelte';
 
     const SLIDE_DURATION = 1000;
     const SLIDE_DELAY = 200;
@@ -68,7 +69,13 @@
 <header
     class="container fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent"
 >
-    <button onclick={toggleTheme}> toggle dark more (demo) </button>
+    <button onclick={toggleTheme} class="transition-colors duration-300 hover:text-primary">
+        {#if themeStore.theme === 'dark'}
+            <Sun size={24} strokeWidth={1} />
+        {:else}
+            <Moon size={24} strokeWidth={1} />
+        {/if}
+    </button>
     <button
         class={cn(
             'origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
