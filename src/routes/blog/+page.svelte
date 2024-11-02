@@ -1,4 +1,5 @@
 <script lang="ts">
+    import MetaData from '$lib/components/common/meta-data.svelte';
     import type { PageData } from './$types';
 
     interface Props {
@@ -7,6 +8,13 @@
     let { data }: Props = $props();
     const { blogPosts } = data;
 </script>
+
+<svelte:head>
+    <MetaData
+        title="Blog | Fox"
+        description="Welcome to my blog! Where I write about my experiences, thoughts, programming, and more."
+    />
+</svelte:head>
 
 <div class="flex min-h-screen flex-col items-center justify-center gap-4">
     {#each blogPosts as blogPost}

@@ -20,6 +20,7 @@
     // components
     import GrainOverlay from '$lib/components/layout/GrainOverlay.svelte';
     import Navbar from '$lib/components/layout/Navbar.svelte';
+    import MetaData from '$lib/components/common/meta-data.svelte';
 
     if (typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -52,10 +53,19 @@
     });
 </script>
 
+<svelte:head>
+    <MetaData
+        title="Fox | Mobile & Web Developer"
+        description="Frontend developer with hands-on experience in React, Next.js, Svelte, and SvelteKit, complemented by mobile development skills using React Native with Expo. With knowledge in backend technologies, including Node.js, Express, and NestJS, and familiar with Linux and DevOps practices. Passionate about learning new technologies and continuously expanding skillsets. Adept at building responsive, user-focused web and mobile applications, with a solid understanding of modern development workflows and cross-platform software solutions."
+        href={data.url.href}
+        image="/assets/og-image.png"
+    />
+</svelte:head>
+
 <GrainOverlay />
 <Navbar />
 <!-- re-render the children when the pathname changes -->
-{#key data.pathname}
+{#key data.url.pathname}
     <div
         in:fade={{ duration: 500, delay: 400, easing: cubicOut }}
         out:fade={{ duration: 500, easing: cubicOut }}

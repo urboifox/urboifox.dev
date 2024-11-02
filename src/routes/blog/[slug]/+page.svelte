@@ -76,7 +76,7 @@
                 onclick={() => {
                     lenisInstance.lenis?.scrollTo(`#${heading.id}`);
                 }}
-                class="text-sm text-paragraph text-start transition-colors duration-200 active:text-accent lg:hover:text-accent"
+                class="text-start text-sm text-paragraph transition-colors duration-200 active:text-accent lg:hover:text-accent"
                 >{heading.value}</button
             >
         {/each}

@@ -7,11 +7,10 @@ import { mdastExtractHeadings, type TOCHeading } from '$lib/utils/mdast-extract-
 interface PageLoadData {
     metadata: BlogMetadata;
     BlogPost: Component;
-    url: URL;
     toc: TOCHeading[];
 }
 
-export const load: PageLoad = async ({ params, url }): Promise<PageLoadData> => {
+export const load: PageLoad = async ({ params }): Promise<PageLoadData> => {
     const { slug } = params;
     let blog: BlogFile;
     try {
@@ -24,5 +23,5 @@ export const load: PageLoad = async ({ params, url }): Promise<PageLoadData> => 
     const tree = fromMarkdown(raw);
     const toc = mdastExtractHeadings(tree);
 
-    return { metadata: blog.metadata, BlogPost: blog.default, url, toc: toc.slice(1) };
+    return { metadata: blog.metadata, BlogPost: blog.default, toc: toc.slice(1) };
 };
