@@ -15,6 +15,7 @@
     import Lenis from 'lenis';
     import gsap from 'gsap';
     import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+    import { lenisInstance } from '$lib/store/lenis.svelte';
 
     // components
     import GrainOverlay from '$lib/components/layout/GrainOverlay.svelte';
@@ -32,11 +33,15 @@
     let { children, data }: Props = $props();
 
     // init lenis and sync scrollTrigger with it
+
     $effect(() => {
         const lenis = new Lenis({
-            duration: 3,
+            duration: 2,
             easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t))
         });
+
+        lenisInstance.lenis = lenis;
+
         lenis.on('scroll', ScrollTrigger.update);
 
         gsap.ticker.add((time) => {

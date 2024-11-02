@@ -4,6 +4,7 @@
     import { ArrowLeft } from 'lucide-svelte';
     import moment from 'moment';
     import MetaData from '$lib/components/common/meta-data.svelte';
+    import { lenisInstance } from '$lib/store/lenis.svelte';
 
     interface Props {
         data: PageData;
@@ -69,12 +70,14 @@
             <BlogPost />
         </div>
     </div>
-    <aside class='flex-col gap-2 w-80 sticky top-32 hidden 2xl:flex'>
+    <aside class="sticky top-32 hidden w-80 flex-col gap-2 2xl:flex">
         {#each toc as heading}
-            <a
-                href={`#${heading.id}`}
-                class="text-sm text-paragraph transition-colors duration-200 active:text-accent lg:hover:text-accent"
-                >{heading.value}</a
+            <button
+                onclick={() => {
+                    lenisInstance.lenis?.scrollTo(`#${heading.id}`);
+                }}
+                class="text-sm text-paragraph text-start transition-colors duration-200 active:text-accent lg:hover:text-accent"
+                >{heading.value}</button
             >
         {/each}
     </aside>
