@@ -5,6 +5,7 @@
 
 - [x] hero section
 - [x] make hero section responsive
+- [ ] add rss feed
 - [ ] create logo
 - [ ] ~~add initial loader~~ (removed for better TTI & LCP)
 - [ ] ~~add element based page transition~~ (removed for better UX)

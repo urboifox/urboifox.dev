@@ -2,6 +2,7 @@ import type { BlogFile } from '$lib/types/blog';
 import type { PageLoad } from './$types';
 
 async function getBlogPosts(): Promise<BlogFile[]> {
+    // import blog posts from markdown files
     const blogPostsPaths: { [key: string]: BlogFile } = import.meta.glob('/src/blog/*.md', {
         eager: true
     });
@@ -18,7 +19,11 @@ async function getBlogPosts(): Promise<BlogFile[]> {
         });
     });
 
-    return blogPosts;
+    const sortedBlogPosts = blogPosts.sort((a, b) => {
+        return new Date(b.metadata.date).getTime() - new Date(a.metadata.date).getTime();
+    });
+
+    return sortedBlogPosts;
 }
 
 interface PageLoadData {

@@ -10,6 +10,7 @@
         --accent: 254 254 254;
         --comment: 119 119 119;
         --paragraph: 187 187 187;
+        scroll-behavior: smooth;
     }
 
     ::selection {
