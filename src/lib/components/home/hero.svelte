@@ -78,7 +78,7 @@
             >
                 Hello stranger! I’m Mohamed Ashraf. Also known as <span
                     class="peer cursor-help text-primary">Fox</span
-                >. I’m a a web & mobile apps developer, passionate about
+                >. I’m a web & mobile apps developer, passionate about
                 <span class="text-primary"> coding </span>
                 cool stuff.
                 <img
