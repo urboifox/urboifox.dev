@@ -58,7 +58,7 @@
         class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
     >
         <h1
-            class="top-heading bg-gradient-to-r from-accent/60 to-accent bg-clip-text font-bold text-transparent dark:bg-gradient-to-t"
+            class="top-heading bg-gradient-to-r from-accent/60 to-accent bg-clip-text font-bold text-transparent dark:bg-gradient-to-t transition-colors duration-500"
         >
             Mobile &amp; Web
         </h1>

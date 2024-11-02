@@ -26,7 +26,8 @@
     }
 
     body {
-        @apply bg-background-primary font-montserrat text-accent transition-colors duration-300;
+        @apply bg-background-primary font-montserrat text-accent;
+        transition: background-color 0.5s ease-in-out;
     }
 }
 
