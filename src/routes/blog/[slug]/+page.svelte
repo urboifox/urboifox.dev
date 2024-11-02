@@ -9,7 +9,7 @@
         data: PageData;
     }
     let { data }: Props = $props();
-    const { metadata, Blog, url } = data;
+    const { metadata, BlogPost, url } = data;
 </script>
 
 <svelte:head>
@@ -62,6 +62,6 @@
         class="prose prose-invert w-full max-w-4xl text-paragraph prose-a:text-primary prose-code:text-orange-400 prose-hr:border-comment/50"
     >
         <hr />
-        <Blog />
+        <BlogPost />
     </div>
 </div>

@@ -3,6 +3,7 @@ import type { Component } from 'svelte';
 export type BlogMetadata = {
     title: string;
     summary: string;
+    slug: string;
     tags: string[];
     date: string;
     readingTime: number;

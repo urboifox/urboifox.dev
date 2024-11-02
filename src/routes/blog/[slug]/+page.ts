@@ -4,7 +4,7 @@ import type { PageLoad } from './$types';
 
 interface PageLoadData {
     metadata: BlogMetadata;
-    Blog: Component;
+    BlogPost: Component;
     url: URL;
 }
 export const load: PageLoad = async ({ params, url }): Promise<PageLoadData> => {
@@ -12,5 +12,5 @@ export const load: PageLoad = async ({ params, url }): Promise<PageLoadData> => 
 
     const blog: BlogFile = await import(`../../../blog/${slug}.md`);
 
-    return { metadata: blog.metadata, Blog: blog.default, url };
+    return { metadata: blog.metadata, BlogPost: blog.default, url };
 };
