@@ -38,6 +38,8 @@
     },
     "dependencies": {
         "@fontsource/yeseva-one": "^5.1.0",
+        "bson": "^6.9.0",
+        "cloudinary": "^2.5.1",
         "clsx": "^2.1.1",
         "github-slugger": "^2.0.0",
         "gsap": "^3.12.5",
@@ -47,7 +49,9 @@
         "mdast-util-from-markdown": "^2.0.2",
         "mdast-util-to-string": "^4.0.0",
         "moment": "^2.30.1",
+        "mongoose": "^8.8.0",
         "rehype-slug": "^6.0.0",
+        "svelte-sonner": "^0.3.28",
         "tailwind-merge": "^2.5.4",
         "unist-util-visit": "^5.0.0"
     }

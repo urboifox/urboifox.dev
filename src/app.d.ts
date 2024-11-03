@@ -5,7 +5,7 @@ declare global {
         // interface Error {}
         // interface Locals {}
         interface PageData {
-            url: URL;
+            url?: URL;
         }
         // interface PageState {}
         // interface Platform {}

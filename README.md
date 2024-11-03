@@ -17,4 +17,5 @@
 - [ ] add blog post page TOC
 - [ ] selected crafts section
 - [ ] crafts page
-- [ ] save blog posts to a database
+- [x] save blog posts to a database
+- [ ] style blog pages on admin
