@@ -4,6 +4,7 @@
     import Navbar from '../layout/Navbar.svelte';
     import GsapLenisProvider from './gsap-lenis-provider.svelte';
     import ThemeProvider from './theme-provider.svelte';
+    import { Toaster } from 'svelte-sonner';
 
     interface Props {
         children: Snippet;
@@ -13,6 +14,7 @@
 
 <GrainOverlay />
 <Navbar />
+<Toaster />
 <ThemeProvider>
     <GsapLenisProvider>
         {@render children()}

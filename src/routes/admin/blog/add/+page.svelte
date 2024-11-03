@@ -3,8 +3,11 @@
     import Button from '$lib/components/common/button.svelte';
     import Input from '$lib/components/common/input.svelte';
     import Textarea from '$lib/components/common/textarea.svelte';
-    import type { ActionData } from './$types';
-    import { getFileUrl } from '$lib/utils/get-file-url';
+    import type { ActionData, SubmitFunction } from './$types';
+    import { slug } from 'github-slugger';
+    import Tag from '$lib/components/common/tag.svelte';
+    import { toast } from 'svelte-sonner';
+    import ImageInput from '$lib/components/common/image-input.svelte';
 
     interface Props {
         form: ActionData;
@@ -12,50 +15,105 @@
     let { form }: Props = $props();
     let imageUrl = $state('');
 
-    async function handleImageChange(
-        e: Event & {
-            currentTarget: EventTarget & HTMLInputElement;
-        }
-    ) {
-        const image = e?.currentTarget?.files?.[0];
-        if (!image) return;
+    let titleString = $state('');
+    let tag = $state('');
+    let tags = $state<string[]>([]);
+    let loading = $state(false);
 
-        imageUrl = await getFileUrl(image);
-    }
+    $effect(() => {
+        titleString = form?.payload?.title || '';
+        tags = form?.payload?.tags || [];
+
+        if (form?.toast) {
+            toast.error(form?.toast);
+        }
+    });
+
+    const addPost: SubmitFunction = ({ formData }) => {
+        loading = true;
+        formData.set('image', imageUrl);
+        for (const tag of tags) {
+            formData.append('tags', tag);
+            formData.append('slug', titleString);
+        }
+
+        return async ({ update }) => {
+            await update();
+            loading = false;
+        };
+    };
 </script>
 
-<div class="mx-auto flex min-h-screen items-center justify-center">
+<div class="mx-auto flex w-full max-w-xl items-center justify-center pb-20 pt-32">
     <form
         method="POST"
-        use:enhance={({ formData }) => {
-            formData.set('image', imageUrl);
-        }}
+        use:enhance={addPost}
         action="?/add"
-        class="flex flex-col gap-6"
+        class="flex w-full flex-col gap-6"
         enctype="multipart/form-data"
     >
-        <Input value={form?.title} name="title" label="Title" required />
-        <Textarea value={form?.summary ?? ''} name="summary" label="Summary" required />
-        <!-- add image -->
-
         <Input
-            onchange={handleImageChange}
-            value={imageUrl ?? ''}
-            type="file"
-            accept="image/*"
+            oninput={(e) => {
+                titleString = slug(e.currentTarget.value);
+            }}
+            value={form?.payload?.title}
+            error={form?.errors?.title}
+            name="title"
+            label="Title"
+        />
+        <p class="text-sm text-paragraph">
+            {titleString}
+        </p>
+
+        <Textarea
+            value={form?.payload?.summary ?? ''}
+            name="summary"
+            label="Summary"
+            error={form?.errors?.summary}
+        />
+        <Input
+            bind:value={tag}
+            label="Tags"
+            error={form?.errors?.tags}
+            oninput={(e) => {
+                tag = e.currentTarget.value;
+            }}
+            onkeypress={(e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    tags.push(tag);
+                    tag = '';
+                }
+            }}
+        />
+        <div class="flex flex-wrap gap-2">
+            {#each tags as tag, i (i)}
+                <Tag {tag} />
+            {/each}
+        </div>
+
+        <ImageInput
+            name="image"
             label="Image"
-            required
+            onFileChange={(url) => (imageUrl = url)}
+            error={form?.errors?.image}
         />
         <div class="flex gap-2">
-            <Input value={form?.youtubeId} name="youtubeId" label="Youtube video ID" />
+            <Input value={form?.payload?.youtubeId} name="youtubeId" label="Youtube video ID" />
             <Input
-                value={form?.readingTime}
+                value={form?.payload?.readingTime}
                 name="readingTime"
                 label="Reading Time"
                 type="number"
             />
         </div>
-        <Textarea value={form?.content} name="content" label="Markdown" required class="min-h-60" />
+        <Textarea
+            value={form?.payload?.content}
+            name="content"
+            label="Markdown"
+            class="min-h-60"
+            error={form?.errors?.content}
+        />
 
         <div class="flex flex-col items-start gap-2">
             <Input
@@ -64,7 +122,7 @@
                 label="Published"
                 value="true"
                 id="published"
-                checked={form?.published === 'true' || !form?.published}
+                checked={form?.payload?.published === 'true'}
             />
             <Input
                 type="radio"
@@ -72,9 +130,9 @@
                 label="Draft"
                 value="false"
                 id="draft"
-                checked={form?.published === 'false'}
+                checked={form?.payload?.published === 'false' || !form?.payload?.published}
             />
         </div>
-        <Button type="submit">submit</Button>
+        <Button disabled={loading} type="submit">Submit</Button>
     </form>
 </div>

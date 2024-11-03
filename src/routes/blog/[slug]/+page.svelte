@@ -5,6 +5,7 @@
     import MetaData from '$lib/components/common/meta-data.svelte';
     import { lenisInstance } from '$lib/store/lenis.svelte';
     import { themeStore } from '$lib/store/theme.svelte';
+    import Tag from '$lib/components/common/tag.svelte';
 
     interface Props {
         data: PageData;
@@ -51,7 +52,7 @@
                 <div class="aspect-video overflow-hidden rounded-lg">
                     {#if metadata.youtubeId}
                         <iframe
-                            class="w-full h-full"
+                            class="h-full w-full"
                             src={`https://www.youtube.com/embed/${metadata.youtubeId}?origin=${url.origin}`}
                             title={metadata.title}
                             allow="fullscreen"
@@ -60,14 +61,11 @@
                         <img src={metadata.image} alt={metadata.title} />
                     {/if}
                 </div>
-                <ul class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2">
                     {#each metadata?.tags as tag (tag)}
-                        <li
-                            class="rounded-lg border border-comment px-2 py-1 text-xs text-paragraph"
-                        >
-                            {tag}
-                        </li>
-                    {/each} </ul>
+                        <Tag {tag} />
+                    {/each}
+                </div>
             </div>
         </header>
         <div
