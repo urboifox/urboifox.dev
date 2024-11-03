@@ -8,6 +8,7 @@
     import Tag from '$lib/components/common/tag.svelte';
     import { toast } from 'svelte-sonner';
     import ImageInput from '$lib/components/common/image-input.svelte';
+    import { ArrowLeft } from 'lucide-svelte';
 
     interface Props {
         form: ActionData;
@@ -44,7 +45,12 @@
     };
 </script>
 
-<div class="mx-auto flex w-full max-w-xl items-center justify-center pb-20 pt-32">
+<div class="mx-auto flex w-full max-w-xl flex-col gap-10 pb-20 pt-32">
+    <a
+        href="/admin/blog"
+        class="flex items-center gap-2 text-paragraph transition-colors duration-200 hover:text-white"
+        ><ArrowLeft size={20} /> Back to blog</a
+    >
     <form
         method="POST"
         use:enhance={addPost}
