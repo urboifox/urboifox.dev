@@ -3,6 +3,7 @@ import mongoose, { Model } from 'mongoose';
 export interface Post {
     id: string;
     content: string;
+    slug: string;
     title: string;
     summary: string;
     tags: string[];

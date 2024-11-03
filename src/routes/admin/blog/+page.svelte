@@ -1,18 +1,33 @@
 <script lang="ts">
+    import Button from '$lib/components/common/button.svelte';
+    import { toast } from 'svelte-sonner';
     import type { PageServerData } from './$types.js';
 
     interface Props {
         data: PageServerData;
     }
     let { data }: Props = $props();
+
+    $effect(() => {
+      if (data.error) {
+        toast.error(data.error);
+      }
+    })
 </script>
 
-<h1>Blog</h1>
+<div class="container flex flex-col gap-10 py-32">
+    <h1 class="text-3xl">Blog</h1>
 
-<div>
-    {#each data.posts as post (post.id)}
-        <p>{post?.title}</p>
-        <p>{post?.summary}</p>
-        <img src={post?.image} alt={post?.title} />
-    {/each}
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))]">
+        {#each data.posts as post (post.id)}
+            <div class="flex max-w-lg flex-col gap-4 rounded-md bg-background-secondary p-4">
+                <p>{post.title}</p>
+                <p class="line-clamp-3">{post.summary}</p>
+                <img src={post.image} alt={post.title} class="w-full" />
+                <a href="/admin/blog/{post.slug}">
+                    <Button>Details</Button>
+                </a>
+            </div>
+        {/each}
+    </div>
 </div>

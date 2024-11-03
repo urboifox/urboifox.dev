@@ -67,7 +67,7 @@
 </script>
 
 <header
-    class="container fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent"
+    class="container fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent backdrop-blur-sm"
 >
     <button onclick={toggleTheme} class="transition-colors duration-300 hover:text-primary">
         {#if themeStore.theme === 'dark'}

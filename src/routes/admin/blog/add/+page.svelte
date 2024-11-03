@@ -34,7 +34,7 @@
         formData.set('image', imageUrl);
         for (const tag of tags) {
             formData.append('tags', tag);
-            formData.append('slug', titleString);
+            formData.append('slug', slug(titleString));
         }
 
         return async ({ update }) => {

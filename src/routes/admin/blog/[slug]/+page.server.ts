@@ -1,9 +1,15 @@
-import PostModel from '$lib/models/post';
+import PostModel, { type Post } from '$lib/models/post';
+import { EJSON } from 'bson';
 import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params }): Promise<{ post: Post }> => {
     const { slug } = params;
-    const post = await PostModel.findOne({ where: { slug } });
+    const post = await PostModel.findOne({ slug });
 
-    return { post };
+    if (!post) {
+        error(404, 'Post not found');
+    }
+
+    return { post: EJSON.deserialize(post) };
 };
