@@ -2,8 +2,12 @@ import PostModel, { type Post } from '$lib/models/post';
 import { EJSON } from 'bson';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
+import { type TOCHeading } from '$lib/utils/mdast-extract-headings';
+import { parseMarkdown } from '$lib/utils/markdown-parser';
 
-export const load: PageServerLoad = async ({ params }): Promise<{ post: Post }> => {
+export const load: PageServerLoad = async ({
+    params
+}): Promise<{ post: Post; toc: TOCHeading[] }> => {
     const { slug } = params;
     const post = await PostModel.findOne({ slug });
 
@@ -11,5 +15,8 @@ export const load: PageServerLoad = async ({ params }): Promise<{ post: Post }> 
         error(404, 'Post not found');
     }
 
-    return { post: EJSON.deserialize(post) };
+    const { dom, toc } = await parseMarkdown(post.content);
+    post.content = dom;
+
+    return { post: EJSON.deserialize(post), toc };
 };

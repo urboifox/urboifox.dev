@@ -1,6 +1,5 @@
 <script lang="ts">
     import MetaData from '$lib/components/common/meta-data.svelte';
-    import { themeStore } from '$lib/store/theme.svelte';
     import PostToc from '$lib/components/blog/post-toc.svelte';
     import Markdown from '$lib/components/blog/markdown.svelte';
     import PostHeader from '$lib/components/blog/post-header.svelte';
@@ -15,13 +14,6 @@
         description={post.summary}
         href={url.href}
         image={post.image}
-    />
-
-    <link
-        rel="stylesheet"
-        href={themeStore.theme === 'dark'
-            ? '/css/prism-gruvbox-dark.css'
-            : '/css/prism-gruvbox-light.css'}
     />
 </svelte:head>
 
