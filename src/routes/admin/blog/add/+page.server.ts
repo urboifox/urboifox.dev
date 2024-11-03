@@ -1,30 +1,28 @@
 import PostModel from '$lib/models/post';
 import cloudinary from '$lib/utils/cloudinary';
-import { z } from 'zod';
 import type { Actions } from './$types';
 import { redirect } from '@sveltejs/kit';
-
-const addPostSchema = z.object({
-    title: z.string().min(1),
-    summary: z.string().min(1),
-    tags: z.array(z.string()).min(1, "Include at least one tag"),
-    content: z.string().min(1),
-    image: z.string().min(1, "Image is required"),
-});
+import { postSchema } from '$lib/schemas/post-schema';
 
 export const actions = {
-    add: async ({ request }) => {
+    default: async ({ request }) => {
         const formData = await request.formData();
         const payload = Object.fromEntries(formData.entries()) as { [key: string]: string } & {
             tags: string[];
         };
         payload.tags = formData.getAll('tags') as string[];
 
-        const result = addPostSchema.safeParse(payload);
+        const result = postSchema.safeParse(payload);
 
         if (!result.success) {
             const errors = result?.error?.flatten()?.fieldErrors;
-            return { errors, payload };
+            return { errors };
+        }
+
+        const existingPost = await PostModel.findOne({ slug: payload.slug });
+
+        if (existingPost) {
+            return { toast: 'Post with this slug already exists' };
         }
 
         try {
@@ -36,7 +34,7 @@ export const actions = {
             payload.image = cloudinaryResponse.secure_url;
         } catch (error) {
             console.log('error uploading image', error);
-            return { toast: 'Error uploading image', payload };
+            return { toast: 'Error uploading image' };
         }
 
         const post = new PostModel(payload);
@@ -46,7 +44,7 @@ export const actions = {
         } catch (error: unknown) {
             console.log('error adding post', error);
             if (error instanceof Error) {
-                return { toast: error?.message || 'Error adding post', payload };
+                return { toast: error?.message || 'Error adding post' };
             }
         }
 

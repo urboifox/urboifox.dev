@@ -18,4 +18,3 @@
 - [ ] selected crafts section
 - [ ] crafts page
 - [x] save blog posts to a database
-- [ ] style blog pages on admin

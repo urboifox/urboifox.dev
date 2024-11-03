@@ -7,7 +7,7 @@ import { parseMarkdown } from '$lib/utils/markdown-parser';
 
 export const load: PageServerLoad = async ({
     params
-}): Promise<{ post: Post; toc: TOCHeading[] }> => {
+}): Promise<{ post: Post; toc: TOCHeading[], dom: string }> => {
     const { slug } = params;
     const post = await PostModel.findOne({ slug });
 
@@ -16,7 +16,6 @@ export const load: PageServerLoad = async ({
     }
 
     const { dom, toc } = await parseMarkdown(post.content);
-    post.content = dom;
 
-    return { post: EJSON.deserialize(post), toc };
+    return { post: EJSON.deserialize(post), toc, dom };
 };

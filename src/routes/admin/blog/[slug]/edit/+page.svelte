@@ -3,22 +3,20 @@
     import Button from '$lib/components/common/button.svelte';
     import Input from '$lib/components/common/input.svelte';
     import Textarea from '$lib/components/common/textarea.svelte';
-    import type { ActionData, SubmitFunction } from './$types';
     import { slug } from 'github-slugger';
     import Tag from '$lib/components/common/tag.svelte';
     import { toast } from 'svelte-sonner';
     import ImageInput from '$lib/components/common/image-input.svelte';
     import { ArrowLeft } from 'lucide-svelte';
+    import type { SubmitFunction } from './$types';
 
-    interface Props {
-        form: ActionData;
-    }
-    let { form }: Props = $props();
-    let imageUrl = $state('');
+    let { form, data } = $props();
+    const { post } = data;
+    let imageUrl = $state(post?.image);
 
-    let titleSlug = $state('');
+    let titleSlug = $state(post?.slug);
     let tag = $state('');
-    let tags = $state<string[]>([]);
+    let tags = $state<string[]>(post?.tags || []);
     let loading = $state(false);
 
     $effect(() => {
@@ -27,7 +25,7 @@
         }
     });
 
-    const addPost: SubmitFunction = ({ formData }) => {
+    const editPost: SubmitFunction = ({ formData }) => {
         loading = true;
         formData.set('image', imageUrl);
         formData.append('slug', slug(titleSlug));
@@ -44,21 +42,24 @@
 
 <div class="mx-auto flex w-full max-w-xl flex-col gap-10 pb-20 pt-32">
     <a
-        href="/admin/blog"
+        href="/admin/blog/{post?.slug}"
         class="flex items-center gap-2 text-paragraph transition-colors duration-200 hover:text-white"
         ><ArrowLeft size={20} /> Back to blog</a
     >
     <form
         method="POST"
-        use:enhance={addPost}
+        use:enhance={editPost}
         class="flex w-full flex-col gap-6"
         enctype="multipart/form-data"
-        onreset={(e) => e.preventDefault()}
+        onreset={(e) => {
+            e.preventDefault();
+        }}
     >
         <Input
             oninput={(e) => {
                 titleSlug = slug(e.currentTarget.value);
             }}
+            value={post?.title}
             error={form?.errors?.title}
             name="title"
             label="Title"
@@ -67,7 +68,12 @@
             {titleSlug}
         </p>
 
-        <Textarea name="summary" label="Summary" error={form?.errors?.summary} />
+        <Textarea
+            value={post?.summary}
+            name="summary"
+            label="Summary"
+            error={form?.errors?.summary}
+        />
         <Input
             bind:value={tag}
             label="Tags"
@@ -91,12 +97,30 @@
             {/each}
         </div>
 
-        <ImageInput name="image" label="Image" bind:imageUrl error={form?.errors?.image} />
+        <ImageInput
+            defaultImage={imageUrl}
+            name="image"
+            label="Image"
+            onFileChange={(url) => (imageUrl = url)}
+            error={form?.errors?.image}
+        />
         <div class="flex gap-2">
-            <Input name="youtubeId" label="Youtube video ID" containerClass="w-full" />
-            <Input name="readingTime" label="Reading Time" type="number" containerClass="w-full" />
+            <Input value={post?.youtubeId} name="youtubeId" label="Youtube video ID" containerClass="w-full" />
+            <Input
+                value={post?.readingTime.toString()}
+                name="readingTime"
+                label="Reading Time"
+                type="number"
+                containerClass="w-full"
+            />
         </div>
-        <Textarea name="content" label="Markdown" class="min-h-60" error={form?.errors?.content} />
+        <Textarea
+            value={post?.content}
+            name="content"
+            label="Markdown"
+            class="min-h-60"
+            error={form?.errors?.content}
+        />
 
         <div class="flex flex-col items-start gap-2">
             <Input
@@ -105,9 +129,16 @@
                 label="Published"
                 value="true"
                 id="published"
-                checked={true}
+                checked={post?.published}
             />
-            <Input type="radio" name="published" label="Draft" value="false" id="draft" />
+            <Input
+                type="radio"
+                name="published"
+                label="Draft"
+                value="false"
+                id="draft"
+                checked={!post?.published}
+            />
         </div>
         <Button disabled={loading} type="submit">Submit</Button>
     </form>

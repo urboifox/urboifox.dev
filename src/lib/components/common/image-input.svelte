@@ -11,6 +11,8 @@
         label?: string;
         value?: string;
         error?: string | string[] | undefined;
+        defaultImage?: string;
+        imageUrl?: string;
         onFileChange?: (e: string) => void;
     }
     let {
@@ -18,11 +20,11 @@
         label,
         error,
         value = $bindable(),
+        defaultImage,
         onFileChange,
+        imageUrl = $bindable(defaultImage || ''),
         ...rest
     }: Props = $props();
-
-    let imageUrl = $state(value);
 
     async function handleImageChange(
         e: Event & {
