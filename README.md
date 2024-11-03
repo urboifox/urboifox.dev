@@ -17,3 +17,4 @@
 - [ ] add blog post page TOC
 - [ ] selected crafts section
 - [ ] crafts page
+- [ ] save blog posts to a database

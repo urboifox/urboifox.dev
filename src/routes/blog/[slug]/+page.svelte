@@ -51,6 +51,7 @@
                 <div class="aspect-video overflow-hidden rounded-lg">
                     {#if metadata.youtubeId}
                         <iframe
+                            class="w-full h-full"
                             src={`https://www.youtube.com/embed/${metadata.youtubeId}?origin=${url.origin}`}
                             title={metadata.title}
                             allow="fullscreen"
@@ -66,8 +67,7 @@
                         >
                             {tag}
                         </li>
-                    {/each}
-                </ul>
+                    {/each} </ul>
             </div>
         </header>
         <div
