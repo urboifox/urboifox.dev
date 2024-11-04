@@ -21,3 +21,4 @@
 - [x] validate blog images before uplaoding to the server
 - [x] crafts admin page (add, edit, delete)
 - [x] delete blog post
+- [ ] upload images to cloudinary from client side, once the user uploads it

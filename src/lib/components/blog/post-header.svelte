@@ -42,8 +42,10 @@
         </div>
         <div class="flex flex-wrap gap-2">
             {#each post?.tags as tag (tag)}
-                <Tag {tag} />
+                <span class="text-sm text-paragraph">#{tag}</span>
             {/each}
         </div>
     </div>
 </header>
+
+<hr class="border-comment/50 border-px" />
