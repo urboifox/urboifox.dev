@@ -22,3 +22,4 @@
 - [x] crafts admin page (add, edit, delete)
 - [x] delete blog post
 - [ ] upload images to cloudinary from client side, once the user uploads it
+- [ ] add codemirror as markdown editor

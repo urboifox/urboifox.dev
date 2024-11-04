@@ -9,6 +9,7 @@
     import { toast } from 'svelte-sonner';
     import ImageInput from '$lib/components/common/image-input.svelte';
     import { ArrowLeft } from 'lucide-svelte';
+    import CodeEditor from '$lib/components/common/code-editor.svelte';
 
     interface Props {
         form: ActionData;
@@ -42,12 +43,14 @@
     };
 </script>
 
-<div class="mx-auto flex w-full max-w-xl flex-col gap-10 pb-20 pt-32">
+<div class="mx-auto flex w-full max-w-3xl container flex-col gap-10 pb-20 pt-32">
     <a
         href="/admin/blog"
         class="flex items-center gap-2 text-paragraph transition-colors duration-200 hover:text-white"
-        ><ArrowLeft size={20} /> Back to blog</a
     >
+        <ArrowLeft size={20} />
+        Back to blog
+    </a>
     <form
         method="POST"
         use:enhance={addPost}
@@ -96,7 +99,7 @@
             <Input name="youtubeId" label="Youtube video ID" containerClass="w-full" />
             <Input name="readingTime" label="Reading Time" type="number" containerClass="w-full" />
         </div>
-        <Textarea name="content" label="Markdown" class="min-h-60" error={form?.errors?.content} />
+        <CodeEditor label="Markdown" error={form?.errors?.content} name="content" />
 
         <div class="flex flex-col items-start gap-2">
             <Input
