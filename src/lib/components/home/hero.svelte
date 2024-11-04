@@ -1,7 +1,7 @@
 <script lang="ts">
     import gsap from 'gsap';
-    import Button from '$lib/components/common/button.svelte';
     import images from '$lib/constants/images';
+    import MainButton from '../common/main-button.svelte';
 
     let container: HTMLDivElement;
 
@@ -95,7 +95,7 @@
                 />
             </p>
             <div class="cta max-sm:self-end">
-                <Button>Get in touch</Button>
+                <MainButton>Get in touch</MainButton>
             </div>
         </div>
     </div>
