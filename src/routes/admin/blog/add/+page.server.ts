@@ -22,7 +22,7 @@ export const actions = {
         const existingPost = await PostModel.findOne({ slug: payload.slug });
 
         if (existingPost) {
-            return { toast: 'Post with this slug already exists' };
+            return { error: 'Post with this slug already exists' };
         }
 
         try {
@@ -34,7 +34,7 @@ export const actions = {
             payload.image = cloudinaryResponse.secure_url;
         } catch (error) {
             console.log('error uploading image', error);
-            return { toast: 'Error uploading image' };
+            return { error: 'Error uploading image' };
         }
 
         const post = new PostModel(payload);
@@ -44,10 +44,10 @@ export const actions = {
         } catch (error: unknown) {
             console.log('error adding post', error);
             if (error instanceof Error) {
-                return { toast: error?.message || 'Error adding post' };
+                return { error: error?.message || 'Error adding post' };
             }
         }
 
-        redirect(303, '/admin/blog');
+        redirect(303, '/admin/blog/' + post.slug);
     }
 } satisfies Actions;

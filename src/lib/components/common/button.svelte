@@ -5,6 +5,7 @@
 
     interface Props extends HTMLButtonAttributes {
         children?: Snippet;
+        variant?: 'danger';
         type?: 'button' | 'submit' | 'reset';
     }
 
@@ -16,6 +17,7 @@
     {...rest}
     class={cn(
         'rounded-md border border-comment px-6 py-4 text-paragraph transition-colors duration-300 hover:border-primary hover:text-primary',
+        rest?.variant === 'danger' && 'border-red-600 text-red-600',
         rest?.disabled && 'opacity-60',
         rest?.class
     )}

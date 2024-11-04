@@ -18,4 +18,6 @@
 - [ ] selected crafts section
 - [ ] crafts page
 - [x] save blog posts to a database
-- [ ] validate blog images before uplaoding to the server
+- [x] validate blog images before uplaoding to the server
+- [x] crafts admin page (add, edit, delete)
+- [x] delete blog post

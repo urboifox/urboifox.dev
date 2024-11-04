@@ -15,9 +15,9 @@
 
 <label
     class={cn(
-        'flex flex-col gap-2',
+        'flex flex-col gap-2 w-full',
         ['radio', 'checkbox'].includes(rest?.type ?? '') &&
-            'cursor-pointer flex-row-reverse items-center',
+            'cursor-pointer flex-row-reverse items-center w-fit',
         rest?.disabled && 'opacity-60',
         containerClass
     )}

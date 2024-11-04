@@ -22,8 +22,8 @@
     let loading = $state(false);
 
     $effect(() => {
-        if (form?.toast) {
-            toast.error(form?.toast);
+        if (form?.error) {
+            toast.error(form?.error);
         }
     });
 

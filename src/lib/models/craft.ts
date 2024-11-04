@@ -2,16 +2,18 @@ import mongoose, { Model } from 'mongoose';
 
 export interface Craft {
     id: string;
-    content: string;
-    slug: string;
     title: string;
-    summary: string;
-    tags: string[];
+    repo: string;
+    link: string;
+    slug: string;
+    client: string;
+    clientUrl: string;
+    description: string;
     published: boolean;
-    readingTime: number;
     image: string;
-    youtubeId: string;
-    createdAt: Date;
+    additionalImage: string[];
+    startDate: Date;
+    endDate: Date;
 }
 
 const CraftSchema = new mongoose.Schema({
@@ -20,8 +22,10 @@ const CraftSchema = new mongoose.Schema({
         required: true
     },
     repo: {
-        type: String,
-        required: true
+        type: String
+    },
+    link: {
+        type: String
     },
     slug: {
         type: String,

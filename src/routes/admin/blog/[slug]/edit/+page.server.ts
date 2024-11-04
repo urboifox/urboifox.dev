@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ parent }) => {
 };
 
 export const actions = {
-    default: async ({ request, params }) => {
+    edit: async ({ request, params }) => {
         const { slug } = params;
         const formData = await request.formData();
         const payload = Object.fromEntries(formData.entries()) as { [key: string]: string } & {
@@ -64,8 +64,25 @@ export const actions = {
         }
 
         if (payload.slug !== slug) {
-            redirect(303, `/admin/blog/${payload.slug}/edit`);
+            return redirect(303, `/admin/blog/${payload.slug}/edit`);
         }
         return { toast: 'Post updated successfully' };
+    },
+    delete: async ({ params }) => {
+        const { slug } = params;
+
+        try {
+            const deleted = await PostModel.deleteOne({ slug });
+            if (!deleted) {
+                return error(404, 'Post not found');
+            }
+        } catch (error: unknown) {
+            console.log('error deleting post', error);
+            if (error instanceof Error) {
+                return { error: error?.message || 'Error deleting post' };
+            }
+        }
+
+        return redirect(303, '/admin/blog');
     }
 } satisfies Actions;

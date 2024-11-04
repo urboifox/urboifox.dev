@@ -48,6 +48,7 @@
     >
     <form
         method="POST"
+        action="?/edit"
         use:enhance={editPost}
         class="flex w-full flex-col gap-6"
         enctype="multipart/form-data"
@@ -140,6 +141,7 @@
                 checked={!post?.published}
             />
         </div>
-        <Button disabled={loading} type="submit">Submit</Button>
+        <Button disabled={loading} type="submit">Save</Button>
+        <Button disabled={loading} type="submit" formaction="?/delete">Save</Button>
     </form>
 </div>
