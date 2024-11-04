@@ -27,7 +27,7 @@ export const actions = {
 
         try {
             const cloudinaryResponse = await cloudinary.uploader.upload(payload.image as string, {
-                format: 'webp'
+                format: 'webp',
             });
 
             // replace image absolute path with cloudinary secure url

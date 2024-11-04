@@ -18,3 +18,4 @@
 - [ ] selected crafts section
 - [ ] crafts page
 - [x] save blog posts to a database
+- [ ] validate blog images before uplaoding to the server
