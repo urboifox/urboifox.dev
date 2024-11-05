@@ -1,5 +1,5 @@
 export type Theme = 'light' | 'dark';
 
-export let themeStore = $state({
+export const themeStore = $state({
     theme: 'light'
 });
