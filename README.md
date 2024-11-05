@@ -11,7 +11,7 @@
 - [ ] ~~add initial loader~~ (removed for better TTI & LCP)
 - [ ] ~~add element based page transition~~ (removed for better UX)
 - [ ] add custom cursor
-- [ ] add custom scrollbar
+- [x] add custom scrollbar
 - [ ] blog page
 - [x] blog post page
 - [ ] add blog post page TOC

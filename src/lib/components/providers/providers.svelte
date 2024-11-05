@@ -5,6 +5,7 @@
     import GsapLenisProvider from './gsap-lenis-provider.svelte';
     import ThemeProvider from './theme-provider.svelte';
     import { Toaster } from 'svelte-sonner';
+    import Scrollbar from '../common/scrollbar.svelte';
 
     interface Props {
         children: Snippet;
@@ -17,6 +18,7 @@
 <Toaster />
 <ThemeProvider>
     <GsapLenisProvider>
+        <Scrollbar />
         {@render children()}
     </GsapLenisProvider>
 </ThemeProvider>

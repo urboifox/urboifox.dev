@@ -15,6 +15,7 @@
                 ease: 'none',
                 opacity: 0,
                 y: -250,
+                scale: 0.95,
                 scrollTrigger: {
                     trigger: '.hero-content',
                     start: 'top top',
@@ -25,17 +26,17 @@
             });
             gsap.to('.top-heading', {
                 opacity: 0,
-                x: -50,
+                x: -80,
                 scrollTrigger
             });
             gsap.to('.slash', {
                 opacity: 0.3,
-                x: -20,
+                x: -40,
                 scrollTrigger
             });
             gsap.to('.bottom-heading', {
                 opacity: 0.5,
-                x: 20,
+                x: 40,
                 scrollTrigger
             });
         });
