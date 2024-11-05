@@ -9,6 +9,7 @@
     import ImageInput from '$lib/components/common/image-input.svelte';
     import { ArrowLeft } from 'lucide-svelte';
     import type { SubmitFunction } from './$types';
+    import CodeEditor from '$lib/components/common/code-editor.svelte';
 
     let { form, data } = $props();
     const { post } = data;
@@ -115,13 +116,7 @@
                 containerClass="w-full"
             />
         </div>
-        <Textarea
-            value={post?.content}
-            name="content"
-            label="Markdown"
-            class="min-h-60"
-            error={form?.errors?.content}
-        />
+        <CodeEditor label="Markdown" error={form?.errors?.content} name="content" value={post?.content} />
 
         <div class="flex flex-col items-start gap-2">
             <Input

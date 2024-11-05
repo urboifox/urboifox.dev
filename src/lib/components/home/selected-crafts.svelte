@@ -27,7 +27,6 @@
                     start: 'top top',
                     end: () => '+=' + (slider.scrollWidth - innerWidth),
                     scrub: 1,
-                    anticipatePin: 1,
                 }
             });
 
@@ -43,7 +42,6 @@
                             start: 'left 70%',
                             end: 'left: 20%',
                             containerAnimation: scrollTween,
-                            markers: true,
                             scrub: 1
                         }
                     });
