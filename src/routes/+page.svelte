@@ -8,6 +8,7 @@
     <MetaData title="Home | Fox" />
 </svelte:head>
 
+
 <Hero />
 <SelectedCrafts />
 <div class="h-screen"></div>
