@@ -47,12 +47,12 @@
 </script>
 
 <div
-    class="hero flex h-screen flex-col items-center justify-center gap-10 bg-gradient-to-tr from-background-secondary to-background-primary"
+    class="hero flex h-screen items-center justify-center bg-gradient-to-tr from-background-secondary to-background-primary"
 >
     <span
         class="absolute -top-full hidden aspect-square w-[50vw] rounded-full bg-accent blur-[150px] dark:block"
     ></span>
-    <div class="hero-content flex flex-col justify-center h-full">
+    <div class="hero-content flex flex-col justify-center h-full gap-10">
         <div
             class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
         >
