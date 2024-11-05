@@ -9,6 +9,8 @@
     import { EditorView, keymap } from '@codemirror/view';
     import { gruvboxDark } from '@fsegurai/codemirror-theme-gruvbox-dark';
     import { defaultKeymap, indentLess, indentMore } from '@codemirror/commands';
+    import { themeStore } from '$lib/store/theme.svelte';
+    import { gruvboxLight } from '@fsegurai/codemirror-theme-gruvbox-light';
 
     let container: HTMLDivElement;
 
@@ -22,7 +24,7 @@
     }
     let { value = '', label, error, required, name, onDocChange }: Props = $props();
 
-    let content = $state('');
+    let content = $state(value);
 
     $effect(() => {
         const state = EditorState.create({
@@ -46,7 +48,7 @@
                 ]),
                 javascript({ jsx: true, typescript: true }),
                 vim(),
-                gruvboxDark,
+                themeStore.theme === 'dark' ? gruvboxDark : gruvboxLight,
                 EditorView.updateListener.of((update) => {
                     const doc = update.state.doc;
                     const structuredDoc = doc.toJSON().join('\n');

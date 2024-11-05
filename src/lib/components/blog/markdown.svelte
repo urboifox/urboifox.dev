@@ -14,7 +14,8 @@
 </svelte:head>
 
 <div
-    class="prose w-full max-w-5xl text-paragraph dark:prose-invert prose-a:text-primary prose-code:text-orange-400 prose-pre:transition-colors prose-pre:duration-300 prose-hr:border-comment/50"
+    class="prose prose-sm w-full max-w-5xl text-paragraph dark:prose-invert sm:prose-lg prose-a:text-primary prose-code:text-orange-400 prose-pre:transition-colors prose-pre:duration-300 prose-hr:border-comment/50"
 >
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html content}
 </div>

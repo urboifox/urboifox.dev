@@ -2,7 +2,7 @@ import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { postSchema } from '$lib/schemas/post-schema';
 import PostModel from '$lib/models/post';
-import cloudinary from '$lib/utils/cloudinary';
+import { uploadImage } from '$lib/utils/image-uploader';
 
 export const load: PageServerLoad = async ({ parent }) => {
     const { toc, post } = await parent();
@@ -29,22 +29,10 @@ export const actions = {
             return { errors };
         }
 
-        // dont upload image if it is already uploaded on cloudinary
-        if (!payload.image.includes('cloudinary')) {
-            try {
-                const cloudinaryResponse = await cloudinary.uploader.upload(
-                    payload.image as string,
-                    {
-                        format: 'webp'
-                    }
-                );
-
-                // replace image absolute path with cloudinary secure url
-                payload.image = cloudinaryResponse.secure_url;
-            } catch (error) {
-                console.log('error uploading image', error);
-                return { toast: 'Error uploading image' };
-            }
+        try {
+            payload.image = await uploadImage(payload.image)
+        } catch {
+            return { toast: 'Error uploading image' };
         }
 
         try {

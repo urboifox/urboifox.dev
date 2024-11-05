@@ -1,9 +1,9 @@
 import { slug } from 'github-slugger';
 import type { Actions } from './$types';
 import { craftSchema } from '$lib/schemas/craft-schema';
-import cloudinary from '$lib/utils/cloudinary';
 import CraftModel from '$lib/models/craft';
 import { error, redirect } from '@sveltejs/kit';
+import { uploadImage } from '$lib/utils/image-uploader';
 
 export const actions = {
     edit: async ({ request, params }) => {
@@ -20,19 +20,11 @@ export const actions = {
         }
 
         // TODO: loop over additional images and upload them
-        if (!payload.image.toString().includes('cloudinary')) {
-            try {
-                const cloudinaryResponse = await cloudinary.uploader.upload(
-                    payload.image.toString(),
-                    {
-                        format: 'webp'
-                    }
-                );
-                payload.image = cloudinaryResponse.secure_url;
-            } catch (error) {
-                console.error('error uploading image', error);
-                return { error: 'Failed to upload image' };
-            }
+        try {
+            payload.image = await uploadImage(payload.image as string);
+        } catch (error) {
+            console.error('error uploading image', error);
+            return { error: 'Failed to upload image' };
         }
 
         try {

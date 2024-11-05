@@ -137,6 +137,6 @@
             />
         </div>
         <Button disabled={loading} type="submit">Save</Button>
-        <Button disabled={loading} type="submit" formaction="?/delete">Save</Button>
+        <Button variant="danger" disabled={loading} type="submit" formaction="?/delete">Delete</Button>
     </form>
 </div>

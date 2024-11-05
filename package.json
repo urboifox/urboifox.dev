@@ -13,8 +13,8 @@
     },
     "devDependencies": {
         "@fontsource-variable/montserrat": "^5.1.0",
-        "@fontsource/yeseva-one": "^5.1.0",
         "@fontsource/inria-sans": "^5.1.0",
+        "@fontsource/yeseva-one": "^5.1.0",
         "@sveltejs/adapter-auto": "^3.0.0",
         "@sveltejs/adapter-vercel": "^5.4.6",
         "@sveltejs/kit": "^2.0.0",
@@ -44,6 +44,7 @@
         "@codemirror/state": "^6.4.1",
         "@codemirror/view": "^6.34.1",
         "@fsegurai/codemirror-theme-gruvbox-dark": "^6.0.5",
+        "@fsegurai/codemirror-theme-gruvbox-light": "^6.0.5",
         "@replit/codemirror-lang-svelte": "^6.0.0",
         "@replit/codemirror-vim": "^6.2.1",
         "bson": "^6.9.0",

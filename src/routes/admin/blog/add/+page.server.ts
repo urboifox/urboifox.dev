@@ -1,8 +1,8 @@
 import PostModel from '$lib/models/post';
-import cloudinary from '$lib/utils/cloudinary';
 import type { Actions } from './$types';
 import { redirect } from '@sveltejs/kit';
 import { postSchema } from '$lib/schemas/post-schema';
+import { uploadImage } from '$lib/utils/image-uploader';
 
 export const actions = {
     default: async ({ request }) => {
@@ -26,14 +26,8 @@ export const actions = {
         }
 
         try {
-            const cloudinaryResponse = await cloudinary.uploader.upload(payload.image as string, {
-                format: 'webp',
-            });
-
-            // replace image absolute path with cloudinary secure url
-            payload.image = cloudinaryResponse.secure_url;
-        } catch (error) {
-            console.log('error uploading image', error);
+            payload.image = await uploadImage(payload.image as string);
+        } catch {
             return { error: 'Error uploading image' };
         }
 
