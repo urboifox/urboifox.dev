@@ -43,7 +43,7 @@
     };
 </script>
 
-<div class="mx-auto flex w-full max-w-3xl container flex-col gap-10 pb-20 pt-32">
+<div class="container mx-auto flex w-full max-w-3xl flex-col gap-10 pb-20 pt-32">
     <a
         href="/admin/blog"
         class="flex items-center gap-2 text-paragraph transition-colors duration-200 hover:text-white"

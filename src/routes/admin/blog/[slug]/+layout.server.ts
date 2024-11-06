@@ -7,7 +7,7 @@ import { parseMarkdown } from '$lib/utils/markdown-parser';
 
 export const load: LayoutServerLoad = async ({
     params
-}): Promise<{ post: Post; toc: TOCHeading[], dom: string }> => {
+}): Promise<{ post: Post; toc: TOCHeading[]; dom: string }> => {
     const { slug } = params;
     const post = await PostModel.findOne({ slug });
 

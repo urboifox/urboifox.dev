@@ -107,7 +107,12 @@
             error={form?.errors?.image}
         />
         <div class="flex gap-2">
-            <Input value={post?.youtubeId} name="youtubeId" label="Youtube video ID" containerClass="w-full" />
+            <Input
+                value={post?.youtubeId}
+                name="youtubeId"
+                label="Youtube video ID"
+                containerClass="w-full"
+            />
             <Input
                 value={post?.readingTime.toString()}
                 name="readingTime"
@@ -116,7 +121,12 @@
                 containerClass="w-full"
             />
         </div>
-        <CodeEditor label="Markdown" error={form?.errors?.content} name="content" value={post?.content} />
+        <CodeEditor
+            label="Markdown"
+            error={form?.errors?.content}
+            name="content"
+            value={post?.content}
+        />
 
         <div class="flex flex-col items-start gap-2">
             <Input
@@ -137,6 +147,8 @@
             />
         </div>
         <Button disabled={loading} type="submit">Save</Button>
-        <Button variant="danger" disabled={loading} type="submit" formaction="?/delete">Delete</Button>
+        <Button variant="danger" disabled={loading} type="submit" formaction="?/delete"
+            >Delete</Button
+        >
     </form>
 </div>

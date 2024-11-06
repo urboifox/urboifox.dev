@@ -28,7 +28,7 @@ export const actions = {
 
         // TODO: loop over additional images and upload them
         try {
-          payload.image = await uploadImage(payload.image as string);
+            payload.image = await uploadImage(payload.image as string);
         } catch (error) {
             console.error('error uploading image', error);
             return { error: 'Failed to upload image' };

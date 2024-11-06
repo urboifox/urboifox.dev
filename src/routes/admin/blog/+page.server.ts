@@ -8,6 +8,7 @@ export const load: PageServerLoad = async () => {
     try {
         posts = await PostModel.find();
     } catch (error) {
+        console.error(error);
         return {
             posts: [],
             error: "Couldn't load posts"

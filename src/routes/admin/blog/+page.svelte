@@ -29,7 +29,7 @@
                 </div>
                 <div class="flex flex-col gap-4">
                     <img src={post.image} alt={post.title} class="aspect-video w-full rounded-md" />
-                    <a href="/admin/blog/{post.slug}" class='w-max'>
+                    <a href="/admin/blog/{post.slug}" class="w-max">
                         <Button>Details</Button>
                     </a>
                 </div>

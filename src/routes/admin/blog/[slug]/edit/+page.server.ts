@@ -30,7 +30,7 @@ export const actions = {
         }
 
         try {
-            payload.image = await uploadImage(payload.image)
+            payload.image = await uploadImage(payload.image);
         } catch {
             return { toast: 'Error uploading image' };
         }

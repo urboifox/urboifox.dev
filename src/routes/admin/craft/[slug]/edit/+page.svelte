@@ -20,7 +20,7 @@
             toast.error(form?.error);
         }
         if (form?.success) {
-            toast.success("Craft updated successfully");
+            toast.success('Craft updated successfully');
         }
     });
 

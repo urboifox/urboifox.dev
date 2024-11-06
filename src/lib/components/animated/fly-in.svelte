@@ -1,12 +1,12 @@
 <script lang="ts">
     import gsap from 'gsap';
     import type { Snippet } from 'svelte';
-    import type { HTMLAttributes } from 'svelte/elements';
+    import type { HTMLAttributes, SvelteHTMLElements } from 'svelte/elements';
 
     interface Props extends HTMLAttributes<HTMLDivElement> {
         children: Snippet;
         delay?: number;
-        as?: keyof HTMLElementTagNameMap;
+        as?: keyof SvelteHTMLElements;
     }
     const { children, delay = 0.1, as = 'div', ...rest }: Props = $props();
     let container: HTMLElement;

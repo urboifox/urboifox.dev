@@ -8,6 +8,7 @@ export const load: PageServerLoad = async () => {
     try {
         crafts = await CraftModel.find();
     } catch (error) {
+        console.error(error);
         return {
             crafts: [],
             error: "Couldn't load crafts"

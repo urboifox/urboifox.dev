@@ -67,9 +67,12 @@
 </script>
 
 <header
-    class="container fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent"
+    class="container pointer-events-none fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent"
 >
-    <button onclick={toggleTheme} class="transition-colors duration-300 hover:text-primary">
+    <button
+        onclick={toggleTheme}
+        class="pointer-events-auto transition-colors duration-300 hover:text-primary"
+    >
         {#if themeStore.theme === 'dark'}
             <Sun size={24} strokeWidth={1} />
         {:else}
@@ -78,7 +81,7 @@
     </button>
     <button
         class={cn(
-            'origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
+            'pointer-events-auto origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
             isOpen && 'rotate-0'
         )}
         onclick={toggle}

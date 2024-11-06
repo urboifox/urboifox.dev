@@ -1,7 +1,6 @@
 <script lang="ts">
     import { cn } from '$lib/utils/cn';
     import type { HTMLInputAttributes } from 'svelte/elements';
-    
 
     interface Props extends HTMLInputAttributes {
         containerClass?: string;
@@ -10,14 +9,13 @@
         error?: string | string[] | undefined;
     }
     let { containerClass, label, error, value = $bindable(), ...rest }: Props = $props();
-
 </script>
 
 <label
     class={cn(
-        'flex flex-col gap-2 w-full',
+        'flex w-full flex-col gap-2',
         ['radio', 'checkbox'].includes(rest?.type ?? '') &&
-            'cursor-pointer flex-row-reverse items-center w-fit',
+            'w-fit cursor-pointer flex-row-reverse items-center',
         rest?.disabled && 'opacity-60',
         containerClass
     )}

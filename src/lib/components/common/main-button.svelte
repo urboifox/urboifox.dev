@@ -11,7 +11,11 @@
     const { children, type = 'button', ...rest }: Props = $props();
 </script>
 
-<button {type} {...rest} class={cn('rounded-sm w-max border border-transparent px-6 py-4', rest?.class)}>
+<button
+    {type}
+    {...rest}
+    class={cn('w-max rounded-sm border border-transparent px-6 py-4', rest?.class)}
+>
     {@render children?.()}
 </button>
 
@@ -34,7 +38,7 @@
             width 0.5s ease-out,
             left 0.3s ease-out,
             right 0.3s ease-out,
-            background-color .5s ease-out
+            background-color 0.5s ease-out;
     }
 
     button::before {

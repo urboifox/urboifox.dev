@@ -26,7 +26,7 @@
                     pin: true,
                     start: 'top top',
                     end: () => '+=' + (slider.scrollWidth - innerWidth),
-                    scrub: 1,
+                    scrub: 1
                 }
             });
 

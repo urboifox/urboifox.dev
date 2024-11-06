@@ -2,7 +2,6 @@
     import type { Post } from '$lib/models/post';
     import { ArrowLeft } from 'lucide-svelte';
     import moment from 'moment';
-    import Tag from '../common/tag.svelte';
 
     interface Props {
         post: Post;
@@ -48,4 +47,4 @@
     </div>
 </header>
 
-<hr class="border-comment/50 border-px" />
+<hr class="border-px border-comment/50" />

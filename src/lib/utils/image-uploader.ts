@@ -1,7 +1,7 @@
 import cloudinary from './cloudinary';
 
 export async function uploadImage(path: string) {
-    if (path.includes("cloudinary")) return path;
+    if (path.includes('cloudinary')) return path;
     try {
         const cloudinaryResponse = await cloudinary.uploader.upload(path, {
             format: 'webp'
