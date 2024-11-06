@@ -1,7 +1,6 @@
 <script lang="ts">
     import FlyIn from '$lib/components/animated/fly-in.svelte';
     import MetaData from '$lib/components/common/meta-data.svelte';
-    import { ArrowLeft } from 'lucide-svelte';
     import moment from 'moment';
     import { toast } from 'svelte-sonner';
 
@@ -23,15 +22,14 @@
 </svelte:head>
 
 <div class="container py-32 space-y-8">
-    <a href="/" class="text-sm text-paragraph transition-colors duration-200 hover:text-accent flex items-center gap-2"><ArrowLeft size={20} strokeWidth={1} /> Back to home</a>
     <h1 class="text-4xl text-accent font-yeseva">Blog</h1>
 
     <div class="grid min-h-screen grid-cols-1 gap-4 lg:grid-cols-2">
         {#each posts as post, idx (idx)}
-            <FlyIn class="flex" delay={idx * 0.2}>
+            <FlyIn class="flex">
                 <a href="/blog/{post.slug}" class="flex">
                     <article
-                        class="group flex w-full flex-col-reverse gap-2 overflow-hidden rounded-xl border border-accent/20 bg-accent/5 shadow-lg transition-colors duration-300 hover:border-accent/40 sm:flex-row"
+                        class="group flex w-full flex-col-reverse gap-2 overflow-hidden rounded-lg border border-accent/20 bg-accent/5 shadow-lg transition-colors duration-300 hover:border-accent/40 sm:flex-row"
                     >
                         <div class="flex flex-1 flex-col justify-between gap-2 p-4 md:p-8">
                             <div class="flex flex-col gap-2">

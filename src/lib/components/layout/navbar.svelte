@@ -69,25 +69,33 @@
 <header
     class="container pointer-events-none fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent"
 >
-    <button
-        onclick={toggleTheme}
-        class="pointer-events-auto transition-colors duration-300 hover:text-primary"
+    <a
+        href="/"
+        class="text-xl capitalize text-paragraph transition-colors duration-300 hover:text-accent pointer-events-auto"
     >
-        {#if themeStore.theme === 'dark'}
-            <Sun size={24} strokeWidth={1} />
-        {:else}
-            <Moon size={24} strokeWidth={1} />
-        {/if}
-    </button>
-    <button
-        class={cn(
-            'pointer-events-auto origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
-            isOpen && 'rotate-0'
-        )}
-        onclick={toggle}
-    >
-        <X size={36} strokeWidth={1} />
-    </button>
+        //
+    </a>
+    <div class="flex items-center gap-2">
+        <button
+            onclick={toggleTheme}
+            class="pointer-events-auto transition-colors duration-300 hover:text-primary"
+        >
+            {#if themeStore.theme === 'dark'}
+                <Sun size={24} strokeWidth={1} />
+            {:else}
+                <Moon size={24} strokeWidth={1} />
+            {/if}
+        </button>
+        <button
+            class={cn(
+                'pointer-events-auto origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
+                isOpen && 'rotate-0'
+            )}
+            onclick={toggle}
+        >
+            <X size={36} strokeWidth={1} />
+        </button>
+    </div>
 </header>
 
 {#each [0, 1, 2, 3] as i (i)}
