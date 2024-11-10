@@ -22,11 +22,14 @@
     }
 
     ::selection {
-        @apply bg-primary text-accent;
+        background-color: rgb(var(--bg-primary));
+        color: rgb(var(--accent));
     }
 
     body {
-        @apply bg-background-primary font-montserrat text-accent;
+        font-family: var(--font-montserrat);
+        background-color: rgb(var(--bg-primary));
+        color: rgb(var(--accent));
         transition: background-color 0.5s ease-in-out;
     }
 }
