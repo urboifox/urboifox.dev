@@ -12,7 +12,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 export async function processMarkdown(markdown: string) {
     return unified()
         .use(remarkParse) // parse markdown
-        .use(remarkGfm) // suopport github flavored markdown
+        .use(remarkGfm) // support github flavored markdown
         .use(remarkRehype, {
             // convert to html
             allowDangerousHtml: true

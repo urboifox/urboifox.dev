@@ -1,8 +1,8 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { postSchema } from '$lib/schemas/post-schema';
 import PostModel from '$lib/models/post';
 import { uploadImage } from '$lib/utils/image-uploader';
+import { postSchema } from '$lib/schemas/post';
 
 export const load: PageServerLoad = async ({ parent }) => {
     const { toc, post } = await parent();
