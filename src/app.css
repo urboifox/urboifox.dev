@@ -22,13 +22,13 @@
     }
 
     ::selection {
-        background-color: rgb(var(--bg-primary));
+        background-color: rgb(var(--primary));
         color: rgb(var(--accent));
     }
 
     body {
-        font-family: var(--font-montserrat);
-        background-color: rgb(var(--bg-primary));
+        font-family: 'Montserrat Variable', 'sans-serif';
+        background-color: rgb(var(--background));
         color: rgb(var(--accent));
         transition: background-color 0.5s ease-in-out;
     }

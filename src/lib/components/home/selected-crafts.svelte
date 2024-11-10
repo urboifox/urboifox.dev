@@ -62,7 +62,7 @@
         </div>
         {#each [1, 2, 3] as i (i)}
             <div
-                class="flex h-screen w-screen shrink-0 items-center justify-center border border-red-600 bg-background-primary text-8xl transition-colors duration-500"
+                class="flex h-screen w-screen shrink-0 items-center justify-center bg-background-primary text-8xl transition-colors duration-500"
             >
                 <div class="content flex flex-col gap-4 text-center">
                     Slide {i}

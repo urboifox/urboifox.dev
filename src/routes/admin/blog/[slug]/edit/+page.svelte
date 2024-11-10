@@ -45,7 +45,7 @@
     <a
         href="/admin/blog/{post?.slug}"
         class="flex items-center gap-2 text-paragraph transition-colors duration-200 hover:text-white"
-        ><ArrowLeft size={20} /> Back to blog</a
+        ><ArrowLeft size={20} /> Back to post</a
     >
     <form
         method="POST"

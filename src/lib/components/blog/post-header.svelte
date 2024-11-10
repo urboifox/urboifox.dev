@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Post } from '$lib/models/post';
-    import { ArrowLeft } from 'lucide-svelte';
     import moment from 'moment';
 
     interface Props {
@@ -11,13 +10,6 @@
 </script>
 
 <header class="flex flex-col gap-14">
-    <a
-        href="/blog"
-        class="flex items-center gap-2 text-sm text-paragraph transition-colors duration-200 active:text-accent lg:hover:text-accent"
-    >
-        <ArrowLeft strokeWidth={1} size={20} />
-        Back to blog
-    </a>
     <div class="flex flex-col gap-8">
         <time class="mb-2 text-sm text-comment"
             >{moment(post.createdAt).format('dddd, MMMM Do YYYY')}</time
