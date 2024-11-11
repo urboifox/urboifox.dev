@@ -20,10 +20,10 @@
     />
 </svelte:head>
 
-<div class="container space-y-8 py-32">
+<div class="container space-y-8 py-32 min-h-screen">
     <h1 class="font-yeseva text-4xl text-accent">Blog</h1>
 
-    <div class="grid min-h-screen grid-cols-1 gap-4 lg:grid-cols-2">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {#each posts as post (post.id)}
             <a href="/blog/{post.slug}" class="flex">
                 <BlogPost {post} />

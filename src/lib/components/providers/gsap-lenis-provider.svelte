@@ -17,7 +17,7 @@
     // init lenis and sync scrollTrigger with it
     $effect(() => {
         const lenis = new Lenis({
-            duration: 2,
+            duration: 1.5,
             easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t))
         });
 

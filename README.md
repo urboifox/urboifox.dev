@@ -24,3 +24,4 @@
 -   [x] add codemirror as markdown editor
 -   [ ] make blog content responsive
 -   [ ] add blog post code block copy button
+-   [ ] authentication for admin routes
