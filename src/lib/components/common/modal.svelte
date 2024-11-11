@@ -8,21 +8,6 @@
     }
     let { visible = $bindable(false), children }: Props = $props();
 
-    let modal: HTMLDivElement | undefined = $state();
-
-    $effect(() => {
-        const portal = document.createElement('div');
-        if (visible && modal) {
-            portal.className = 'portal';
-            document.body.appendChild(portal);
-            portal.appendChild(modal);
-        }
-
-        return () => {
-            document.body.removeChild(portal);
-        };
-    });
-
     function onclick() {
         visible = false;
     }
@@ -32,6 +17,12 @@
             onclick();
         }
     }
+
+    $effect(() => {
+        addEventListener('keydown', onkeydown);
+
+        return () => removeEventListener('keydown', onkeydown);
+    })
 </script>
 
 {#if visible}
@@ -42,9 +33,10 @@
         {onclick}
         {onkeydown}
         transition:fly={{ y: 10, opacity: 0, duration: 200 }}
-        class="fixed inset-0 z-40 grid place-content-center place-items-center bg-background-secondary/50 backdrop-blur-sm cursor-default"
-        bind:this={modal}
+        class="fixed inset-0 z-40 grid cursor-default place-content-center place-items-center backdrop-blur-sm"
     >
-        {@render children()}
+        <div role="none" onclick={(e) => e.stopPropagation()}>
+            {@render children()}
+        </div>
     </div>
 {/if}

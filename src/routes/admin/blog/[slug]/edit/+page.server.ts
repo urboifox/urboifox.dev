@@ -1,4 +1,4 @@
-import { error, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import PostModel from '$lib/models/post';
 import { uploadImage } from '$lib/utils/image-uploader';
@@ -44,7 +44,7 @@ export const actions = {
             );
 
             if (!updatedPost) {
-                return error(404, 'Post not found');
+                return fail(404);
             }
         } catch (dbError) {
             console.log('Error updating post', dbError);
@@ -62,7 +62,7 @@ export const actions = {
         try {
             const deleted = await PostModel.deleteOne({ slug });
             if (!deleted) {
-                return error(404, 'Post not found');
+                return fail(404);
             }
         } catch (error: unknown) {
             console.log('error deleting post', error);
@@ -71,6 +71,6 @@ export const actions = {
             }
         }
 
-        return redirect(303, '/admin/blog');
+        return { success: true };
     }
 } satisfies Actions;

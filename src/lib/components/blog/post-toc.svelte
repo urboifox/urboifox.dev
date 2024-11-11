@@ -16,6 +16,7 @@
 
     $effect(() => {
         const tocElements = tocContainer.querySelectorAll('button');
+        if (tocElements.length === 0) return;
         const activeHeading = tocElements[activeHeadingIndex];
         const activeHeadingHeight = activeHeading.clientHeight;
         tocLine.style.height = `${activeHeadingHeight}px`;

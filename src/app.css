@@ -11,6 +11,10 @@
         --comment: 140 140 140;
         --paragraph: 80 80 80;
     }
+    
+    html {
+        scroll-behavior: smooth;
+    }
 
     .dark {
         --background: 18 18 18;

@@ -3,6 +3,9 @@
     import { Edit, Eye, Trash } from 'lucide-svelte';
     import moment from 'moment';
     import Modal from '../common/modal.svelte';
+    import { enhance } from '$app/forms';
+    import Button from '../common/button.svelte';
+    import type { SubmitFunction } from '@sveltejs/kit';
 
     interface Props {
         post: Post;
@@ -11,11 +14,36 @@
     let { post, isAdmin = false }: Props = $props();
 
     let modalVisible = $state(false);
+    let loading = $state(false);
+
+    const deletePost: SubmitFunction = () => {
+        loading = true;
+        return async ({ update }) => {
+            await update();
+            loading = false;
+            modalVisible = false;
+        };
+    };
 </script>
 
-<Modal bind:visible={modalVisible}>
-    Hello world
-</Modal>
+{#if isAdmin}
+    <Modal bind:visible={modalVisible}>
+        <form
+            use:enhance={deletePost}
+            method="POST"
+            class="flex flex-col items-center gap-10 rounded-xl bg-background-primary p-10"
+            action={`/admin/blog/${post.slug}/edit?/delete`}
+        >
+            <h2>Are you sure you want to delete this post?</h2>
+            <div class="flex items-center gap-4">
+                <Button size="sm" onclick={() => (modalVisible = false)}>Close</Button>
+                <Button size="sm" type="submit" variant="danger" disabled={loading}
+                    >{loading ? 'Deleting post...' : 'Confirm'}</Button
+                >
+            </div>
+        </form>
+    </Modal>
+{/if}
 
 <article
     class="group flex w-full flex-col-reverse gap-2 overflow-hidden rounded-lg border border-accent/20 bg-accent/5 shadow-lg transition-colors duration-200 hover:border-accent/40 sm:flex-row"

@@ -112,6 +112,6 @@
             />
             <Input type="radio" name="published" label="Draft" value="false" id="draft" />
         </div>
-        <Button disabled={loading} type="submit">Submit</Button>
+        <Button disabled={loading} type="submit">{loading ? "Loading..." : "Submit"}</Button>
     </form>
 </div>
