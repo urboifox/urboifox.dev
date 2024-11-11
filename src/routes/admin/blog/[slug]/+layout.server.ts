@@ -1,6 +1,6 @@
 import PostModel, { type Post } from '$lib/models/post';
 import { EJSON } from 'bson';
-import type { LayoutServerLoad } from './$types';
+import type { LayoutServerLoad } from '../../../blog/[slug]/$types';
 import { error } from '@sveltejs/kit';
 import { type TOCHeading } from '$lib/utils/mdast-extract-headings';
 import { parseMarkdown } from '$lib/utils/markdown-parser';

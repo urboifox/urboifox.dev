@@ -1,6 +1,6 @@
 import PostModel, { type Post } from '$lib/models/post';
 import { EJSON } from 'bson';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../blog/$types';
 
 export const load: PageServerLoad = async () => {
     let posts: Post[] = [];

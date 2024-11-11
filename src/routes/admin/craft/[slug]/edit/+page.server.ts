@@ -1,9 +1,9 @@
 import { slug } from 'github-slugger';
-import type { Actions } from './$types';
-import { craftSchema } from '$lib/schemas/craft-schema';
 import CraftModel from '$lib/models/craft';
 import { error, redirect } from '@sveltejs/kit';
 import { uploadImage } from '$lib/utils/image-uploader';
+import { craftSchema } from '$lib/schemas/craft';
+import type { Actions } from './$types';
 
 export const actions = {
     edit: async ({ request, params }) => {

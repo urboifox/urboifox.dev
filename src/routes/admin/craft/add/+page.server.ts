@@ -1,9 +1,9 @@
 import { slug } from 'github-slugger';
-import type { Actions } from './$types';
 import CraftModel from '$lib/models/craft';
 import { redirect } from '@sveltejs/kit';
-import { craftSchema } from '$lib/schemas/craft-schema';
 import { uploadImage } from '$lib/utils/image-uploader';
+import { craftSchema } from '$lib/schemas/craft';
+import type { Actions } from './$types';
 
 export const actions = {
     default: async ({ request }) => {

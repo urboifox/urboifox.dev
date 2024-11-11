@@ -1,5 +1,5 @@
 import { EJSON } from 'bson';
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from '../../craft/$types';
 import CraftModel, { type Craft } from '$lib/models/craft';
 
 export const load: PageServerLoad = async () => {

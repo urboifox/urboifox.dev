@@ -1,5 +1,5 @@
 import { EJSON } from 'bson';
-import type { LayoutServerLoad } from './$types';
+import type { LayoutServerLoad } from '../../../craft/[slug]/$types';
 import { error } from '@sveltejs/kit';
 import CraftModel, { type Craft } from '$lib/models/craft';
 

@@ -1,8 +1,8 @@
 import PostModel from '$lib/models/post';
-import type { Actions } from './$types';
 import { redirect } from '@sveltejs/kit';
 import { uploadImage } from '$lib/utils/image-uploader';
 import { postSchema } from '$lib/schemas/post';
+import type { Actions } from './$types';
 
 export const actions = {
     default: async ({ request }) => {
