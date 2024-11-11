@@ -3,6 +3,7 @@
     import type { PageServerData } from './$types.js';
     import BlogPost from '$lib/components/blog/blog-post.svelte';
     import BackButton from '$lib/components/common/back-button.svelte';
+    import AddNewButton from '$lib/components/common/add-new-button.svelte';
 
     interface Props {
         data: PageServerData;
@@ -17,7 +18,10 @@
 </script>
 
 <div class="container flex flex-col gap-10 py-32">
-    <BackButton href="/admin" label="Back to dashboard" />
+    <div class="flex items-center justify-between gap-4">
+        <BackButton href="/admin" label="Back to dashboard" />
+        <AddNewButton href="/admin/blog/add" />
+    </div>
     <h1 class="text-3xl">Blog</h1>
 
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
