@@ -112,7 +112,7 @@
                 checked={!craft?.published}
             />
         </div>
-        <Button disabled={loading} type="submit">Save</Button>
+        <Button disabled={loading} type="submit" {loading}>Save</Button>
         <Button disabled={loading} variant="danger" type="submit" formaction="?/delete">
             Delete
         </Button>

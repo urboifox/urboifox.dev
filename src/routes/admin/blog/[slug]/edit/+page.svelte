@@ -146,9 +146,6 @@
                 checked={!post?.published}
             />
         </div>
-        <Button disabled={loading} type="submit">Save</Button>
-        <Button variant="danger" disabled={loading} type="submit" formaction="?/delete"
-            >Delete</Button
-        >
+        <Button disabled={loading} type="submit" {loading}>Save</Button>
     </form>
 </div>
