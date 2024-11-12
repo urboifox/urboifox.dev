@@ -13,8 +13,8 @@
     <MetaData title={post.title} description={post.summary} href={url.href} image={post.image} />
 </svelte:head>
 
-<div class="container flex items-start gap-4 px-4 py-32">
-    <div class="mx-auto flex min-h-screen w-full max-w-5xl flex-col gap-10">
+<div class="flex items-start gap-4 py-32">
+    <div class="mx-auto flex min-h-screen w-screen container px-4 max-w-5xl flex-col gap-10">
         <BackButton href="/blog" label="Back to posts" />
         <PostHeader {post} {url} />
         <Markdown content={dom} />

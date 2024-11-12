@@ -46,8 +46,19 @@
 }
 
 /* hide scrollbar */
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
     display: none;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: rgb(var(--comment));
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--paragraph));
+    cursor: grab;
 }
 
 /* animations */

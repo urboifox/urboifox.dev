@@ -22,6 +22,6 @@
 -   [x] delete blog post
 -   [ ] upload images to cloudinary from client side, once the user uploads it
 -   [x] add codemirror as markdown editor
--   [ ] make blog content responsive
+-   [x] make blog content responsive
 -   [ ] add blog post code block copy button
--   [ ] authentication for admin routes
+-   [x] authentication for admin routes
