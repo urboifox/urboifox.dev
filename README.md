@@ -4,7 +4,7 @@
 
 -   [x] hero section
 -   [x] make hero section responsive
--   [ ] add rss feed
+-   [x] add rss feed
 -   [ ] create logo
 -   [x] dark mode
 -   [ ] ~~add initial loader~~ (removed for better TTI & LCP)
