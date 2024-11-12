@@ -35,7 +35,7 @@
 
 <div
     class={cn(
-        'pointer-events-none fixed right-4 top-1/2 z-10 h-1/4 w-1 -translate-y-1/2 overflow-hidden rounded-md border border-comment/20 transition-opacity duration-500',
+        'pointer-events-none fixed right-1 sm:right-4 top-1/2 z-10 h-1/4 w-1 -translate-y-1/2 overflow-hidden rounded-md border border-comment/20 transition-opacity duration-500',
         visible ? 'opacity-100' : 'opacity-0'
     )}
 >
