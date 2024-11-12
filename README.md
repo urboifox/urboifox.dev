@@ -23,5 +23,5 @@
 -   [ ] upload images to cloudinary from client side, once the user uploads it
 -   [x] add codemirror as markdown editor
 -   [x] make blog content responsive
--   [ ] add blog post code block copy button
+-   [x] add blog post code block copy button
 -   [x] authentication for admin routes
