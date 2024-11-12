@@ -1,6 +1,7 @@
 <script lang="ts">
     import BlogPost from '$lib/components/blog/blog-post.svelte';
     import MetaData from '$lib/components/common/meta-data.svelte';
+    import { Rss } from 'lucide-svelte';
     import { toast } from 'svelte-sonner';
 
     let { data } = $props();
@@ -20,8 +21,16 @@
     />
 </svelte:head>
 
-<div class="container space-y-8 py-32 min-h-screen">
-    <h1 class="font-yeseva text-4xl text-accent">Blog</h1>
+<div class="container min-h-screen space-y-8 py-32">
+    <div class="flex items-center justify-between gap-2">
+        <h1 class="font-yeseva text-4xl text-accent">Blog</h1>
+        <a
+            target="_blank"
+            href="/blog/rss.xml"
+            class="text-comment transition-colors duration-200 hover:text-accent"
+            ><Rss />
+        </a>
+    </div>
 
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {#each posts as post (post.id)}
