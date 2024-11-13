@@ -9,7 +9,11 @@ const config = {
     },
 
     kit: {
-        adapter: adapter()
+        adapter: adapter({
+            isr: {
+                expiration: 60 * 120, // 2 hours
+            }
+        }),
     }
 };
 

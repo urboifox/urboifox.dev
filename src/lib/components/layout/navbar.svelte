@@ -77,6 +77,7 @@
     </a>
     <div class="flex items-center gap-2">
         <button
+            aria-label="switch theme"
             onclick={toggleTheme}
             class="pointer-events-auto transition-colors duration-300 hover:text-primary"
         >
@@ -87,6 +88,7 @@
             {/if}
         </button>
         <button
+            aria-label="switch menu"
             class={cn(
                 'pointer-events-auto origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
                 isOpen && 'rotate-0'
