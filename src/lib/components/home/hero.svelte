@@ -74,8 +74,8 @@
             </div>
         </div>
 
-        <div class="container flex items-start justify-around gap-4">
-            <div class="flex gap-4">
+        <div class="container flex-col lg:flex-row flex items-start justify-around gap-6">
+            <div class="flex gap-4 max-xs:self-center">
                 <SocialLinks />
             </div>
             <div class="flex flex-col gap-10 max-sm:w-full sm:flex-row sm:gap-32">
