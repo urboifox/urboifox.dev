@@ -42,7 +42,7 @@
     style="grid-auto-rows: {boxSize}px; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));"
 >
     {#each [...Array(gridSize).keys()].map((i) => i + 1) as n (n)}
-        <div class="bg-background-primary"></div>
+        <div class="bg-background-primary transition-colors duration-500"></div>
     {/each}
 </div>
 <div class="absolute inset-0 -z-40 bg-comment/10">
