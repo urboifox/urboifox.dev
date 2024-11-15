@@ -2,6 +2,8 @@
     import gsap from 'gsap';
     import images from '$lib/constants/images';
     import MainButton from '../common/main-button.svelte';
+    import HeroBackground from './HeroBackground.svelte';
+    import SocialLinks from '../layout/social-links.svelte';
 
     $effect(() => {
         let ctx = gsap.context(() => {
@@ -48,12 +50,10 @@
 </script>
 
 <div
-    class="hero flex h-screen items-center justify-center bg-gradient-to-tr from-background-secondary to-background-primary"
+    class="hero flex h-screen items-center justify-center relative"
 >
-    <span
-        class="absolute -top-full hidden aspect-square w-[50vw] rounded-full bg-accent blur-[150px] dark:block"
-    ></span>
-    <div class="hero-content flex h-full flex-col justify-center gap-10">
+    <div class="hero-content flex h-full flex-col justify-center gap-10 w-full relative">
+    <HeroBackground />
         <div
             class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
         >
@@ -75,16 +75,16 @@
         </div>
 
         <div class="container flex items-start justify-around gap-4">
-            <div></div>
+            <div class="flex gap-4">
+                <SocialLinks />
+            </div>
             <div class="flex flex-col gap-10 max-sm:w-full sm:flex-row sm:gap-32">
                 <p
-                    class="description relative max-w-lg text-sm font-light leading-relaxed tracking-wider text-paragraph sm:text-lg"
+                    class="description relative max-w-lg text-sm font-light leading-relaxed tracking-wider text-paragraph sm:text-lg transition-colors duration-500 hover:text-accent"
                 >
                     Hello stranger! I’m Mohamed Ashraf. Also known as <span
-                        class="peer cursor-help text-primary">Fox</span
-                    >. I’m a web & mobile apps developer, passionate about
-                    <span class="text-primary"> coding </span>
-                    cool stuff.
+                        class="peer cursor-help text-primary font-medium">Fox</span
+                    >. I’m a 20 y.o mobile apps & web developer based in Egypt.
                     <img
                         draggable="false"
                         src={images.foxEmoji}

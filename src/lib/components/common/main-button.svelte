@@ -52,13 +52,13 @@
     }
 
     button:hover {
-        border-color: rgb(var(--primary));
+        border-color: rgb(var(--accent));
         color: rgb(var(--accent));
     }
 
     button:hover::before,
     button:hover::after {
-        background: rgb(var(--primary));
+        background: rgb(var(--accent));
         width: 0px;
     }
 

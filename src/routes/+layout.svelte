@@ -51,7 +51,7 @@
         display: grid;
     }
 
-    /* svelte exit transitions make the elements appear below each other, which ruines the values of scrollTrigger */
+     /*svelte exit transitions make the elements appear below each other, which ruines the values of scrollTrigger */
     /* this is a hack to fix that. so that the elements overlap when the transition is running */
     div {
         grid-area: 1/1;
