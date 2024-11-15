@@ -42,10 +42,10 @@
     style="grid-auto-rows: {boxSize}px; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));"
 >
     {#each [...Array(gridSize).keys()].map((i) => i + 1) as n (n)}
-        <div class="bg-[#101010]"></div>
+        <div class="bg-background-primary"></div>
     {/each}
 </div>
-<div class="absolute inset-0 -z-40 bg-comment/5">
+<div class="absolute inset-0 -z-40 bg-comment/10">
 </div>
 <div class="w-[500px] h-[500px] absolute -z-30 bg-primary/50 rounded-full blur-3xl -translate-x-[250px] -translate-y-[250px]" style="left: {$mx}px; top: {$my}px">
 </div>
