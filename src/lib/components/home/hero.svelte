@@ -13,19 +13,24 @@
                 end: 'bottom top',
                 scrub: true
             };
-            gsap.to('.hero-content', {
-                ease: 'none',
-                opacity: 0,
-                y: -250,
-                scale: 0.95,
-                scrollTrigger: {
-                    trigger: '.hero-content',
-                    start: 'top top',
-                    scrub: true,
-                    pinSpacing: false,
-                    pin: true
-                }
-            });
+
+            const mediaQuery = window.matchMedia('(min-width: 992px)');
+            // only apply the hero section effect on large screens
+            if (mediaQuery.matches) {
+                gsap.to('.hero-content', {
+                    ease: 'none',
+                    opacity: 0,
+                    y: -250,
+                    scale: 0.95,
+                    scrollTrigger: {
+                        trigger: '.hero-content',
+                        start: 'top top',
+                        scrub: true,
+                        pinSpacing: false,
+                        pin: true
+                    }
+                });
+            }
             gsap.to('.top-heading', {
                 opacity: 0,
                 x: -80,
@@ -49,11 +54,9 @@
     });
 </script>
 
-<div
-    class="hero flex h-screen items-center justify-center relative"
->
-    <div class="hero-content flex h-full flex-col justify-center gap-10 w-full relative">
-    <HeroBackground />
+<div class="hero relative flex h-screen items-center justify-center">
+    <div class="hero-content relative flex h-full w-full flex-col justify-center gap-10">
+        <HeroBackground />
         <div
             class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
         >
@@ -74,16 +77,16 @@
             </div>
         </div>
 
-        <div class="container flex-col lg:flex-row flex items-start justify-around gap-6">
-            <div class="flex gap-4 max-xs:self-center">
+        <div class="container flex flex-col items-start justify-around gap-6 lg:flex-row">
+            <div class="max-xs:self-center flex gap-4">
                 <SocialLinks />
             </div>
             <div class="flex flex-col gap-10 max-sm:w-full sm:flex-row sm:gap-32">
                 <p
-                    class="description relative max-w-lg text-sm font-light leading-relaxed tracking-wider text-paragraph sm:text-lg transition-colors duration-500 hover:text-accent"
+                    class="description relative max-w-lg text-sm font-light leading-relaxed tracking-wider text-paragraph transition-colors duration-500 hover:text-accent sm:text-lg"
                 >
                     Hello stranger! I’m Mohamed Ashraf. Also known as <span
-                        class="peer cursor-help text-primary font-medium">Fox</span
+                        class="peer cursor-help font-medium text-primary">Fox</span
                     >. I’m a 20 y.o mobile apps & web developer based in Egypt.
                     <img
                         draggable="false"
