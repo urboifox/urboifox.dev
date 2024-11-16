@@ -2,7 +2,7 @@
     import gsap from 'gsap';
     import images from '$lib/constants/images';
     import MainButton from '../common/main-button.svelte';
-    import HeroBackground from './HeroBackground.svelte';
+    import HeroBackground from './hero-background.svelte';
     import SocialLinks from '../layout/social-links.svelte';
 
     $effect(() => {
