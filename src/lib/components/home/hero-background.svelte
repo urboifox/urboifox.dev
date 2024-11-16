@@ -29,7 +29,7 @@
         <span class="bg-background-primary transition-colors duration-500"></span>
     {/each}
 </div>
-<div class="absolute inset-0 -z-40 bg-comment/10">
+<div class="absolute inset-0 -z-40 dark:bg-comment/5 bg-comment/10">
 </div>
 <div class="w-[500px] h-[500px] absolute -z-30 bg-primary/50 rounded-full blur-3xl -translate-x-[250px] -translate-y-[250px]" style="left: {$mx}px; top: {$my}px">
 </div>
