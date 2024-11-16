@@ -11,6 +11,13 @@
             if (theme === 'dark') {
                 document.documentElement.classList.add(theme);
             }
+            
+            if (!theme) {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDark) {
+                    document.documentElement.classList.add('dark');
+                }
+            }
         </script>
     </head>
     <body data-sveltekit-preload-data="hover">

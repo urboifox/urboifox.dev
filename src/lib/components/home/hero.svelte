@@ -91,6 +91,7 @@
                         alt="fox emoji"
                         width={120}
                         height={120}
+                        loading="lazy"
                         class="absolute left-0 h-32 w-32 -translate-x-4 object-contain opacity-0 transition-all duration-300 peer-hover:translate-x-0 peer-hover:opacity-100 max-lg:-bottom-40 lg:-left-32 lg:top-1/2 lg:-translate-y-1/2"
                     />
                 </p>

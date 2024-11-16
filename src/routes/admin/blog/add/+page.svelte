@@ -9,6 +9,7 @@
     import { toast } from 'svelte-sonner';
     import ImageInput from '$lib/components/common/image-input.svelte';
     import { ArrowLeft } from 'lucide-svelte';
+    import CodeEditor from '$lib/components/common/code-editor.svelte';
 
     interface Props {
         form: ActionData;
@@ -99,9 +100,7 @@
             <Input name="readingTime" label="Reading Time" type="number" containerClass="w-full" />
         </div>
 
-        {#await import('$lib/components/common/code-editor.svelte') then {default: CodeEditor}}
-            <CodeEditor label="Markdown" error={form?.errors?.content} name="content" />
-        {/await}
+        <CodeEditor label="Markdown" error={form?.errors?.content} name="content" />
 
         <div class="flex flex-col items-start gap-2">
             <Input
