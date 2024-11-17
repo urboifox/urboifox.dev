@@ -55,7 +55,7 @@
 </script>
 
 <div class="hero relative flex h-screen items-center justify-center">
-    <div class="hero-content relative flex h-full w-full flex-col justify-center gap-10">
+    <div class="hero-content relative flex h-full w-full flex-col justify-center gap-10 overflow-hidden">
         <HeroBackground />
         <div
             class="flex flex-col items-center gap-3 font-inria text-[13vw] uppercase sm:-translate-y-20 sm:gap-6 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"

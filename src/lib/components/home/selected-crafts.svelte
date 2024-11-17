@@ -62,11 +62,11 @@
         </div>
         {#each [1, 2, 3] as i (i)}
             <div
-                class="flex h-screen w-screen shrink-0 items-center justify-center bg-background-primary text-8xl transition-colors duration-500"
+                class="flex h-screen w-screen shrink-0 items-center justify-center bg-background-primary text-base lg:text-8xl transition-colors duration-500"
             >
                 <div class="content flex flex-col gap-4 text-center">
                     Slide {i}
-                    <p class="max-w-lg text-center text-lg">
+                    <p class="max-w-lg text-center text-sm lg:text-lg">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt dolorum
                         voluptatibus animi quia hic nam suscipit esse est? Doloremque corporis earum
                         perferendis officiis voluptas, cupiditate voluptatibus possimus quos
