@@ -11,7 +11,7 @@ export interface Craft {
     description: string;
     published: boolean;
     image: string;
-    additionalImage: string[];
+    additionalImages: string[];
     startDate: Date;
     endDate: Date;
 }
@@ -50,7 +50,7 @@ const CraftSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    additionalImage: {
+    additionalImages: {
         type: [String]
     },
     startDate: {
