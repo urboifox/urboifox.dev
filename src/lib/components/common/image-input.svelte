@@ -1,7 +1,7 @@
 <script lang="ts">
     import { cn } from '$lib/utils/cn';
     import { getFileUrl } from '$lib/utils/get-file-url';
-    import { TrashIcon, UploadIcon } from 'lucide-svelte';
+    import { HandIcon, TrashIcon, UploadIcon } from 'lucide-svelte';
     import type { HTMLInputAttributes } from 'svelte/elements';
 
     let input: HTMLInputElement;
@@ -13,6 +13,7 @@
         error?: string | string[] | undefined;
         defaultImage?: string;
         imageUrl?: string;
+        onDrop?: (e: DragEvent) => void;
         onFileChange?: (e: string) => void;
     }
     let {
@@ -22,6 +23,7 @@
         value = $bindable(),
         defaultImage,
         onFileChange,
+        onDrop,
         imageUrl = $bindable(defaultImage || ''),
         ...rest
     }: Props = $props();
@@ -41,6 +43,20 @@
         rest.onchange?.(e);
         onFileChange?.(imageUrl);
     }
+
+    let draggingOver = $state(false);
+
+    async function handleDropImage(e: DragEvent) {
+        const image = e?.dataTransfer?.files?.[0];
+        if (!image) {
+            imageUrl = '';
+            return;
+        }
+        error = undefined;
+        imageUrl = await getFileUrl(image);
+        onDrop?.(e);
+        onFileChange?.(imageUrl);
+    }
 </script>
 
 <label class={cn('flex flex-col gap-2', rest?.disabled && 'opacity-60', containerClass)}>
@@ -58,7 +74,34 @@
             error && 'border-red-600',
             imageUrl && 'border-primary'
         )}
+        role="none"
+        ondragenter={() => {
+            draggingOver = true;
+        }}
+        ondragleave={(e) => {
+            const { relatedTarget } = e;
+            if (!relatedTarget || !e.currentTarget.contains(relatedTarget as Node)) {
+                draggingOver = false;
+            }
+        }}
+        ondragover={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        }}
+        ondrop={(e) => {
+            e.preventDefault();
+            draggingOver = false;
+            handleDropImage(e);
+        }}
     >
+        {#if draggingOver}
+            <div
+                class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-background-secondary text-accent"
+            >
+                <HandIcon />
+                release to upload
+            </div>
+        {/if}
         {#if imageUrl}
             <img src={imageUrl} alt="banner" class="aspect-video w-full rounded-lg object-cover" />
             <button
