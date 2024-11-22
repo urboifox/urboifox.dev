@@ -68,10 +68,7 @@
             error={form?.errors?.image}
             required
         />
-        <MultiImageInput
-            label="Gallery"
-            name="additional_images"
-        />
+        <MultiImageInput label="Gallery" name="additional_images" />
 
         <div class="flex items-start gap-2">
             <Input
