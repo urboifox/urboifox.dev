@@ -70,7 +70,7 @@
     {/if}
     <div
         class={cn(
-            'group relative aspect-video w-full cursor-pointer overflow-hidden rounded-lg border border-dashed border-comment transition-colors duration-300 hover:border-primary hover:text-primary focus:border-primary',
+            'group relative w-full cursor-pointer overflow-hidden rounded-lg border border-dashed border-comment py-3 flex flex-wrap px-2 transition-colors duration-300',
             error && 'border-red-600',
             imageUrl && 'border-primary'
         )}
@@ -102,32 +102,38 @@
                 release to upload
             </div>
         {/if}
-        {#if imageUrl}
-            <img src={imageUrl} alt="banner" class="aspect-video w-full rounded-lg object-cover" />
-            <button
-                type="button"
-                onclick={(e) => {
-                    e.preventDefault();
-                    imageUrl = '';
-                    input.value = '';
-                    onFileChange?.('');
-                }}
-                class="absolute inset-0 flex items-center justify-center bg-background-secondary/80 text-red-600 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100"
-            >
-                <TrashIcon />
-            </button>
-        {:else}
-            <div class="flex h-full w-full flex-col items-center justify-center gap-4">
-                <UploadIcon />
-                <span class="text-sm text-comment">Upload an image</span>
-            </div>
-        {/if}
+        <div
+            class="flex aspect-square h-32 flex-col items-center justify-center gap-2 rounded-md border border-comment/20 p-2 text-center transition-colors duration-200 hover:border-accent/20"
+        >
+            <UploadIcon />
+            <span class="text-xs text-accent">Add more images</span>
+        </div>
+        <!-- {#if imageUrl} -->
+        <!--     <img src={imageUrl} alt="banner" class="w-full rounded-lg object-cover" /> -->
+        <!--     <button -->
+        <!--         type="button" -->
+        <!--         onclick={(e) => { -->
+        <!--             e.preventDefault(); -->
+        <!--             imageUrl = ''; -->
+        <!--             input.value = ''; -->
+        <!--             onFileChange?.(''); -->
+        <!--         }} -->
+        <!--         class="absolute inset-0 flex items-center justify-center bg-background-secondary/80 text-red-600 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100" -->
+        <!--     > -->
+        <!--         <TrashIcon /> -->
+        <!--     </button> -->
+        <!-- {:else} -->
+        <!--     <div class="flex h-full w-full flex-col items-center justify-center gap-4"> -->
+        <!--         <UploadIcon /> -->
+        <!--         <span class="text-sm text-comment">Upload an image</span> -->
+        <!--     </div> -->
+        <!-- {/if} -->
     </div>
     <input
         bind:this={input}
         type="file"
-        multiple={false}
         accept="image/*"
+        multiple
         {...rest}
         {value}
         class={'hidden'}

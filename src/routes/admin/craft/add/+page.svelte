@@ -7,6 +7,7 @@
     import ImageInput from '$lib/components/common/image-input.svelte';
     import { ArrowLeft } from 'lucide-svelte';
     import type { SubmitFunction } from './$types.js';
+    import MultiImageInput from '$lib/components/common/multi-image-input.svelte';
 
     let { form } = $props();
     let imageUrl = $state('');
@@ -60,7 +61,17 @@
             <Input name="clientUrl" label="Client URL" type="url" />
         </div>
 
-        <ImageInput name="image" label="Image" bind:imageUrl error={form?.errors?.image} required />
+        <ImageInput
+            name="image"
+            label="Main Image"
+            bind:imageUrl
+            error={form?.errors?.image}
+            required
+        />
+        <MultiImageInput
+            label="Gallery"
+            name="additional_images"
+        />
 
         <div class="flex items-start gap-2">
             <Input
