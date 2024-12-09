@@ -1,7 +1,7 @@
 import { EJSON } from 'bson';
-import type { LayoutServerLoad } from '../../../craft/[slug]/$types';
 import { error } from '@sveltejs/kit';
 import CraftModel, { type Craft } from '$lib/models/craft';
+import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ params }): Promise<{ craft: Craft }> => {
     const { slug } = params;

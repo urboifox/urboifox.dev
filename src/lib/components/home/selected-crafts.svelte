@@ -20,7 +20,8 @@
             let panels = gsap.utils.toArray(slider.children);
             const scrollTween = gsap.to(panels, {
                 x: () => -1 * (slider.scrollWidth - innerWidth),
-                ease: 'none', scrollTrigger: {
+                ease: 'none',
+                scrollTrigger: {
                     trigger: container,
                     pin: true,
                     start: 'top top',
@@ -55,9 +56,17 @@
 <div class="h-screen w-screen bg-background-primary" bind:this={container}>
     <div class="relative flex h-screen flex-row flex-nowrap overflow-hidden" bind:this={slider}>
         <div
-            class="bg-transition flex h-screen w-screen shrink-0 items-center justify-center bg-background-primary font-yeseva text-7xl capitalize transition-colors duration-500"
+            class="bg-transition flex h-screen w-screen shrink-0 items-center justify-center bg-background-primary transition-colors duration-500"
         >
-            <h2 bind:this={intro} class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl">My Craft</h2>
+            <div class="flex flex-col gap-10 text-center" bind:this={intro}>
+                <h2
+                    bind:this={intro}
+                    class="font-yeseva text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
+                >
+                    My Craft
+                </h2>
+                <p class="text-2xl font-light text-comment">Here are some of my selected work.</p>
+            </div>
         </div>
         {#each [1, 2, 3] as i (i)}
             <div
