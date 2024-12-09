@@ -24,7 +24,7 @@
     </div>
     <h1 class="text-3xl">Blog</h1>
 
-    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <div class="flex flex-col gap-4">
         {#each data.posts as post (post.id)}
             <BlogPost {post} isAdmin />
         {/each}

@@ -7,7 +7,6 @@
     });
     let my = tweened(0, {
         duration: 700,
-        delay: 200
     });
 
     const handleMouseMove = (e: MouseEvent) => {

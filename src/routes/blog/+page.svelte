@@ -32,9 +32,9 @@
         </a>
     </div>
 
-    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <div class="flex flex-col gap-4">
         {#each posts as post (post.id)}
-            <a href="/blog/{post.slug}" class="flex">
+            <a href="/blog/{post.slug}" class="flex border-b border-accent/20 last:border-b-0">
                 <BlogPost {post} />
             </a>
         {/each}

@@ -1,16 +1,15 @@
 import { PASSWORD, USERNAME } from '$env/static/private';
 import { createSession } from '$lib/utils/session';
 import { redirect } from '@sveltejs/kit';
-import type { Actions } from '../admin/login/$types';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = ({cookies}) => {
+export const load: PageServerLoad = ({ cookies }) => {
     const session = cookies.get('session');
 
     if (session) {
         redirect(303, '/admin');
     }
-}
+};
 
 export const actions = {
     default: async ({ request, cookies }) => {

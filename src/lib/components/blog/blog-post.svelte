@@ -46,7 +46,7 @@
 {/if}
 
 <article
-    class="group flex w-full flex-col-reverse gap-2 overflow-hidden rounded-lg border border-accent/20 bg-accent/5 shadow-lg transition-colors duration-200 hover:border-accent/40 sm:flex-row"
+    class="group w-full gap-2 border-b border-accent/20 transition-colors duration-200 last:border-b-0"
 >
     <div class="flex flex-1 flex-col justify-between gap-2 p-4 md:p-8">
         <div class="flex flex-col gap-2">
@@ -76,7 +76,7 @@
             <div class="flex items-center gap-2">
                 <time
                     class="text-sm text-comment transition-colors duration-300 group-hover:text-paragraph"
-                    >{moment(post.createdAt).fromNow()}</time
+                    >{moment(post.createdAt).format('MMM D, YYYY')}</time
                 >
                 {' • '}
                 <span
@@ -95,13 +95,8 @@
                 {post.summary}
             </p>
         </div>
-        <div class="text-sm text-comment transition-colors duration-300 group-hover:text-paragraph">
-            {post.tags.join(', ')}
-        </div>
+        <!-- <div class="text-sm text-comment transition-colors duration-300 group-hover:text-paragraph"> -->
+        <!--     {post.tags.join(', ')} -->
+        <!-- </div> -->
     </div>
-    <img
-        src={post.image}
-        alt={post.title}
-        class="object-cover opacity-70 saturate-0 transition-all duration-300 group-hover:opacity-100 group-hover:saturate-100 sm:w-1/2"
-    />
 </article>

@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { cn } from '$lib/utils/cn';
     import gsap from 'gsap';
-    import { X } from 'lucide-svelte';
     import { cubicInOut, cubicOut } from 'svelte/easing';
     import { fade, fly } from 'svelte/transition';
     import { themeStore } from '$lib/store/theme.svelte';
@@ -71,11 +69,33 @@
 >
     <a
         href="/"
-        class="text-xl capitalize text-paragraph transition-colors duration-300 hover:text-accent pointer-events-auto"
+        class="pointer-events-auto text-xl capitalize text-paragraph transition-colors duration-300 hover:text-accent"
     >
         //
     </a>
-    <div class="flex items-center gap-2">
+    <nav>
+        <ul class="flex items-center gap-10">
+            <li>
+                <a
+                    class="pointer-events-auto text-comment transition-colors duration-300 hover:text-accent"
+                    href="/">Home</a
+                >
+            </li>
+            <li>
+                <a
+                    class="pointer-events-auto text-comment transition-colors duration-300 hover:text-accent"
+                    href="/craft">Craft</a
+                >
+            </li>
+            <li>
+                <a
+                    class="pointer-events-auto text-comment transition-colors duration-300 hover:text-accent"
+                    href="/blog">Blog</a
+                >
+            </li>
+        </ul>
+    </nav>
+    <div class="flex items-center gap-4">
         <button
             aria-label="switch theme"
             onclick={toggleTheme}
@@ -89,13 +109,25 @@
         </button>
         <button
             aria-label="switch menu"
-            class={cn(
-                'pointer-events-auto origin-center rotate-45 text-paragraph transition-all duration-300 ease-in-out hover:text-primary',
-                isOpen && 'rotate-0'
-            )}
+            class="group pointer-events-auto origin-center py-2"
             onclick={toggle}
         >
-            <X size={36} strokeWidth={1} />
+            <div class="relative flex w-8 flex-col justify-center gap-2">
+                <div
+                    class="h-px w-full rounded-sm bg-comment transition-all duration-200 group-hover:bg-accent"
+                    class:!bg-accent={isOpen}
+                ></div>
+                <div
+                    class="h-px w-[70%] self-end rounded-sm bg-comment transition-all duration-200 group-hover:bg-accent"
+                    class:!w-full={isOpen}
+                    class:!bg-accent={isOpen}
+                ></div>
+                <div
+                    class="h-px w-1/2 self-end rounded-sm bg-comment transition-all duration-200 group-hover:bg-accent"
+                    class:!w-full={isOpen}
+                    class:!bg-accent={isOpen}
+                ></div>
+            </div>
         </button>
     </div>
 </header>

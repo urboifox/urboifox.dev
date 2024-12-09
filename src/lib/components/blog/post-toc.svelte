@@ -58,7 +58,7 @@
 </script>
 
 <aside class="sticky top-32 hidden w-80 flex-col gap-6 2xl:flex">
-    <h2 class="text-lg font-bold">Table of Contents</h2>
+    <h2 class="text-lg font-semibold">Table of Contents</h2>
     <div
         class="relative flex flex-col gap-4 border-s border-comment/50 ps-4"
         bind:this={tocContainer}
