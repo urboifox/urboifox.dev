@@ -67,12 +67,7 @@
 <header
     class="container pointer-events-none fixed left-1/2 top-0 z-50 flex -translate-x-1/2 items-center justify-between gap-4 py-10 text-accent"
 >
-    <a
-        href="/"
-        class="pointer-events-auto text-xl capitalize text-paragraph transition-colors duration-300 hover:text-accent"
-    >
-        //
-    </a>
+    <a href="/" class="pointer-events-auto text-xl font-medium capitalize text-accent"> Fox. </a>
     <nav>
         <ul class="flex items-center gap-10">
             <li>
