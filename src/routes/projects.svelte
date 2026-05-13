@@ -1,18 +1,19 @@
 <script lang="ts">
+    import { blurIn } from '$lib/actions/blur-in';
     import type { Project } from '../data/projects';
 
     let { projects }: { projects: Project[] } = $props();
 </script>
 
 <section class="container py-32">
-    <div class="mb-16 flex items-end justify-between gap-4">
-        <div class="space-y-3">
-            <p class="text-sm tracking-widest text-primary uppercase">Selected work</p>
+    <div class="mb-16 flex md:items-end md:justify-between gap-4 flex-col md:flex-row">
+        <div class="space-y-3" {@attach blurIn()}>
+            <p class="text-sm tracking-widest text-primary">~/selected-work</p>
             <h2 class="text-5xl font-bold md:text-6xl">
                 Projects<span class="text-primary">.</span>
             </h2>
         </div>
-        <p class="hidden max-w-xs text-sm text-neutral-500 md:block">
+        <p class="max-w-xs text-sm text-neutral-500" {@attach blurIn()}>
             A few things I've built recently. Each one was an excuse to push pixels a little
             further.
         </p>
@@ -20,7 +21,7 @@
 
     <ul class="grid grid-cols-1 gap-6 md:grid-cols-2">
         {#each projects as project, index (project.slug)}
-            <li>
+            <li {@attach blurIn(index * 0.15)}>
                 <a
                     href={project.url}
                     target="_blank"

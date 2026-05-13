@@ -1,8 +1,8 @@
 ---
 title: My First Post
 description: A quick intro post.
-date: '2024-05-01'
-published: true
+published: '2024-05-01'
+category: portfolio
 ---
 
 ## Hello!

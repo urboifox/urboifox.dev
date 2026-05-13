@@ -30,8 +30,9 @@
 
 <header
     class={[
-        'fixed inset-x-0 w-full transition-all duration-300 ease-in-out backdrop-blur-xs z-50',
-        visible ? 'top-0' : '-top-18'
+        'fixed inset-x-0 z-50 w-full transition-all duration-500 ease-in-out',
+        visible ? 'top-0' : '-top-18',
+        scrolled ? 'backdrop-blur-xs' : ''
     ]}
 >
     <div class="container flex items-center justify-between gap-4 py-6">

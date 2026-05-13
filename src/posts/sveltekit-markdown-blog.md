@@ -1,7 +1,6 @@
 ---
 title: Build a SvelteKit Markdown Blog
 description: Learn how to build a blazingly fast and extendable SvelteKit Markdown blog for poets.
-slug: sveltekit-markdown-blog
 published: '2023-04-28'
 category: sveltekit
 ---

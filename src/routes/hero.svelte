@@ -1,53 +1,17 @@
 <script>
     import { Canvas } from '@threlte/core';
     import Scene from './scene.svelte';
-    import { onMount } from 'svelte';
-    import gsap from 'gsap';
+    import { blurIn } from '$lib/actions/blur-in';
 
     const description =
         'Frontend developer with a thing for motion, depth, and interfaces that make people stop scrolling.';
 
-    const stack = ['Svelte', 'Three.js', 'TypeScript', 'Tailwind', 'GSAP'];
-
-    onMount(() => {
-        gsap.to('.description-word', {
-            duration: 1,
-            opacity: 1,
-            ease: 'power2.out',
-            filter: 'blur(0px)',
-            stagger: 0.05
-        });
-
-        gsap.to('#socials', {
-            duration: 1,
-            delay: 0.05 * description.split(' ').length,
-            opacity: 1,
-            ease: 'power2.out',
-            filter: 'blur(0px)'
-        });
-
-        gsap.to('.hero-meta', {
-            duration: 1,
-            opacity: 1,
-            ease: 'power2.out',
-            filter: 'blur(0px)',
-            stagger: 0.08
-        });
-
-        gsap.to('.stack-pill', {
-            duration: 0.8,
-            delay: 0.05 * description.split(' ').length + 0.2,
-            opacity: 1,
-            y: 0,
-            ease: 'power2.out',
-            stagger: 0.04
-        });
-    });
+    const stack = ['Neovim', 'Svelte', 'Three.js', 'Tailwind', 'GSAP'];
 </script>
 
 <section class="relative min-h-dvh overflow-hidden">
     <div
-        class="pointer-events-none absolute inset-0 z-0 opacity-[0.06] [background-image:radial-gradient(circle_at_1px_1px,_var(--color-foreground)_1px,_transparent_0)] [background-size:24px_24px]"
+        class="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_1px_1px,var(--color-foreground)_1px,transparent_0)] bg-size-[24px_24px] opacity-[0.06]"
     ></div>
 
     <div class="absolute top-0 left-0 z-0 h-full w-full">
@@ -58,13 +22,13 @@
 
     <span
         aria-hidden="true"
-        class="pointer-events-none absolute top-4 left-4 z-20 text-neutral-800 select-none md:top-6 md:left-6"
+        class="pointer-events-none absolute top-16 left-4 z-20 text-neutral-800 select-none md:top-20 md:left-6"
     >
         +
     </span>
     <span
         aria-hidden="true"
-        class="pointer-events-none absolute top-4 right-4 z-20 text-neutral-800 select-none md:top-6 md:right-6"
+        class="pointer-events-none absolute top-16 right-4 z-20 text-neutral-800 select-none md:top-20 md:right-6"
     >
         +
     </span>
@@ -85,7 +49,8 @@
         class="pointer-events-none relative z-10 container flex h-dvh flex-col justify-between pt-28 pb-16"
     >
         <div
-            class="hero-meta flex items-center justify-between text-xs tracking-widest text-neutral-500 uppercase opacity-0 blur-sm"
+            class="flex items-center justify-between text-xs tracking-widest text-neutral-500 uppercase opacity-0"
+            {@attach blurIn()}
         >
             <div class="flex items-center gap-3">
                 <span class="font-mono text-neutral-600">[01]</span>
@@ -117,7 +82,10 @@
                     </h1>
                     <p class="max-w-md text-neutral-400">
                         {#each description.split(' ') as word, index (index)}
-                            <span class="description-word whitespace-nowrap opacity-0 blur-sm">
+                            <span
+                                class="whitespace-nowrap opacity-0"
+                                {@attach blurIn(index * 0.05)}
+                            >
                                 {word}
                             </span>
                             {' '}
@@ -126,9 +94,10 @@
                 </div>
 
                 <ul class="flex flex-wrap gap-2 pt-1">
-                    {#each stack as tech (tech)}
+                    {#each stack as tech, index (tech)}
                         <li
-                            class="stack-pill pointer-events-auto translate-y-2 rounded-full border border-neutral-900 bg-background/40 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
+                            class="stack-pill pointer-events-auto rounded-full border border-neutral-900 bg-background/40 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
+                            {@attach blurIn(index * 0.1 + 1)}
                         >
                             {tech}
                         </li>
@@ -136,8 +105,8 @@
                 </ul>
 
                 <div
-                    id="socials"
-                    class="flex items-center gap-2 text-neutral-500 opacity-0 blur-sm"
+                    class="flex items-center gap-2 text-neutral-500 opacity-0"
+                    {@attach blurIn(1.5)}
                 >
                     <a
                         href="https://github.com/urboifox"

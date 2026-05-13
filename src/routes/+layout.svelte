@@ -1,5 +1,5 @@
 <script lang="ts">
-    import './layout.css';
+    import '../app.css';
     import 'lenis/dist/lenis.css';
     import favicon from '$lib/assets/favicon.svg';
     import Lenis from 'lenis';
@@ -41,7 +41,6 @@
 ></div>
 
 <Cursor />
-
 <Header />
 
 {@render children()}
