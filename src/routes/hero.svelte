@@ -1,7 +1,6 @@
 <script>
     import { Canvas } from '@threlte/core';
     import Scene from './scene.svelte';
-    import Header from '$lib/components/header.svelte';
     import { onMount } from 'svelte';
     import gsap from 'gsap';
 
@@ -36,9 +35,7 @@
     <div
         class="pointer-events-none relative z-10 container flex h-dvh flex-col justify-between pb-16"
     >
-        <div>
-            <Header />
-        </div>
+        <div></div>
         <div class="flex items-end justify-between gap-4">
             <div class="space-y-4">
                 <div

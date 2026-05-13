@@ -8,6 +8,7 @@
     import ScrollTrigger from 'gsap/ScrollTrigger';
     import grain from '$lib/assets/grain.webp';
     import Cursor from '$lib/components/cursor.svelte';
+    import Header from '$lib/components/header.svelte';
 
     let { children } = $props();
 
@@ -41,5 +42,7 @@
 ></div>
 
 <Cursor />
+
+<Header />
 
 {@render children()}
