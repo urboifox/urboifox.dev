@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-    <title>Fox.</title>
+    <title>Mohamed Ashraf - Frontend Developer</title>
 </svelte:head>
 
 <main>
