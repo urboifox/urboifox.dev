@@ -4,7 +4,7 @@
     let { projects }: { projects: Project[] } = $props();
 </script>
 
-<section id="projects" class="container py-32">
+<section class="container py-32">
     <div class="mb-16 flex items-end justify-between gap-4">
         <div class="space-y-3">
             <p class="text-sm tracking-widest text-primary uppercase">Selected work</p>
@@ -20,7 +20,7 @@
 
     <ul class="grid grid-cols-1 gap-6 md:grid-cols-2">
         {#each projects as project, index (project.slug)}
-            <li class="project-card">
+            <li>
                 <a
                     href={project.url}
                     target="_blank"

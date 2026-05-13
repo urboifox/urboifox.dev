@@ -1,12 +1,7 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import gsap from 'gsap';
-    import ScrollTrigger from 'gsap/ScrollTrigger';
     import type { PostSummary } from './+page';
 
     let { posts }: { posts: PostSummary[] } = $props();
-
-    let section = $state<HTMLElement>();
 
     function formatDate(value: string) {
         if (!value) return '';
@@ -16,30 +11,9 @@
             .toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })
             .toUpperCase();
     }
-
-    onMount(() => {
-        if (!section) return;
-
-        gsap.fromTo(
-            section.querySelectorAll('.post-row'),
-            { opacity: 0, x: -30, filter: 'blur(8px)' },
-            {
-                opacity: 1,
-                x: 0,
-                filter: 'blur(0px)',
-                duration: 0.7,
-                ease: 'power2.out',
-                stagger: 0.08,
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%'
-                }
-            }
-        );
-    });
 </script>
 
-<section bind:this={section} id="writing" class="container py-32">
+<section class="container py-32">
     <div class="mb-16 flex items-end justify-between gap-4">
         <div class="space-y-3">
             <p class="text-sm tracking-widest text-primary uppercase">The Journal</p>
@@ -49,7 +23,7 @@
         </div>
         <a
             href="/posts"
-            class="pointer-events-auto group hidden items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-primary md:flex"
+            class="group pointer-events-auto hidden items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-primary md:flex"
         >
             <span>All posts</span>
             <svg
@@ -70,7 +44,7 @@
 
     <ul class="border-t border-neutral-900">
         {#each posts as post, index (post.slug)}
-            <li class="post-row border-b border-neutral-900">
+            <li class="border-b border-neutral-900">
                 <a
                     href="/posts/{post.slug}"
                     class="group pointer-events-auto grid grid-cols-[auto_1fr_auto] items-center gap-6 py-8 transition-[padding] duration-500 ease-out hover:pl-6 md:gap-10"
@@ -123,7 +97,7 @@
                                 stroke-width="1.5"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                class="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             >
                                 <line x1="7" y1="17" x2="17" y2="7" />
                                 <polyline points="7 7 17 7 17 17" />
@@ -137,7 +111,7 @@
 
     <a
         href="/posts"
-        class="pointer-events-auto group mt-8 flex items-center justify-center gap-2 text-sm text-neutral-400 transition-colors hover:text-primary md:hidden"
+        class="group pointer-events-auto mt-8 flex items-center justify-center gap-2 text-sm text-neutral-400 transition-colors hover:text-primary md:hidden"
     >
         <span>All posts</span>
         <svg
