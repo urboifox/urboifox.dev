@@ -30,11 +30,11 @@
 
 <header
     class={[
-        'fixed inset-x-0 w-full transition-all duration-300 ease-in-out',
-        visible ? 'top-4' : '-top-12'
+        'fixed inset-x-0 w-full transition-all duration-300 ease-in-out backdrop-blur-xs z-50',
+        visible ? 'top-0' : '-top-18'
     ]}
 >
-    <div class="container flex items-center justify-between gap-4 p-4">
+    <div class="container flex items-center justify-between gap-4 py-6">
         <a href="/" class="pointer-events-auto text-sm font-bold uppercase"> urboifox </a>
         <button
             onclick={handleMenuClick}
