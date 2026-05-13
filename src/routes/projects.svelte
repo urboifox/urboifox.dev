@@ -5,9 +5,11 @@
     let { projects }: { projects: Project[] } = $props();
 
     let listEl: HTMLUListElement | undefined = $state();
+    let innerWidth = $state(0);
+    const isMobile = $derived(innerWidth > 0 && innerWidth < 768);
 
     function handleMouseMove(event: MouseEvent) {
-        if (!listEl) return;
+        if (isMobile || !listEl) return;
         const cards = listEl.querySelectorAll<HTMLElement>('.project-card');
         cards.forEach((card) => {
             const rect = card.getBoundingClientRect();
@@ -15,9 +17,23 @@
             card.style.setProperty('--y', `${event.clientY - rect.top}px`);
         });
     }
+
+    $effect(() => {
+        if (!listEl) return;
+        const cards = listEl.querySelectorAll<HTMLElement>('.project-card');
+        cards.forEach((card, index) => {
+            if (isMobile && index === 0) {
+                card.style.setProperty('--x', '50%');
+                card.style.setProperty('--y', '0px');
+            } else {
+                card.style.removeProperty('--x');
+                card.style.removeProperty('--y');
+            }
+        });
+    });
 </script>
 
-<svelte:window onmousemove={handleMouseMove} />
+<svelte:window bind:innerWidth onmousemove={handleMouseMove} />
 
 <section class="container py-32">
     <div class="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

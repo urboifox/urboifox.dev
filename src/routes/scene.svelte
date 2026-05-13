@@ -1,21 +1,22 @@
 <script>
-    import { T, useTask } from '@threlte/core';
-    import { interactivity } from '@threlte/extras';
-    import { Spring } from 'svelte/motion';
+    import { T } from '@threlte/core';
+    import { GLTF, interactivity, useGltfAnimations } from '@threlte/extras';
 
     interactivity();
 
-    const scale = new Spring(1);
-    let rotation = $state(0);
     let innerWidth = $state(0);
+    let gltf = $state();
+
+    const { actions } = useGltfAnimations(() => gltf);
+
+    $effect(() => {
+        $actions.walk?.reset().play();
+    });
 
     const isMobile = $derived(innerWidth > 0 && innerWidth < 768);
-    const meshX = $derived(isMobile ? 0 : 2);
+    const meshX = $derived(isMobile ? 0 : 1);
     const meshY = $derived(isMobile ? 2 : 1.5);
-
-    useTask((delta) => {
-        rotation += delta;
-    });
+    const scale = $derived(isMobile ? 0.3 : 0.7);
 </script>
 
 <svelte:window bind:innerWidth />
@@ -31,20 +32,6 @@
 <T.DirectionalLight position={[8, 10, 5]} castShadow />
 <T.AmbientLight intensity={0.5} />
 
-<T.Mesh
-    rotation.y={rotation}
-    position.y={meshY}
-    position.z={2}
-    position.x={meshX}
-    scale={scale.current}
-    onpointerenter={() => {
-        scale.target = 1.2;
-    }}
-    onpointerleave={() => {
-        scale.target = 1;
-    }}
-    castShadow
->
-    <T.BoxGeometry args={[1, 2, 1]} />
-    <T.MeshStandardMaterial color="#ff3e00" />
-</T.Mesh>
+<T.Group position.y={meshY} position.z={1} {scale} rotation.y={-Math.PI / 4} position.x={meshX}>
+    <GLTF url="/models/fox.glb" castShadow receiveShadow bind:gltf />
+</T.Group>
