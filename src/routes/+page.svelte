@@ -6,6 +6,10 @@
     let { data } = $props();
 </script>
 
+<svelte:head>
+    <title>Fox.</title>
+</svelte:head>
+
 <main>
     <Hero />
     <Projects projects={data.projects} />

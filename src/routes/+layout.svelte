@@ -33,7 +33,6 @@
 
 <svelte:head>
     <link rel="icon" href={favicon} />
-    <title>Fox.</title>
 </svelte:head>
 
 <div
