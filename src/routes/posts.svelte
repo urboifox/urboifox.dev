@@ -11,7 +11,7 @@
         <div class="space-y-3" {@attach blurIn()}>
             <div class="flex items-center gap-3 text-neutral-500">
                 <span class="font-mono text-primary">[03]</span>
-                <span class="hidden h-px w-8 bg-neutral-800 sm:block"></span>
+                <span class="h-px w-8 bg-neutral-800"></span>
                 <span class="font-mono">~/journal</span>
             </div>
             <h2 class="text-5xl font-bold md:text-6xl">

@@ -9,7 +9,7 @@
     const stack = ['Neovim', 'Svelte', 'Three.js', 'Tailwind', 'GSAP'];
 </script>
 
-<section class="relative min-h-dvh overflow-hidden">
+<section class="relative min-h-screen overflow-hidden">
     <div
         class="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_1px_1px,var(--color-foreground)_1px,transparent_0)] bg-size-[24px_24px] opacity-[0.06]"
     ></div>
@@ -45,14 +45,14 @@
         +
     </span>
 
-    <div class="relative z-10 container flex h-dvh flex-col justify-between pt-28 pb-16">
+    <div class="relative z-10 container flex h-screen flex-col justify-between pt-28 pb-16">
         <div
             class="flex items-center justify-between text-xs text-neutral-500 opacity-0"
             {@attach blurIn()}
         >
             <div class="flex items-center gap-3">
                 <span class="font-mono text-neutral-600">[01]</span>
-                <span class="hidden h-px w-8 bg-neutral-800 sm:block"></span>
+                <span class="h-px w-8 bg-neutral-800"></span>
                 <span class="font-mono">~/home</span>
             </div>
             <div class="hidden items-center gap-3 tracking-widest uppercase sm:flex">
