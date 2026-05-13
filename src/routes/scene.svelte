@@ -1,8 +1,6 @@
 <script>
     import { T } from '@threlte/core';
-    import { GLTF, interactivity, useGltfAnimations } from '@threlte/extras';
-
-    interactivity();
+    import { GLTF, useGltfAnimations } from '@threlte/extras';
 
     let innerWidth = $state(0);
     let gltf = $state();
