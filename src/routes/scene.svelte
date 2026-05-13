@@ -1,7 +1,6 @@
 <script>
     import { T } from '@threlte/core';
     import { GLTF, interactivity, useGltfAnimations } from '@threlte/extras';
-    import Sparkles from './sparkles.svelte';
 
     interactivity();
 
@@ -33,8 +32,6 @@
 <T.DirectionalLight intensity={0.5} position={[8, 10, 5]} castShadow color="#ff3e00" />
 <T.DirectionalLight intensity={0.5} position={[8, 10, 5]} castShadow />
 <T.AmbientLight intensity={0.3} />
-
-<Sparkles />
 
 <T.Group position.y={meshY} position.z={1} {scale} rotation.y={-Math.PI / 4} position.x={meshX}>
     <GLTF url="/models/fox.glb" castShadow receiveShadow bind:gltf />
