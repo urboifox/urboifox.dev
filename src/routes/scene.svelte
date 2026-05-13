@@ -7,11 +7,18 @@
 
     const scale = new Spring(1);
     let rotation = $state(0);
+    let innerWidth = $state(0);
+
+    const isMobile = $derived(innerWidth > 0 && innerWidth < 768);
+    const meshX = $derived(isMobile ? 0 : 2);
+    const meshY = $derived(isMobile ? 2 : 1.5);
 
     useTask((delta) => {
         rotation += delta;
     });
 </script>
+
+<svelte:window bind:innerWidth />
 
 <T.PerspectiveCamera
     makeDefault
@@ -26,9 +33,9 @@
 
 <T.Mesh
     rotation.y={rotation}
-    position.y={1.5}
+    position.y={meshY}
     position.z={2}
-    position.x={2}
+    position.x={meshX}
     scale={scale.current}
     onpointerenter={() => {
         scale.target = 1.2;
