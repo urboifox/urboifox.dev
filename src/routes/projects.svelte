@@ -3,10 +3,24 @@
     import type { Project } from '../data/projects';
 
     let { projects }: { projects: Project[] } = $props();
+
+    let listEl: HTMLUListElement | undefined = $state();
+
+    function handleMouseMove(event: MouseEvent) {
+        if (!listEl) return;
+        const cards = listEl.querySelectorAll<HTMLElement>('.project-card');
+        cards.forEach((card) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--x', `${event.clientX - rect.left}px`);
+            card.style.setProperty('--y', `${event.clientY - rect.top}px`);
+        });
+    }
 </script>
 
+<svelte:window onmousemove={handleMouseMove} />
+
 <section class="container py-32">
-    <div class="mb-16 flex md:items-end md:justify-between gap-4 flex-col md:flex-row">
+    <div class="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div class="space-y-3" {@attach blurIn()}>
             <p class="text-sm tracking-widest text-primary">~/selected-work</p>
             <h2 class="text-5xl font-bold md:text-6xl">
@@ -19,14 +33,14 @@
         </p>
     </div>
 
-    <ul class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <ul bind:this={listEl} class="grid grid-cols-1 gap-6 md:grid-cols-2">
         {#each projects as project, index (project.slug)}
             <li {@attach blurIn(index * 0.15)}>
                 <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="group pointer-events-auto relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-neutral-900 bg-neutral-950/40 p-6 transition-colors duration-300 hover:border-primary/50"
+                    class="project-card group pointer-events-auto relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-neutral-900 bg-neutral-950/40 p-6"
                 >
                     <div
                         class="pointer-events-none absolute -top-px -right-px h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100 md:opacity-0"
@@ -75,3 +89,28 @@
         {/each}
     </ul>
 </section>
+
+<style>
+    .project-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: radial-gradient(
+            280px circle at var(--x, -200px) var(--y, -200px),
+            var(--color-primary) 0%,
+            transparent 70%
+        );
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 1;
+    }
+</style>
