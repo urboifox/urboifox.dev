@@ -9,7 +9,11 @@
 <section class="container py-32">
     <div class="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div class="space-y-3" {@attach blurIn()}>
-            <p class="text-sm tracking-widest text-primary">~/journal</p>
+            <div class="flex items-center gap-3 text-neutral-500">
+                <span class="font-mono text-primary">[03]</span>
+                <span class="hidden h-px w-8 bg-neutral-800 sm:block"></span>
+                <span class="font-mono">~/journal</span>
+            </div>
             <h2 class="text-5xl font-bold md:text-6xl">
                 Writing<span class="text-primary">.</span>
             </h2>

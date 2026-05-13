@@ -22,34 +22,34 @@
 
     <span
         aria-hidden="true"
-        class="pointer-events-none absolute top-16 left-4 z-20 text-neutral-800 select-none md:top-20 md:left-6"
+        class="absolute top-16 left-4 z-20 text-neutral-800 select-none md:top-20 md:left-6"
     >
         +
     </span>
     <span
         aria-hidden="true"
-        class="pointer-events-none absolute top-16 right-4 z-20 text-neutral-800 select-none md:top-20 md:right-6"
+        class="absolute top-16 right-4 z-20 text-neutral-800 select-none md:top-20 md:right-6"
     >
         +
     </span>
     <span
         aria-hidden="true"
-        class="pointer-events-none absolute bottom-4 left-4 z-20 text-neutral-800 select-none md:bottom-6 md:left-6"
+        class="absolute bottom-4 left-4 z-20 text-neutral-800 select-none md:bottom-6 md:left-6"
     >
         +
     </span>
     <span
         aria-hidden="true"
-        class="pointer-events-none absolute right-4 bottom-4 z-20 text-neutral-800 select-none md:right-6 md:bottom-6"
+        class="absolute right-4 bottom-4 z-20 text-neutral-800 select-none md:right-6 md:bottom-6"
     >
         +
     </span>
 
     <div
-        class="pointer-events-none relative z-10 container flex h-dvh flex-col justify-between pt-28 pb-16"
+        class="relative z-10 container flex h-dvh flex-col justify-between pt-28 pb-16"
     >
         <div
-            class="flex items-center justify-between text-xs tracking-widest text-neutral-500 uppercase opacity-0"
+            class="flex items-center justify-between text-xs text-neutral-500 opacity-0"
             {@attach blurIn()}
         >
             <div class="flex items-center gap-3">
@@ -57,7 +57,7 @@
                 <span class="hidden h-px w-8 bg-neutral-800 sm:block"></span>
                 <span class="font-mono">~/home</span>
             </div>
-            <div class="hidden items-center gap-3 sm:flex">
+            <div class="hidden items-center gap-3 tracking-widest uppercase sm:flex">
                 <span>Caffeine</span>
                 <span class="text-neutral-700">·</span>
                 <span>Curiosity</span>
@@ -96,7 +96,7 @@
                 <ul class="flex flex-wrap gap-2 pt-1">
                     {#each stack as tech, index (tech)}
                         <li
-                            class="stack-pill pointer-events-auto rounded-full border border-neutral-900 bg-background/40 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
+                            class="stack-pill rounded-full border border-neutral-900 bg-background/40 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
                             {@attach blurIn(index * 0.1 + 1)}
                         >
                             {tech}
@@ -111,7 +111,7 @@
                     <a
                         href="https://github.com/urboifox"
                         target="_blank"
-                        class="pointer-events-auto transition-colors hover:text-foreground"
+                        class="transition-colors hover:text-foreground"
                     >
                         Github
                     </a>
@@ -119,7 +119,7 @@
                     <a
                         href="https://linkedin.com/in/urboifox"
                         target="_blank"
-                        class="pointer-events-auto transition-colors hover:text-foreground"
+                        class="transition-colors hover:text-foreground"
                     >
                         Linkedin
                     </a>
@@ -127,7 +127,7 @@
                     <a
                         href="mailto:urboifox@gmail.com"
                         target="_blank"
-                        class="pointer-events-auto transition-colors hover:text-foreground"
+                        class="transition-colors hover:text-foreground"
                     >
                         Contact
                     </a>

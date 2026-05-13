@@ -18,6 +18,11 @@
         background-color: var(--color-background);
         color: var(--color-foreground);
     }
+
+    ::selection {
+        background-color: var(--color-primary);
+        color: white;
+    }
 }
 
 @keyframes grain {
