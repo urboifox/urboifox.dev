@@ -23,7 +23,7 @@
 <div
     bind:this={cursor}
     class={[
-        'pointer-events-none fixed z-100 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-[height,width,border-color]',
+        'pointer-events-none fixed z-100 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 transition-[height,width,border-color] max-lg:hidden',
         clickable ? 'h-20 w-20 border-white/50' : 'h-12 w-12 border-white/20'
     ]}
 ></div>
