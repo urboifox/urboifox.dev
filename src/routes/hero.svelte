@@ -45,9 +45,7 @@
         +
     </span>
 
-    <div
-        class="relative z-10 container flex h-dvh flex-col justify-between pt-28 pb-16"
-    >
+    <div class="relative z-10 container flex h-dvh flex-col justify-between pt-28 pb-16">
         <div
             class="flex items-center justify-between text-xs text-neutral-500 opacity-0"
             {@attach blurIn()}
@@ -136,32 +134,12 @@
 
             <div class="flex flex-col items-end gap-8 text-neutral-600">
                 <div
-                    class="hero-meta hidden flex-col items-end gap-2 text-xs tracking-widest uppercase opacity-0 blur-sm md:flex"
+                    class="hero-meta flex flex-col items-end gap-2 text-xs tracking-widest uppercase opacity-0"
+                    {@attach blurIn()}
                 >
                     <span class="font-mono text-neutral-700">v.2.0</span>
                     <span class="h-8 w-px bg-neutral-800"></span>
-                    <span class="text-neutral-500">Scroll to explore</span>
-                </div>
-                <div class="flex animate-pulse flex-col gap-5">
-                    <p class="-rotate-90 md:hidden">Scroll</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 28" fill="none">
-                        <line
-                            x1="8"
-                            y1="0"
-                            x2="8"
-                            y2="22"
-                            stroke="currentColor"
-                            stroke-width="0.5"
-                            stroke-linecap="round"
-                        />
-                        <polyline
-                            points="4,20 8,25 12,20"
-                            stroke="currentColor"
-                            stroke-width="0.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                    </svg>
+                    <span class="text-neutral-600">Scroll to explore</span>
                 </div>
             </div>
         </div>
