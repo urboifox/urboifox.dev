@@ -18,7 +18,7 @@ export type GetPostsOptions = {
 };
 
 function loadAllPosts(): PostSummary[] {
-    const modules = import.meta.glob<{ metadata: PostMeta }>('/src/posts/*.md', { eager: true });
+    const modules = import.meta.glob<{ metadata: PostMeta }>('/posts/*.md', { eager: true });
 
     return Object.entries(modules)
         .map(([path, module]) => {
