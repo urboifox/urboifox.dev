@@ -7,7 +7,7 @@
     import gsap from 'gsap';
     import ScrollTrigger from 'gsap/ScrollTrigger';
     import Cursor from '$lib/components/cursor.svelte';
-    import FluidSmokeBg from '$lib/components/fluid-smoke-bg.svelte';
+    import Background from '$lib/components/background.svelte';
     import Header from '$lib/components/header.svelte';
 
     let { children } = $props();
@@ -36,8 +36,10 @@
     <link rel="icon" href={favicon} />
 </svelte:head>
 
-<FluidSmokeBg />
+<Background />
 <Cursor />
 <Header />
 
-{@render children()}
+<div class="relative z-10">
+    {@render children()}
+</div>
