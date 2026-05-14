@@ -30,6 +30,10 @@
         background-color: var(--color-primary);
         color: white;
     }
+
+    /* pre[class*='language-'] { */
+    /*     @apply border border-border bg-card/20! text-muted! backdrop-blur-sm!; */
+    /* } */
 }
 
 @keyframes grain {

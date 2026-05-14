@@ -12,3 +12,14 @@ This is my blog post written in **markdown**.
 ### Second heading
 
 And here's some more text.
+
+```ts
+const foo = 'bar';
+
+function baz(): string {
+    return foo;
+}
+
+console.log(foo);
+console.log(baz());
+```
