@@ -11,7 +11,7 @@ type SitemapEntry = {
     priority: string;
 };
 
-const STATIC_ROUTES = ['/', '/posts'];
+const STATIC_ROUTES = ['/', '/posts', '/whoami'];
 
 export const GET: RequestHandler = () => {
     const posts = getPosts();

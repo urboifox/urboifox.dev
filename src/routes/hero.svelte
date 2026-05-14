@@ -109,7 +109,10 @@
                     {/each}
                 </ul>
 
-                <div class="flex items-center gap-2 text-sm text-muted uppercase opacity-0" {@attach blurIn(1.5)}>
+                <div
+                    class="flex items-center gap-2 text-sm text-muted uppercase opacity-0"
+                    {@attach blurIn(1.5)}
+                >
                     {#each socials as { title, href }, index (title)}
                         <a
                             {href}

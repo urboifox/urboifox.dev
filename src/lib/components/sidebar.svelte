@@ -7,7 +7,8 @@
     const barsCount = 3;
     const links = [
         { href: '/', label: 'Home' },
-        { href: '/posts', label: 'Journal' }
+        { href: '/posts', label: 'Journal' },
+        { href: '/whoami', label: 'Whoami' }
     ];
 
     function handleKeydown(event: KeyboardEvent) {
