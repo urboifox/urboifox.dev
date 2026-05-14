@@ -11,25 +11,6 @@
 
     let canvas: HTMLCanvasElement;
 
-    const smokeVert = `
-        varying vec2 vUv;
-        void main() {
-            vUv = uv;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-    `;
-
-    const smokeFrag = `
-        uniform sampler2D map;
-        uniform float opacity;
-        varying vec2 vUv;
-        void main() {
-            float mask = smoothstep(0.5, 0.05, length(vUv - 0.5));
-            float v = texture2D(map, vUv).r * mask;
-            gl_FragColor = vec4(v, v, v, v * opacity);
-        }
-    `;
-
     const bgVert = `
         varying vec2 vUv;
         void main() {
@@ -175,13 +156,8 @@
         for (let i = 0; i < TOTAL; i++) {
             const m = new THREE.Mesh(
                 smokeGeo,
-                new THREE.ShaderMaterial({
-                    uniforms: {
-                        map: { value: noiseTex },
-                        opacity: { value: 0.5 }
-                    },
-                    vertexShader: smokeVert,
-                    fragmentShader: smokeFrag,
+                new THREE.MeshBasicMaterial({
+                    map: noiseTex,
                     transparent: true,
                     blending: THREE.AdditiveBlending,
                     depthTest: false,
@@ -196,14 +172,14 @@
         function spawnSmoke(x: number, y: number, idx: number) {
             const n = dispM[idx];
             n.visible = true;
-            n.scale.x = 3.5;
-            n.scale.y = 3.5;
+            n.scale.x = 0.15;
+            n.scale.y = 0.15;
             n.rotation.x = 0;
             n.rotation.y = 0;
             n.rotation.z = Math.random() * Math.PI * 2;
             n.position.x = x - 0.9;
             n.position.y = y;
-            (n.material as THREE.ShaderMaterial).uniforms.opacity.value = 0.5;
+            (n.material as THREE.MeshBasicMaterial).opacity = 0.5;
         }
 
         const bgMat = new THREE.ShaderMaterial({
@@ -258,13 +234,13 @@
             for (const m of dispM) {
                 if (!m.visible) continue;
                 m.rotation.z += 0.02;
-                const mat = m.material as THREE.ShaderMaterial;
-                mat.uniforms.opacity.value *= 0.96;
-                if (mat.uniforms.opacity.value < 0.002) {
+                const mat = m.material as THREE.MeshBasicMaterial;
+                mat.opacity *= 0.96;
+                if (mat.opacity < 0.002) {
                     m.visible = false;
                     continue;
                 }
-                m.scale.x = 0.98 * m.scale.x + 0.45;
+                m.scale.x = 0.98 * m.scale.x + 0.109;
                 m.scale.y = m.scale.x;
             }
 
@@ -303,7 +279,7 @@
             window.removeEventListener('resize', onResize);
 
             for (const m of dispM) {
-                (m.material as THREE.ShaderMaterial).dispose();
+                (m.material as THREE.MeshBasicMaterial).dispose();
             }
             smokeGeo.dispose();
             bgMesh.geometry.dispose();
