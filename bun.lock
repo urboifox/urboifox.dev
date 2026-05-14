@@ -5,7 +5,6 @@
     "": {
       "name": "urboifox",
       "dependencies": {
-        "@lucide/svelte": "^1.3.0",
         "@threlte/core": "^8.5.14",
         "@threlte/extras": "^9.17.1",
         "@threlte/studio": "^0.4.3",
@@ -165,8 +164,6 @@
     "@kitschpatrol/tweakpane-plugin-textarea": ["@kitschpatrol/tweakpane-plugin-textarea@2.0.1-beta.2", "", { "dependencies": { "@tweakpane/core": "^2.0.5" }, "peerDependencies": { "tweakpane": "^4.0.0" } }, "sha512-VHV6dJRlceyELapEd38Cwqtu+aG7VPX4e1anPxxVESQmb1uzr4LvsDWPYY6s+9XLzT7O1CZHg63Rd7rRn3bsDQ=="],
 
     "@kitschpatrol/tweakpane-plugin-waveform": ["@kitschpatrol/tweakpane-plugin-waveform@1.0.4-beta.3", "", { "dependencies": { "@tweakpane/core": "^2.0.5" }, "peerDependencies": { "tweakpane": "^4.0.0" } }, "sha512-UVzLSoLQNnyvG3xwno+Mxl/O2rED0b7yz3UIl8gbU3eggJOsHMltywHpSuF7oIJYbbtQtjns6um/fhYyvzXnRQ=="],
-
-    "@lucide/svelte": ["@lucide/svelte@1.3.0", "", { "peerDependencies": { "svelte": "^5" } }, "sha512-ZRjfWKklbD9Sjhnb6d7v8A3zSGwVHNTM8kOiObSUIiF4B2rU4zskWV7ysp5tY0wOPl7ttj2bXGQvAd6qOCVhIA=="],
 
     "@mapbox/node-pre-gyp": ["@mapbox/node-pre-gyp@2.0.3", "", { "dependencies": { "consola": "^3.2.3", "detect-libc": "^2.0.0", "https-proxy-agent": "^7.0.5", "node-fetch": "^2.6.7", "nopt": "^8.0.0", "semver": "^7.5.3", "tar": "^7.4.0" }, "bin": { "node-pre-gyp": "bin/node-pre-gyp" } }, "sha512-uwPAhccfFJlsfCxMYTwOdVfOz3xqyj8xYL3zJj8f0pb30tLohnnFPhLuqp4/qoEz8sNxe4SESZedcBojRefIzg=="],
 

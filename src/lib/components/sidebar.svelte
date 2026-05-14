@@ -1,5 +1,4 @@
 <script lang="ts">
-    import XIcon from '@lucide/svelte/icons/x';
     import gsap from 'gsap';
     import { fade } from 'svelte/transition';
 
@@ -75,7 +74,28 @@
                 class="w-fit transition-colors hover:text-primary"
                 onclick={() => (open = false)}
             >
-                <XIcon size={42} />
+                <span class="sr-only">Close</span>
+                <svg
+                    viewBox="-0.5 0 25 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-12 w-12"
+                >
+                    <path
+                        d="M3 21.32L21 3.32001"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    ></path>
+                    <path
+                        d="M3 3.32001L21 21.32"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    ></path>
+                </svg>
             </button>
             <div class="flex flex-col gap-6">
                 {#each links as { href, label } (href)}
