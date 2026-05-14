@@ -1,7 +1,7 @@
 <script lang="ts">
     import { blurIn } from '$lib/actions/blur-in';
 
-    type Skill = { label: string; level?: string };
+    type Skill = { label: string; highlight?: boolean };
     type Group = { title: string; tag: string; items: Skill[] };
 
     let cardEl: HTMLUListElement | undefined = $state();
@@ -58,10 +58,9 @@
             title: 'Frontend',
             tag: 'ui',
             items: [
-                { label: 'Svelte', level: 'daily' },
-                { label: 'Next.js', level: 'daily' },
-                { label: 'Tailwind CSS' },
-                { label: 'TypeScript' },
+                { label: 'Svelte', highlight: true },
+                { label: 'Next.js', highlight: true },
+                { label: 'TypeScript', highlight: true },
                 { label: 'Expo' }
             ]
         },
@@ -69,9 +68,8 @@
             title: 'Motion & 3D',
             tag: 'fx',
             items: [
-                { label: 'GSAP', level: 'daily' },
-                { label: 'Three.js' },
-                { label: 'Threlte' },
+                { label: 'GSAP', highlight: true },
+                { label: 'Three.js', highlight: true },
                 { label: 'Lenis' },
                 { label: 'Motion' }
             ]
@@ -80,10 +78,9 @@
             title: 'Tooling',
             tag: 'dx',
             items: [
-                { label: 'Neovim', level: 'daily' },
-                { label: 'Linux', level: 'daily' },
+                { label: 'Neovim', highlight: true },
+                { label: 'Linux', highlight: true },
                 { label: 'Bun' },
-                { label: 'Git' },
                 { label: 'Figma' }
             ]
         },
@@ -91,11 +88,10 @@
             title: 'Backend & Misc',
             tag: 'srv',
             items: [
-                { label: 'Node.js' },
-                { label: 'PostgreSQL' },
-                { label: 'Redis' },
+                { label: 'Node.js', highlight: true },
+                { label: 'Go' },
                 { label: 'Docker' },
-                { label: 'REST / GraphQL' }
+                { label: 'GraphQL' }
             ]
         }
     ];
@@ -116,7 +112,7 @@
             </h2>
         </div>
         <p class="max-w-xs text-sm text-neutral-500" {@attach blurIn()}>
-            What I reach for when building. Always rotating, always learning.
+            What I reach for when building.
         </p>
     </div>
 
@@ -139,15 +135,14 @@
                 <h3 class="mt-6 text-2xl font-semibold">{group.title}</h3>
                 <ul class="mt-6 space-y-3 border-t border-neutral-900 pt-4">
                     {#each group.items as skill (skill.label)}
-                        <li class="flex items-center justify-between gap-3 text-sm">
+                        <li class="flex items-center gap-2 text-sm">
+                            <span
+                                class={[
+                                    'h-1 w-1 rounded-full',
+                                    skill.highlight ? 'bg-primary' : 'bg-neutral-700'
+                                ]}
+                            ></span>
                             <span class="text-neutral-300">{skill.label}</span>
-                            {#if skill.level}
-                                <span
-                                    class="font-mono text-[10px] tracking-widest text-primary uppercase"
-                                >
-                                    {skill.level}
-                                </span>
-                            {/if}
                         </li>
                     {/each}
                 </ul>
