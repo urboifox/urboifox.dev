@@ -148,6 +148,21 @@
         const noiseTex = new THREE.TextureLoader().load(noiseUrl);
         noiseTex.wrapS = noiseTex.wrapT = THREE.RepeatWrapping;
 
+        const maskCanvas = document.createElement('canvas');
+        maskCanvas.width = maskCanvas.height = 128;
+        const maskCtx = maskCanvas.getContext('2d');
+        if (maskCtx) {
+            const g = maskCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
+            g.addColorStop(0, 'rgba(255,255,255,1)');
+            g.addColorStop(0.5, 'rgba(255,255,255,1)');
+            g.addColorStop(1, 'rgba(0,0,0,0)');
+            maskCtx.fillStyle = g;
+            maskCtx.fillRect(0, 0, 128, 128);
+        }
+        const circleMask = new THREE.CanvasTexture(maskCanvas);
+        circleMask.minFilter = THREE.LinearFilter;
+        circleMask.magFilter = THREE.LinearFilter;
+
         const TOTAL = 100;
         const smokeGeo = new THREE.PlaneGeometry(55, 57);
         const dispM: THREE.Mesh[] = [];
@@ -158,6 +173,7 @@
                 smokeGeo,
                 new THREE.MeshBasicMaterial({
                     map: noiseTex,
+                    alphaMap: circleMask,
                     transparent: true,
                     blending: THREE.AdditiveBlending,
                     depthTest: false,
@@ -284,6 +300,7 @@
             smokeGeo.dispose();
             bgMesh.geometry.dispose();
             bgMat.dispose();
+            circleMask.dispose();
             noiseTex.dispose();
             fbo.dispose();
             renderer.dispose();
