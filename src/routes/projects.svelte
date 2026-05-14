@@ -72,7 +72,7 @@
 
 <svelte:window bind:innerWidth onmousemove={handleMouseMove} />
 
-<section class="container py-32">
+<section class="container py-20 md:py-32">
     <div class="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div class="space-y-3" {@attach blurIn()}>
             <div class="flex items-center gap-3 text-neutral-500">

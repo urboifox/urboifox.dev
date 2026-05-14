@@ -13,7 +13,7 @@
     <title>Posts - Mohamed Ashraf</title>
 </svelte:head>
 
-<section class="py-32">
+<section class="py-32 min-h-screen">
     <div class="container mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div class="space-y-3" {@attach blurIn()}>
             <div class="flex items-center gap-3 text-neutral-500">

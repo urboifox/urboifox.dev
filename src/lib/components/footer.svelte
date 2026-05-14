@@ -24,7 +24,7 @@
             {@attach blurIn()}
         >
             <div class="flex items-center gap-3">
-                <span class="font-mono text-primary">04</span>
+                <span class="font-mono text-primary">05</span>
                 <span class="h-px w-8 bg-neutral-800"></span>
                 <span class="font-mono">~/contact</span>
             </div>
