@@ -4,13 +4,24 @@
     import Skills from './skills.svelte';
     import Projects from './projects.svelte';
     import Posts from './posts.svelte';
+    import Seo from '$lib/components/seo.svelte';
+    import { site } from '$lib/config';
 
     let { data } = $props();
+
+    const personJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: site.name,
+        url: site.url,
+        image: `${site.url}${site.image}`,
+        jobTitle: 'Frontend Developer',
+        description: site.description,
+        sameAs: [site.github, `https://twitter.com/${site.twitter.replace('@', '')}`]
+    };
 </script>
 
-<svelte:head>
-    <title>Mohamed Ashraf - Frontend Developer</title>
-</svelte:head>
+<Seo jsonLd={personJsonLd} />
 
 <main>
     <Hero />

@@ -3,8 +3,22 @@
     import { blurIn } from '$lib/actions/blur-in';
     import { mount, onMount } from 'svelte';
     import CopyButton from './copy-button.svelte';
+    import Seo from '$lib/components/seo.svelte';
+    import { site } from '$lib/config';
 
     const { data } = $props();
+
+    const articleJsonLd = $derived({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: data.metadata.title,
+        description: data.metadata.description,
+        author: { '@type': 'Person', name: site.name, url: site.url },
+        publisher: { '@type': 'Person', name: site.name, url: site.url },
+        datePublished: data.metadata.published,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': `${site.url}${page.url.pathname}` },
+        ...(data.metadata.category ? { articleSection: data.metadata.category } : {})
+    });
 
     function formatDate(value?: string) {
         if (!value) return '';
@@ -28,12 +42,20 @@
     });
 </script>
 
+<Seo
+    title={data.metadata.title}
+    description={data.metadata.description}
+    type="article"
+    article={{
+        publishedTime: data.metadata.published,
+        author: site.name,
+        section: data.metadata.category
+    }}
+    jsonLd={articleJsonLd}
+/>
+
 <svelte:head>
-    <title>{data.metadata.title} - Mohamed Ashraf</title>
     <link href="/themes/theme.css" rel="stylesheet" />
-    {#if data.metadata.description}
-        <meta name="description" content={data.metadata.description} />
-    {/if}
 </svelte:head>
 
 <article class="container min-h-screen py-32">

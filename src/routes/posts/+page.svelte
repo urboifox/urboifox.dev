@@ -1,17 +1,21 @@
 <script lang="ts">
     import { blurIn } from '$lib/actions/blur-in';
     import PostCard from '$lib/components/post-card.svelte';
+    import Seo from '$lib/components/seo.svelte';
 
     const { data } = $props();
 
     function hrefFor(category: string) {
         return category === 'all' ? '/posts' : `/posts?category=${encodeURIComponent(category)}`;
     }
+
+    const seoTitle = $derived(
+        data.category && data.category !== 'all' ? `Posts · ${data.category}` : 'Posts'
+    );
+    const description = 'Notes, deep-dives and the occasional rant about the things I build.';
 </script>
 
-<svelte:head>
-    <title>Posts - Mohamed Ashraf</title>
-</svelte:head>
+<Seo title={seoTitle} {description} />
 
 <section class="min-h-screen py-32">
     <div class="container mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -26,7 +30,7 @@
             </h1>
         </div>
         <p class="max-w-xs text-sm text-muted" {@attach blurIn()}>
-            Notes, deep-dives and the occasional rant about the things I build.
+            {description}
         </p>
     </div>
 

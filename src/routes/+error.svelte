@@ -1,11 +1,14 @@
 <script lang="ts">
     import { page } from '$app/state';
     import { blurIn } from '$lib/actions/blur-in';
+    import Seo from '$lib/components/seo.svelte';
 </script>
 
-<svelte:head>
-    <title>{page.status} - Mohamed Ashraf</title>
-</svelte:head>
+<Seo
+    title={`${page.status}`}
+    description={page.error?.message ?? 'Page not found.'}
+    noindex
+/>
 
 <section class="container flex min-h-screen flex-col items-center justify-center py-32">
     <div class="mx-auto flex max-w-xl flex-col items-center gap-8 text-center">
