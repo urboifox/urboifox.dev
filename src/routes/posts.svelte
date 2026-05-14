@@ -23,7 +23,7 @@
             class="group pointer-events-auto flex items-center gap-2 text-sm text-muted transition-colors hover:text-primary"
             {@attach blurIn()}
         >
-            <span>All posts</span>
+            <span class="capitalize">All posts</span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

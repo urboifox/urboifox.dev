@@ -1,6 +1,8 @@
 <script lang="ts">
     import { page } from '$app/state';
     import { blurIn } from '$lib/actions/blur-in';
+    import { mount, onMount } from 'svelte';
+    import CopyButton from './copy-button.svelte';
 
     const { data } = $props();
 
@@ -12,6 +14,18 @@
             .toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' })
             .toUpperCase();
     }
+
+    onMount(() => {
+        const titles = document.querySelectorAll('[data-remark-code-title]');
+
+        titles.forEach((title) => {
+            title.classList.add('flex', 'items-center', 'justify-between', 'gap-2');
+            const titleText = title.innerHTML;
+            const codeElement = title.nextElementSibling as HTMLElement;
+            title.innerHTML = `<span>${titleText}</span>`;
+            mount(CopyButton, { target: title, props: { content: codeElement.innerText } });
+        });
+    });
 </script>
 
 <svelte:head>

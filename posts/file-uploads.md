@@ -16,7 +16,7 @@ And as these UX features get more complex, it's your job to make sure it feels s
 Let's start with a simple example. then we'll add some features and improvements along the way.
 You probably already know how to upload files from an html form:
 
-```html
+```html title="index.html"
 <form action="/upload" method="post" enctype="multipart/form-data">
     <input type="file" name="file" />
     <button type="submit">Upload</button>
@@ -35,7 +35,7 @@ Simple right? now let's try to enhance this a little bit.
 Selecting a file and only seeing it's name is not the best, ideally you wanna show a preview of the selected file before the user submits the form.
 Thankfully, there's a simple way to do this with the `URL.createObjectURL` method.
 
-```tsx
+```tsx title="file-upload-form.tsx"
 import { useState, useEffect } from "react";
 
 export default function FileUploadForm() {
@@ -80,14 +80,14 @@ And that's where the `<label>` tag comes in. It can be used in two ways:
 
 - Add an id to an input, and use that id on the `for` attribute of the label.
 
-```html
+```html title="index.html"
 <label for="file">Choose a file</label>
 <input type="file" id="file" />
 ```
 
 - Wrap the input with the label tag. And that's how we'll do it in this example.
 
-```html
+```html title="index.html"
 <label>
     Choose a file
     <input type="file" />
@@ -96,7 +96,7 @@ And that's where the `<label>` tag comes in. It can be used in two ways:
 
 Now we can hide the input, and anything inside the label will trigger the file picker.
 
-```html
+```html title="index.html"
 <div>
     Drag and drop or
     <label>
@@ -124,7 +124,7 @@ You get the idea, you can do whatever you want with how the input looks.
 Now since we added a preview for the file, and created a custom UI for the input too, it's time to add drag and drop support.
 We can do this by adding an `ondrop` event listener to our input:
 
-```tsx
+```tsx title="file-upload-form.tsx"
 export default function FileUploadForm() {
     const [files, setFiles] = useState<File[]>(null);
 
@@ -177,7 +177,7 @@ Now that we gave the user the ability to drag and drop, and preview the file tha
 
 The most basic way to upload a file is to send it in the form data. This is the default behavior of the browser when there's a file input in a form.
 
-```html
+```html title="index.html"
 <form action="/upload" method="post" enctype="multipart/form-data">
     <input type="file" name="file" />
     <button type="submit">Upload</button>
@@ -191,7 +191,7 @@ It's a bit tricky, you would need to fetch the file, convert it to a `blob`, and
 
 Let's say the backend returns a response like this:
 
-```json
+```json title="response.json"
 {
     "file": "https://example.com/file.jpg"
 }
@@ -199,7 +199,7 @@ Let's say the backend returns a response like this:
 
 You can then implement the form as following:
 
-```tsx
+```tsx title="file-edit-form.tsx"
 export default function FileEditForm() {
     const [files, setFiles] = useState<File[]>([]);
 
@@ -263,7 +263,7 @@ If you think about it, this is harder to grasp at first than other approaches, b
 
 Let's say the backend returns a response like this:
 
-```json
+```json title="response.json"
 {
     "file": {
         "key": "1234567890",
@@ -280,7 +280,7 @@ A starting point would be something like this:
 
 ### File input component
 
-```tsx
+```tsx title="file-input.tsx"
 export interface FileItem {
     id: string;
     file: File;
@@ -354,7 +354,7 @@ This function will be responsible for generating a presigned url for the file.
 
 Our props now look like this:
 
-```tsx
+```tsx title="file-input.tsx"
 interface PresignResult {
     url: string;
     method: string;
@@ -372,7 +372,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 And we can add a simple `patch` function to help us update the specific item we are handling:
 
-```tsx
+```tsx title="file-input.tsx"
 function patch(id: string, data: Partial<FileItem>) {
     setItems((prev) => {
         return prev.map((item) => (item.id === id ? { ...item, ...data } : item));
@@ -382,7 +382,7 @@ function patch(id: string, data: Partial<FileItem>) {
 
 And another function to handle the uploading of a single file:
 
-```tsx
+```tsx title="file-input.tsx"
 async function uploadItem(item: FileItem) {
     const signed = await presign(item.file);
     const xhr = new XMLHttpRequest();
@@ -409,7 +409,7 @@ async function uploadItem(item: FileItem) {
 
 The whole component now looks like this:
 
-```tsx
+```tsx title="file-input.tsx"
 import React, { useRef, useState } from "react";
 
 interface PresignResult {

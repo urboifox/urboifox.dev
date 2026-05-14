@@ -40,6 +40,23 @@ pre[class*='language-'] {
     border-radius: 1rem;
 }
 
+[data-remark-code-title] {
+    background: color-mix(in srgb, var(--color-card) 50%, transparent);
+    backdrop-filter: 'blur(8px)';
+    color: var(--color-muted);
+    font-size: 0.875em;
+    border: 1px solid var(--color-border);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 0.5em 1em;
+}
+[data-remark-code-title] + pre[class*='language-'] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 0;
+    border-top: none;
+}
+
 pre > code[class*='language-'] {
     font-size: 1em;
     background: transparent;
@@ -66,6 +83,37 @@ pre[class*='language-'] {
     padding: 1em;
     margin: 0.5em 0;
     overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--code-line-border) transparent;
+    scrollbar-gutter: stable;
+}
+
+pre[class*='language-']::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+pre[class*='language-']::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+pre[class*='language-']::-webkit-scrollbar-thumb {
+    background-color: var(--code-line-border);
+    border-radius: 9999px;
+    transition: background-color 0.2s ease;
+}
+
+pre[class*='language-']:hover::-webkit-scrollbar-thumb {
+    background-color: var(--code-punctuation);
+}
+
+pre[class*='language-']::-webkit-scrollbar-thumb:hover,
+pre[class*='language-']::-webkit-scrollbar-thumb:active {
+    background-color: var(--code-text);
+}
+
+pre[class*='language-']::-webkit-scrollbar-corner {
+    background: transparent;
 }
 
 :not(pre) > code[class*='language-'] {
