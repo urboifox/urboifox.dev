@@ -7,6 +7,12 @@
         'Frontend developer with a thing for motion, depth, and interfaces that make people stop scrolling.';
 
     const stack = ['Neovim', 'Svelte', 'Three.js', 'Tailwind', 'GSAP'];
+
+    const socials = [
+        { title: 'Github', href: 'https://github.com/urboifox' },
+        { title: 'Linkedin', href: 'https://linkedin.com/in/urboifox' },
+        { title: 'Email', href: 'mailto:urboifox@gmail.com' }
+    ];
 </script>
 
 <section class="relative min-h-screen overflow-hidden">
@@ -56,29 +62,29 @@
                 <span class="font-mono">~/home</span>
             </div>
             <div class="hidden items-center gap-3 tracking-widest uppercase sm:flex">
-                <span>Caffeine</span>
+                <span>Keyboard</span>
                 <span class="text-neutral-700">·</span>
-                <span>Curiosity</span>
+                <span>Terminal</span>
                 <span class="text-neutral-700">·</span>
                 <span>Code</span>
             </div>
         </div>
 
         <div class="flex items-end justify-between gap-4">
-            <div class="space-y-4">
+            <div class="space-y-6">
                 <div
                     class="flex w-fit items-center gap-2 rounded-full border border-neutral-900 bg-background/40 p-2 px-4 backdrop-blur-sm"
                 >
                     <span
                         class="h-2 w-2 animate-pulse rounded-full bg-primary shadow-[0_0_10px_1px] shadow-primary"
                     ></span>
-                    <p class="text-sm text-neutral-400">Available for work</p>
+                    <p class="text-xs text-neutral-400 uppercase">Available for work</p>
                 </div>
                 <div class="space-y-2">
-                    <h1 class="text-8xl font-bold md:text-9xl">
+                    <h1 class="text-8xl font-bold md:text-[10rem]">
                         Fox<span class="text-primary">.</span>
                     </h1>
-                    <p class="max-w-md text-neutral-400">
+                    <p class="max-w-md text-xs text-neutral-500 md:text-base">
                         {#each description.split(' ') as word, index (index)}
                             <span
                                 class="whitespace-nowrap opacity-0"
@@ -94,7 +100,7 @@
                 <ul class="flex flex-wrap gap-2 pt-1">
                     {#each stack as tech, index (tech)}
                         <li
-                            class="stack-pill rounded-full border border-neutral-900 bg-background/40 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
+                            class="stack-pill rounded-full border border-neutral-900 bg-background/40 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm"
                             {@attach blurIn(index * 0.1 + 1)}
                         >
                             {tech}
@@ -102,33 +108,28 @@
                     {/each}
                 </ul>
 
-                <div
-                    class="flex items-center gap-2 text-neutral-500 opacity-0"
-                    {@attach blurIn(1.5)}
-                >
-                    <a
-                        href="https://github.com/urboifox"
-                        target="_blank"
-                        class="transition-colors hover:text-foreground"
-                    >
-                        Github
-                    </a>
-                    <span> / </span>
-                    <a
-                        href="https://linkedin.com/in/urboifox"
-                        target="_blank"
-                        class="transition-colors hover:text-foreground"
-                    >
-                        Linkedin
-                    </a>
-                    <span> / </span>
-                    <a
-                        href="mailto:urboifox@gmail.com"
-                        target="_blank"
-                        class="transition-colors hover:text-foreground"
-                    >
-                        Contact
-                    </a>
+                <div class="flex items-center gap-2 text-sm text-neutral-500 uppercase">
+                    {#each socials as { title, href }, index (title)}
+                        <a
+                            {href}
+                            target="_blank"
+                            class="group relative overflow-hidden transition-colors"
+                        >
+                            <span
+                                class="flex transition-transform duration-500 ease-out group-hover:-translate-y-full"
+                            >
+                                {title}
+                            </span>
+                            <span
+                                class="absolute top-full left-0 text-foreground transition-[top] duration-500 ease-out group-hover:top-0"
+                            >
+                                {title}
+                            </span>
+                        </a>
+                        {#if index !== socials.length - 1}
+                            <span> // </span>
+                        {/if}
+                    {/each}
                 </div>
             </div>
 
