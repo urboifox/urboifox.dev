@@ -21,7 +21,7 @@
                 <span class="h-px w-8 bg-neutral-800"></span>
                 <span class="font-mono">~/journal</span>
             </div>
-            <h1 class="text-5xl font-bold md:text-6xl">
+            <h1 class="text-5xl font-bold capitalize md:text-6xl">
                 All posts<span class="text-primary">.</span>
             </h1>
         </div>

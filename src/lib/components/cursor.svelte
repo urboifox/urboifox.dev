@@ -51,7 +51,7 @@
     bind:this={cursor}
     style="transform: translate3d(-100vw, -100vh, 0);"
     class={[
-        'pointer-events-none fixed top-0 left-0 z-100 rounded-full transition-[height,width,border-color] max-lg:hidden',
+        'pointer-events-none fixed top-0 left-0 z-150 rounded-full transition-[height,width,border-color] max-lg:hidden',
         clickable ? 'h-6 w-6 bg-white/80' : 'h-3 w-3 bg-white/50'
     ]}
 ></div>
