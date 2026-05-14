@@ -19,6 +19,10 @@
         color: var(--color-foreground);
     }
 
+    button {
+        cursor: pointer;
+    }
+
     ::selection {
         background-color: var(--color-primary);
         color: white;

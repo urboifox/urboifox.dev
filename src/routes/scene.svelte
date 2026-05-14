@@ -13,7 +13,7 @@
 
     const isMobile = $derived(innerWidth > 0 && innerWidth < 768);
     const meshX = $derived(isMobile ? 0 : 1);
-    const meshY = $derived(isMobile ? 2 : 1.5);
+    const meshY = $derived(isMobile ? 2.3 : 1.5);
     const scale = $derived(isMobile ? 0.3 : 0.7);
 </script>
 

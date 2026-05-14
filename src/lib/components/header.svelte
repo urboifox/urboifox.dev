@@ -1,4 +1,6 @@
 <script lang="ts">
+    import Sidebar from './sidebar.svelte';
+
     let visible = $state(true);
     let scrolled = $state(false);
     let lastScrollY = $state(0);
@@ -19,12 +21,14 @@
         lastScrollY = currentScrollY;
     }
 
-    let menuOpen = $state(false);
+    let open = $state(false);
 
     function handleMenuClick() {
-        menuOpen = !menuOpen;
+        open = !open;
     }
 </script>
+
+<Sidebar bind:open />
 
 <svelte:window onscroll={handleScroll} />
 

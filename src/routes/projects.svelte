@@ -8,28 +8,65 @@
     let innerWidth = $state(0);
     const isMobile = $derived(innerWidth > 0 && innerWidth < 768);
 
+    let pendingX = 0;
+    let pendingY = 0;
+    let rafScheduled = false;
+    let cachedCards: HTMLElement[] = [];
+    let cachedRects: DOMRect[] = [];
+
+    function refreshCache() {
+        if (!listEl) {
+            cachedCards = [];
+            cachedRects = [];
+            return;
+        }
+        cachedCards = Array.from(listEl.querySelectorAll<HTMLElement>('.project-card'));
+        cachedRects = cachedCards.map((c) => c.getBoundingClientRect());
+    }
+
+    function flush() {
+        rafScheduled = false;
+        for (let i = 0; i < cachedCards.length; i++) {
+            const rect = cachedRects[i];
+            cachedCards[i].style.setProperty('--x', `${pendingX - rect.left}px`);
+            cachedCards[i].style.setProperty('--y', `${pendingY - rect.top}px`);
+        }
+    }
+
     function handleMouseMove(event: MouseEvent) {
         if (isMobile || !listEl) return;
-        const cards = listEl.querySelectorAll<HTMLElement>('.project-card');
-        cards.forEach((card) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--x', `${event.clientX - rect.left}px`);
-            card.style.setProperty('--y', `${event.clientY - rect.top}px`);
-        });
+        pendingX = event.clientX;
+        pendingY = event.clientY;
+        if (!rafScheduled) {
+            rafScheduled = true;
+            requestAnimationFrame(flush);
+        }
     }
 
     $effect(() => {
         if (!listEl) return;
-        const cards = listEl.querySelectorAll<HTMLElement>('.project-card');
-        cards.forEach((card, index) => {
-            if (isMobile && index === 0) {
-                card.style.setProperty('--x', '50%');
-                card.style.setProperty('--y', '0px');
-            } else {
-                card.style.removeProperty('--x');
-                card.style.removeProperty('--y');
-            }
-        });
+        refreshCache();
+
+        if (isMobile) {
+            cachedCards.forEach((card, index) => {
+                if (index === 0) {
+                    card.style.setProperty('--x', '50%');
+                    card.style.setProperty('--y', '0px');
+                } else {
+                    card.style.removeProperty('--x');
+                    card.style.removeProperty('--y');
+                }
+            });
+            return;
+        }
+
+        const onResize = () => refreshCache();
+        window.addEventListener('resize', onResize);
+        window.addEventListener('scroll', onResize, { passive: true });
+        return () => {
+            window.removeEventListener('resize', onResize);
+            window.removeEventListener('scroll', onResize);
+        };
     });
 </script>
 
