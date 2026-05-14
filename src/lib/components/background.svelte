@@ -164,7 +164,7 @@
         circleMask.magFilter = THREE.LinearFilter;
 
         const TOTAL = 100;
-        const smokeGeo = new THREE.PlaneGeometry(75, 78);
+        const smokeGeo = new THREE.PlaneGeometry(95, 99);
         const dispM: THREE.Mesh[] = [];
         let curSmoke = 0;
 
