@@ -7,9 +7,7 @@
         'Gaming',
         'Motorcycles',
         'Why are you still here?',
-        'Scroll down',
-        'Oh come on',
-        "Let's start over"
+        'Scroll down!'
     ];
 </script>
 
