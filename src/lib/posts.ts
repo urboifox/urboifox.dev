@@ -13,13 +13,17 @@ export type PostSummary = {
     category?: string;
 };
 
-export function getPosts() {
+export type GetPostsOptions = {
+    category?: string;
+};
+
+function loadAllPosts(): PostSummary[] {
     const modules = import.meta.glob<{ metadata: PostMeta }>('/src/posts/*.md', { eager: true });
 
-    const posts: PostSummary[] = Object.entries(modules)
+    return Object.entries(modules)
         .map(([path, module]) => {
             const slug = path.split('/').pop()?.replace('.md', '') ?? '';
-            const meta = module.metadata ?? {};
+            const meta = module.metadata ?? ({} as PostMeta);
 
             return {
                 slug,
@@ -31,6 +35,20 @@ export function getPosts() {
         })
         .filter((post) => post.title)
         .sort((a, b) => (a.date < b.date ? 1 : -1));
+}
 
-    return posts;
+export function getPosts({ category }: GetPostsOptions = {}): PostSummary[] {
+    const all = loadAllPosts();
+    if (!category || category === 'all') return all;
+    return all.filter((post) => post.category === category);
+}
+
+export function getCategories(): string[] {
+    return Array.from(
+        new Set(
+            loadAllPosts()
+                .map((post) => post.category)
+                .filter((c): c is string => Boolean(c))
+        )
+    ).sort();
 }

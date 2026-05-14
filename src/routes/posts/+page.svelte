@@ -3,6 +3,10 @@
     import PostCard from '$lib/components/post-card.svelte';
 
     const { data } = $props();
+
+    function hrefFor(category: string) {
+        return category === 'all' ? '/posts' : `/posts?category=${encodeURIComponent(category)}`;
+    }
 </script>
 
 <svelte:head>
@@ -26,12 +30,43 @@
         </p>
     </div>
 
+    {#if data.categories.length > 2}
+        <div class="container mb-8" {@attach blurIn(0.1)}>
+            <div class="flex items-center gap-3 text-xs text-neutral-500">
+                <span class="font-mono tracking-widest uppercase">Filter</span>
+                <span class="h-px flex-1 bg-neutral-900"></span>
+            </div>
+            <ul class="mt-4 flex flex-wrap gap-2">
+                {#each data.categories as category (category)}
+                    {@const isActive = data.category === category}
+                    <li>
+                        <a
+                            href={hrefFor(category)}
+                            data-sveltekit-noscroll
+                            data-sveltekit-replacestate
+                            aria-current={isActive ? 'page' : undefined}
+                            class="pointer-events-auto inline-block rounded-full border px-3 py-1 text-[11px] tracking-widest uppercase transition-colors duration-300 {isActive
+                                ? 'border-primary bg-primary/10 text-primary'
+                                : 'border-neutral-800 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300'}"
+                        >
+                            {category}
+                        </a>
+                    </li>
+                {/each}
+            </ul>
+        </div>
+    {/if}
+
     <ul class="bg-neutral-950/20 backdrop-blur-sm">
         <div class="container border-t border-neutral-900">
             {#each data.posts as post, index (post.slug)}
-                <div {@attach blurIn(index * 0.15)}>
+                <div {@attach blurIn(index * 0.1)}>
                     <PostCard {post} {index} />
                 </div>
+            {:else}
+                <li class="py-16 text-center text-sm text-neutral-500">
+                    No posts in <span class="text-neutral-300">{data.category}</span> yet.
+                </li>
             {/each}
         </div>
     </ul>
