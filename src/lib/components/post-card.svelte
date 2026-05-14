@@ -13,12 +13,12 @@
     }
 </script>
 
-<li class="border-b border-neutral-900">
+<li class="border-b border-border">
     <a
         href="/posts/{post.slug}"
         class="group pointer-events-auto grid grid-cols-[auto_1fr_auto] items-center gap-6 py-8 transition-[padding] duration-500 ease-out md:gap-10 lg:hover:pl-6"
     >
-        <div class="flex items-center gap-3 font-mono text-xs text-neutral-600 md:w-20">
+        <div class="flex items-center gap-3 font-mono text-xs text-muted md:w-20">
             <span>{String(index + 1).padStart(2, '0')}</span>
             {#if post.date}
                 <span class="hidden md:inline">{formatDate(post.date)}</span>
@@ -29,7 +29,7 @@
             <div class="flex items-center gap-3">
                 {#if post.category}
                     <span
-                        class="rounded-full border border-neutral-800 px-2.5 py-0.5 text-[10px] tracking-widest text-neutral-500 uppercase"
+                        class="rounded-full border border-border px-2.5 py-0.5 text-[10px] tracking-widest text-muted uppercase"
                     >
                         {post.category}
                     </span>
@@ -41,18 +41,18 @@
                 {post.title}
             </h3>
             {#if post.description}
-                <p class="line-clamp-1 max-w-xl text-sm text-neutral-500">
+                <p class="line-clamp-1 max-w-xl text-sm text-muted">
                     {post.description}
                 </p>
             {/if}
         </div>
 
         <div
-            class="flex items-center gap-3 text-neutral-700 transition-colors duration-300 group-hover:text-primary"
+            class="flex items-center gap-3 text-muted transition-colors duration-300 group-hover:text-primary"
         >
             <span class="hidden text-xs tracking-widest uppercase md:inline"> Read </span>
             <span
-                class="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-900 transition-all duration-300 group-hover:border-primary group-hover:bg-primary/10"
+                class="flex h-10 w-10 items-center justify-center rounded-full border border-border transition-all duration-300 group-hover:border-primary group-hover:bg-primary/10"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

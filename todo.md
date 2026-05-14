@@ -1,0 +1,1 @@
+- make projects vertical with a stack animation

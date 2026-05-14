@@ -21,6 +21,6 @@ export const projects: Project[] = [
         title: 'Arabic4U',
         description: 'The number one Arabic learning platform for non-arabic speakers.',
         tags: ['svelte', 'typescript', 'tailwindcss'],
-        url: 'https://arabic4u.ae'
+        url: 'https://arabic4u.ae',
     }
 ];

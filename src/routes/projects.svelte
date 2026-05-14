@@ -75,16 +75,16 @@
 <section class="container py-20 md:py-32">
     <div class="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div class="space-y-3" {@attach blurIn()}>
-            <div class="flex items-center gap-3 text-neutral-500">
+            <div class="flex items-center gap-3 text-muted">
                 <span class="font-mono text-primary">02</span>
-                <span class="h-px w-8 bg-neutral-800"></span>
+                <span class="h-px w-8 bg-border"></span>
                 <span class="font-mono">~/workspace</span>
             </div>
             <h2 class="text-5xl font-bold md:text-6xl">
                 Projects<span class="text-primary">.</span>
             </h2>
         </div>
-        <p class="max-w-xs text-sm text-neutral-500" {@attach blurIn()}>
+        <p class="max-w-xs text-sm text-muted" {@attach blurIn()}>
             A few things I've built recently. Each one was an excuse to push pixels a little
             further.
         </p>
@@ -97,14 +97,14 @@
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="project-card group pointer-events-auto relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-neutral-900 bg-neutral-900/20 p-6"
+                    class="project-card group pointer-events-auto relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-border bg-card/20 p-6"
                 >
                     <div
                         class="pointer-events-none absolute -top-px -right-px h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100 md:opacity-0"
                     ></div>
 
                     <div class="flex items-start justify-between gap-4">
-                        <span class="font-mono text-xs text-neutral-600">
+                        <span class="font-mono text-xs text-muted">
                             {String(index + 1).padStart(2, '0')}
                         </span>
                         <svg
@@ -115,7 +115,7 @@
                             stroke-width="1.5"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="h-5 w-5 text-neutral-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                            class="h-5 w-5 text-muted transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
                         >
                             <line x1="7" y1="17" x2="17" y2="7" />
                             <polyline points="7 7 17 7 17 17" />
@@ -128,13 +128,13 @@
                         >
                             {project.title}
                         </h3>
-                        <p class="max-w-md text-sm text-neutral-400">
+                        <p class="max-w-md text-sm text-muted">
                             {project.description}
                         </p>
                         <ul class="flex flex-wrap gap-2 pt-2">
                             {#each project.tags as tag (tag)}
                                 <li
-                                    class="rounded-full border border-neutral-800 px-3 py-1 text-xs text-neutral-500"
+                                    class="rounded-full border border-border px-3 py-1 text-xs text-muted"
                                 >
                                     {tag}
                                 </li>

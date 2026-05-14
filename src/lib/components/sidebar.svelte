@@ -59,7 +59,7 @@
         <div
             style="width: calc(100% / {barsCount}); transition-delay: {i * 100}ms"
             class={[
-                'flex bg-[#0c0c0c] transition-transform duration-1000 ease-in-out',
+                'flex bg-background transition-transform duration-1000 ease-in-out',
                 open ? 'translate-y-0' : '-translate-y-full'
             ]}
         ></div>

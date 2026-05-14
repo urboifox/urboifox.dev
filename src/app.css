@@ -3,8 +3,11 @@
 
 @theme {
     --color-primary: #ff3e00;
-    --color-background: #010101;
+    --color-background: #0c0c0c;
     --color-foreground: #e0e0e0;
+    --color-card: #0a0a0a;
+    --color-border: #1e1e1e;
+    --color-muted: #737373;
 }
 
 @utility container {

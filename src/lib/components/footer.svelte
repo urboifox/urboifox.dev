@@ -17,18 +17,18 @@
     const year = new Date().getFullYear();
 </script>
 
-<footer aria-label="Site footer" class="bg-neutral-950/20 backdrop-blur-sm">
+<footer aria-label="Site footer" class="bg-card/20 backdrop-blur-sm">
     <div class="container flex min-h-screen flex-col justify-between py-12 md:py-20">
         <div
-            class="flex flex-col gap-4 text-neutral-500 md:flex-row md:items-center md:justify-between"
+            class="flex flex-col gap-4 text-muted md:flex-row md:items-center md:justify-between"
             {@attach blurIn()}
         >
             <div class="flex items-center gap-3">
                 <span class="font-mono text-primary">05</span>
-                <span class="h-px w-8 bg-neutral-800"></span>
+                <span class="h-px w-8 bg-border"></span>
                 <span class="font-mono">~/contact</span>
             </div>
-            <span class="font-mono text-xs tracking-widest text-neutral-600 uppercase">
+            <span class="font-mono text-xs tracking-widest text-muted uppercase">
                 Let's talk
             </span>
         </div>
@@ -39,7 +39,7 @@
             </h2>
             <a
                 href={`mailto:${email}`}
-                class="group pointer-events-auto inline-flex items-center gap-3 text-neutral-400 transition-colors hover:text-primary"
+                class="group pointer-events-auto inline-flex items-center gap-3 text-muted transition-colors hover:text-primary"
             >
                 <span class="text-base md:text-xl">{email}</span>
                 <svg
@@ -59,20 +59,20 @@
         </div>
 
         <div
-            class="flex flex-col gap-6 border-t border-neutral-900 pt-6 md:flex-row md:items-end md:justify-between"
+            class="flex flex-col gap-6 border-t border-border pt-6 md:flex-row md:items-end md:justify-between"
             {@attach blurIn(0.2)}
         >
             <div class="space-y-2">
-                <span class="block font-mono text-xs tracking-widest text-neutral-600 uppercase">
+                <span class="block font-mono text-xs tracking-widest text-muted uppercase">
                     © {year} — Mohamed Ashraf
                 </span>
-                <span class="block text-xs text-neutral-700">
+                <span class="block text-xs text-muted">
                     Built with Svelte, GSAP & Three.js.
                 </span>
             </div>
 
             <ul
-                class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-neutral-500 uppercase"
+                class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted uppercase"
             >
                 {#each nav as { title, href } (href)}
                     <li>
@@ -93,7 +93,7 @@
                         </a>
                     </li>
                 {/each}
-                <li aria-hidden="true" class="text-neutral-800">·</li>
+                <li aria-hidden="true" class="text-border">·</li>
                 {#each socials as { title, href } (title)}
                     <li>
                         <a

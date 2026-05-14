@@ -9,9 +9,9 @@
 <section class="py-20 md:py-32">
     <div class="container mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div class="space-y-3" {@attach blurIn()}>
-            <div class="flex items-center gap-3 text-neutral-500">
+            <div class="flex items-center gap-3 text-muted">
                 <span class="font-mono text-primary">03</span>
-                <span class="h-px w-8 bg-neutral-800"></span>
+                <span class="h-px w-8 bg-border"></span>
                 <span class="font-mono">~/journal</span>
             </div>
             <h2 class="text-5xl font-bold md:text-6xl">
@@ -20,7 +20,7 @@
         </div>
         <a
             href="/posts"
-            class="group pointer-events-auto flex items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-primary"
+            class="group pointer-events-auto flex items-center gap-2 text-sm text-muted transition-colors hover:text-primary"
             {@attach blurIn()}
         >
             <span>All posts</span>
@@ -40,8 +40,8 @@
         </a>
     </div>
 
-    <ul class="bg-neutral-950/20 backdrop-blur-sm">
-        <div class="container border-t border-neutral-900">
+    <ul class="bg-card/20 backdrop-blur-sm">
+        <div class="container border-t border-border">
             {#each posts as post, index (post.slug)}
                 <div {@attach blurIn(index * 0.15)}>
                     <PostCard {post} {index} />
