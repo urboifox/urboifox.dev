@@ -134,6 +134,7 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(W, H, false);
         renderer.autoClear = false;
+        renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 
         const dispScene = new THREE.Scene();
         const bgScene = new THREE.Scene();
@@ -147,6 +148,7 @@
 
         const noiseTex = new THREE.TextureLoader().load(noiseUrl);
         noiseTex.wrapS = noiseTex.wrapT = THREE.RepeatWrapping;
+        noiseTex.colorSpace = THREE.LinearSRGBColorSpace;
 
         const maskCanvas = document.createElement('canvas');
         maskCanvas.width = maskCanvas.height = 128;

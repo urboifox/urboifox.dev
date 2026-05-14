@@ -76,7 +76,7 @@
     <div class="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div class="space-y-3" {@attach blurIn()}>
             <div class="flex items-center gap-3 text-neutral-500">
-                <span class="font-mono text-primary">[02]</span>
+                <span class="font-mono text-primary">02</span>
                 <span class="h-px w-8 bg-neutral-800"></span>
                 <span class="font-mono">~/workspace</span>
             </div>
@@ -92,12 +92,12 @@
 
     <ul bind:this={listEl} class="grid grid-cols-1 gap-6 md:grid-cols-2">
         {#each projects as project, index (project.slug)}
-            <li {@attach blurIn(index * 0.15)}>
+            <li {@attach blurIn(index * 0.15)} class="backdrop-blur-sm">
                 <a
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="project-card group pointer-events-auto relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-neutral-900 bg-neutral-950/40 p-6"
+                    class="project-card group pointer-events-auto relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-2xl border border-neutral-900 bg-neutral-900/20 p-6"
                 >
                     <div
                         class="pointer-events-none absolute -top-px -right-px h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100 md:opacity-0"

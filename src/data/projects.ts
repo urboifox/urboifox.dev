@@ -19,7 +19,7 @@ export const projects: Project[] = [
     {
         slug: 'arabic4u',
         title: 'Arabic4U',
-        description: 'The best Arabic learning platform for non-arabic speakers.',
+        description: 'The number one Arabic learning platform for non-arabic speakers.',
         tags: ['svelte', 'typescript', 'tailwindcss'],
         url: 'https://arabic4u.ae'
     }

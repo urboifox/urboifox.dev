@@ -56,8 +56,8 @@
             class="flex items-center justify-between text-xs text-neutral-500 opacity-0"
             {@attach blurIn()}
         >
-            <div class="flex items-center gap-3">
-                <span class="font-mono text-neutral-600">[01]</span>
+            <div class="flex items-center gap-3 text-base">
+                <span class="font-mono text-primary">01</span>
                 <span class="h-px w-8 bg-neutral-800"></span>
                 <span class="font-mono">~/home</span>
             </div>
@@ -73,7 +73,7 @@
         <div class="flex items-end justify-between gap-4">
             <div class="space-y-6">
                 <div
-                    class="flex w-fit items-center gap-2 rounded-full border border-neutral-900 bg-background/40 p-2 px-4 backdrop-blur-sm"
+                    class="flex w-fit items-center gap-2 rounded-full border border-neutral-900 bg-neutral-950/20 p-2 px-4 backdrop-blur-sm"
                 >
                     <span
                         class="h-2 w-2 animate-pulse rounded-full bg-primary shadow-[0_0_10px_1px] shadow-primary"
@@ -100,7 +100,7 @@
                 <ul class="flex flex-wrap gap-2 pt-1">
                     {#each stack as tech, index (tech)}
                         <li
-                            class="stack-pill rounded-full border border-neutral-900 bg-background/40 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm"
+                            class="stack-pill rounded-full border border-neutral-900 bg-neutral-900/20 px-3 py-1 text-xs text-neutral-500 opacity-0 backdrop-blur-sm"
                             {@attach blurIn(index * 0.1 + 1)}
                         >
                             {tech}
@@ -138,7 +138,7 @@
                     class="hero-meta flex flex-col items-end gap-2 text-xs tracking-widest uppercase opacity-0"
                     {@attach blurIn()}
                 >
-                    <span class="font-mono text-neutral-700">v.2.0</span>
+                    <span class="font-mono text-primary">v.2.0</span>
                     <span class="h-8 w-px bg-neutral-800"></span>
                     <span class="text-neutral-600">Scroll to explore</span>
                 </div>
