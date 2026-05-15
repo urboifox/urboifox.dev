@@ -58,7 +58,5 @@
 
 <div class="relative z-10">
     {@render children()}
-    {#key page.url}
-        <Footer />
-    {/key}
+    <Footer />
 </div>
