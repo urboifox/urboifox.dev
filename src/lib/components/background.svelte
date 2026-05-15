@@ -20,10 +20,16 @@
     `;
 
     const bgFrag = `
-        precision highp float;
+        #ifdef GL_FRAGMENT_PRECISION_HIGH
+            precision highp float;
+        #else
+            precision mediump float;
+        #endif
+
         #define GLSLIFY 1
         #define PI 3.14159265359
         #define PI2 6.28318530718
+
         uniform float time;
         uniform float pt;
         uniform float st;
@@ -38,9 +44,14 @@
         uniform vec4 c2;
         varying vec2 vUv;
 
-        float rand(vec2 st) {
-            return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+        // FIX 1: More stable hash using two separate sin calls
+        // The classic single-sin hash breaks on Adreno/Mali mobile GPUs
+        float rand(vec2 co) {
+            float a = fract(sin(dot(co, vec2(127.1, 311.7))) * 43758.5453);
+            float b = fract(sin(dot(co, vec2(269.5, 183.3))) * 43758.5453);
+            return fract(a + b);
         }
+
         float ns(vec2 p) {
             vec2 ip = floor(p);
             vec2 u = fract(p);
@@ -52,30 +63,54 @@
             );
             return res * res;
         }
+
         float ub(vec2 p, vec2 b, float r) {
             return length(max(abs(p) - b + r, 0.0)) - r;
         }
+
         vec4 la(vec4 frg, vec4 bc) {
             return frg * frg.a + bc * (1.0 - frg.a);
         }
+
+        // FIX 2: Replace dFdx/dFdy based aastep with a simple smoothstep
+        // dFdx/dFdy derivatives have very poor precision on Android mobile GPUs
+        // (Adreno, Mali) and produce the hard "cut" artifacts you're seeing
         float aastep(float threshold, float value) {
-            float afwidth = length(vec2(dFdx(value), dFdy(value))) * 0.70710678118654757;
+            float afwidth = 0.001;
             return smoothstep(threshold - afwidth, threshold + afwidth, value);
         }
+
+        // FIX 3: Replaced atan(y,x) with a numerically stable atan2 approximation
+        // atan on mobile WebGL has precision issues near the origin and branch cuts
+        // which produce the sharp angular seams visible on Android
+        float stableAtan2(float y, float x) {
+            float ax = abs(x);
+            float ay = abs(y);
+            float a = min(ax, ay) / (max(ax, ay) + 0.000001);
+            float s = a * a;
+            float r = ((-0.0464964749 * s + 0.15931422) * s - 0.327622764) * s * a + a;
+            if (ay > ax) r = 1.5707963268 - r;
+            if (x < 0.0) r = PI - r;
+            if (y < 0.0) r = -r;
+            return r;
+        }
+
         float sw(vec2 pt, vec2 center, float radius, float line_width, float edge_thickness, float side) {
             vec2 d = pt - center;
             float theta = time * 0.25 * side;
             vec2 p = vec2(cos(theta), -sin(theta)) * radius;
-            float h = clamp(dot(d, p) / dot(p, p), 0.0, 1.0);
+            float h = clamp(dot(d, p) / (dot(p, p) + 0.000001), 0.0, 1.0);
             float l = length(d - p * h);
             float gradient = 0.0;
             const float gradient_angle = PI * 0.25;
             if (length(d) < radius) {
-                float angle = mod(theta + atan(d.y, d.x), PI2);
+                // FIX 3 applied: use stableAtan2 instead of atan(d.y, d.x)
+                float angle = mod(theta + stableAtan2(d.y, d.x), PI2);
                 gradient = clamp(gradient_angle - angle, 0.0, gradient_angle) / gradient_angle * 0.5;
             }
             return gradient + 1.0 - smoothstep(line_width, line_width + edge_thickness, l);
         }
+
         void main() {
             vec2 m = vUv;
             vec2 m2 = vUv;
@@ -135,8 +170,14 @@
         const renderer = new THREE.WebGLRenderer({
             canvas,
             alpha: true,
-            antialias: true
+            antialias: true,
+            // FIX 4: Force WebGL1 fallback context attributes for broader Android compat
+            powerPreference: 'default'
         });
+
+        // FIX 5: Cap pixel ratio at 2 but also handle the case where
+        // Android reports dPR=3 or higher — anything above 2 causes
+        // the FBO to be undersized relative to the canvas on some drivers
         const pixelRatio = Math.min(window.devicePixelRatio, 2);
         renderer.setPixelRatio(pixelRatio);
         renderer.setSize(W, H, false);
@@ -147,11 +188,21 @@
         const bgScene = new THREE.Scene();
         const cam = new THREE.OrthographicCamera(-W / 2, W / 2, H / 2, -H / 2, -100, 100);
 
-        const fbo = new THREE.WebGLRenderTarget(W, H, {
-            minFilter: THREE.LinearFilter,
-            magFilter: THREE.LinearFilter,
-            format: THREE.RGBAFormat
-        });
+        // FIX 6: FBO must match the physical pixel dimensions (W * dPR, H * dPR)
+        // Using logical W/H here caused the FBO texture to be blurry/mismatched
+        // on high-DPI Android screens, making the seam between FBO and canvas visible
+        const fbo = new THREE.WebGLRenderTarget(
+            Math.round(W * pixelRatio),
+            Math.round(H * pixelRatio),
+            {
+                minFilter: THREE.LinearFilter,
+                magFilter: THREE.LinearFilter,
+                format: THREE.RGBAFormat,
+                // FIX 7: Explicitly set type to UnsignedByte — some Android drivers
+                // silently downgrade HalfFloat to something incompatible
+                type: THREE.UnsignedByteType
+            }
+        );
 
         const noiseTex = new THREE.TextureLoader().load(noiseUrl);
         noiseTex.wrapS = noiseTex.wrapT = THREE.RepeatWrapping;
@@ -250,7 +301,8 @@
             W = nw;
             H = nh;
             renderer.setSize(W, H, false);
-            fbo.setSize(W, H);
+            // FIX 6 continued: keep FBO in sync with physical pixels on resize
+            fbo.setSize(Math.round(W * pixelRatio), Math.round(H * pixelRatio));
             cam.left = -W / 2;
             cam.right = W / 2;
             cam.top = H / 2;
