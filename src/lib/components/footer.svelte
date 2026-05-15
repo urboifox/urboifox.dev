@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { page } from '$app/state';
     import { blurIn } from '$lib/actions/blur-in';
 
     const email = 'urboifox@gmail.com';
@@ -25,7 +26,11 @@
             {@attach blurIn()}
         >
             <div class="flex items-center gap-3">
-                <span class="font-mono text-primary">05</span>
+                {#if page.url.pathname === '/'}
+                    <span class="font-mono text-primary"> 05 </span>
+                {:else}
+                    <span class="font-mono text-primary"> $ </span>
+                {/if}
                 <span class="h-px w-8 bg-border"></span>
                 <span class="font-mono">~/contact</span>
             </div>
