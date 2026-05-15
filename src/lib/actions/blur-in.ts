@@ -16,7 +16,11 @@ export function blurIn(delay = 0) {
                 delay,
                 ease: 'power2.out',
                 filter: 'blur(0px)',
-                scrollTrigger: node
+                scrollTrigger: {
+                    trigger: node,
+                    toggleActions: 'play none none none',
+                    invalidateOnRefresh: true
+                }
             }
         );
 
