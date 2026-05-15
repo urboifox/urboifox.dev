@@ -4,6 +4,7 @@
     import { mount, onMount } from 'svelte';
     import CopyButton from './copy-button.svelte';
     import Seo from '$lib/components/seo.svelte';
+    import ScrollToTop from '$lib/components/scroll-to-top.svelte';
     import { site } from '$lib/config';
 
     const { data } = $props();
@@ -186,3 +187,5 @@
         </footer>
     </div>
 </article>
+
+<ScrollToTop />
