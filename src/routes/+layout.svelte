@@ -18,7 +18,8 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const scrollPositions = new Map<string, number>();
+    let prevPath = '';
+    let prevY = 0;
 
     onMount(() => {
         const lenis = new Lenis({ stopInertiaOnNavigate: true });
@@ -37,17 +38,19 @@
         };
     });
 
-    beforeNavigate(({ from }) => {
-        if (from) scrollPositions.set(from.url.pathname, window.scrollY);
+    beforeNavigate(({ from, type }) => {
+        if (from && type !== 'popstate') {
+            prevPath = from.url.pathname;
+            prevY = window.scrollY;
+        }
     });
 
     afterNavigate(({ to, type }) => {
-        if (!to) return;
-        const y = type === 'popstate' ? (scrollPositions.get(to.url.pathname) ?? 0) : 0;
+        if (type !== 'popstate' || to?.url.pathname !== prevPath) return;
 
         void tick().then(() => {
             requestAnimationFrame(() => {
-                getLenis()?.scrollTo(y, { immediate: true, force: true });
+                getLenis()?.scrollTo(prevY, { immediate: true, force: true });
                 ScrollTrigger.refresh();
             });
         });
