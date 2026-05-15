@@ -14,7 +14,10 @@ export function blurIn(delay = 0) {
                 ease: 'power2.out',
                 filter: 'blur(0px)',
                 paused: true,
-                scrollTrigger: node
+                scrollTrigger: node,
+                onComplete: () => {
+                    tween.kill();
+                }
             }
         );
 
