@@ -11,7 +11,8 @@
 
     const nav = [
         { title: 'Home', href: '/' },
-        { title: 'Posts', href: '/posts' }
+        { title: 'Posts', href: '/posts' },
+        { title: 'About Me', href: '/whoami' }
     ];
 
     const year = new Date().getFullYear();

@@ -23,7 +23,7 @@
             <div class="flex items-center gap-3 text-xs text-muted">
                 <span class="font-mono text-primary">$</span>
                 <span class="h-px w-8 bg-border"></span>
-                <span class="font-mono tracking-widest uppercase">~/whoami</span>
+                <span class="font-mono tracking-widest">~/whoami</span>
             </div>
             <h1 class="text-6xl font-bold md:text-8xl">
                 Whoami<span class="text-primary">.</span>
@@ -111,7 +111,7 @@
                 <div class="flex items-center gap-3 text-muted">
                     <span class="font-mono text-primary">02</span>
                     <span class="h-px w-8 bg-border"></span>
-                    <span class="font-mono text-xs tracking-widest uppercase">~/journey</span>
+                    <span class="font-mono text-xs tracking-widest">~/journey</span>
                 </div>
                 <h2 class="text-4xl font-bold md:text-5xl">
                     Where I've been<span class="text-primary">.</span>
