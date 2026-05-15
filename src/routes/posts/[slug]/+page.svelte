@@ -6,7 +6,6 @@
     import Seo from '$lib/components/seo.svelte';
     import ScrollToTop from '$lib/components/scroll-to-top.svelte';
     import { site } from '$lib/config';
-    import Footer from '$lib/components/footer.svelte';
 
     const { data } = $props();
 
@@ -190,5 +189,3 @@
         </footer>
     </div>
 </article>
-
-<Footer />

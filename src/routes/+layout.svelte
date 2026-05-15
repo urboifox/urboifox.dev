@@ -10,9 +10,8 @@
     import Cursor from '$lib/components/cursor.svelte';
     import Background from '$lib/components/background.svelte';
     import Header from '$lib/components/header.svelte';
-    import Footer from '$lib/components/footer.svelte';
-    import { page } from '$app/state';
     import { setLenis } from '$lib/lenis';
+    import Footer from '$lib/components/footer.svelte';
 
     let { children } = $props();
 
@@ -58,4 +57,5 @@
 
 <div class="relative z-10">
     {@render children()}
+    <Footer />
 </div>

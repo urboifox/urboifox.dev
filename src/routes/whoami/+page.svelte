@@ -1,6 +1,5 @@
 <script lang="ts">
     import { blurIn } from '$lib/actions/blur-in';
-    import Footer from '$lib/components/footer.svelte';
     import Seo from '$lib/components/seo.svelte';
     import { bio, experience } from '../../data/whoami';
 
@@ -200,8 +199,6 @@
         </section>
     </div>
 </section>
-
-<Footer />
 
 <style>
     .caret {
