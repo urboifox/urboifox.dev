@@ -46,11 +46,11 @@
     });
 
     afterNavigate(({ to, type }) => {
-        if (type !== 'popstate' || to?.url.pathname !== prevPath) return;
-
         void tick().then(() => {
             requestAnimationFrame(() => {
-                getLenis()?.scrollTo(prevY, { immediate: true, force: true });
+                if (type === 'popstate' && to?.url.pathname === prevPath) {
+                    getLenis()?.scrollTo(prevY, { immediate: true, force: true });
+                }
                 ScrollTrigger.refresh();
             });
         });
