@@ -331,5 +331,5 @@
 
 <canvas
     bind:this={canvas}
-    class={['pointer-events-none fixed inset-0 z-0 h-full w-full', className]}
+    class={['pointer-events-none fixed inset-x-0 top-0 z-0 h-lvh w-full', className]}
 ></canvas>
