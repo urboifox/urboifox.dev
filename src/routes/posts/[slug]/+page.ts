@@ -1,5 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
-import type { PageLoad } from './$types';
+import type { EntryGenerator, PageLoad } from './$types';
+import { getPosts } from '$lib/posts';
 
 export const load: PageLoad = async ({ params }) => {
     const slug = params.slug.replace(/\.md$/, '');
@@ -17,4 +18,9 @@ export const load: PageLoad = async ({ params }) => {
     } catch {
         error(404, 'This Post does not exist.');
     }
+};
+
+export const entries: EntryGenerator = () => {
+    const posts = getPosts();
+    return posts.map((post) => ({ slug: post.slug }));
 };

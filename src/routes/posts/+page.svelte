@@ -5,13 +5,13 @@
 
     const { data } = $props();
 
-    function hrefFor(category: string) {
-        return category === 'all' ? '/posts' : `/posts?category=${encodeURIComponent(category)}`;
-    }
+    let category = $state('all');
 
-    const seoTitle = $derived(
-        data.category && data.category !== 'all' ? `Posts · ${data.category}` : 'Posts'
+    const filteredPosts = $derived(
+        category === 'all' ? data.posts : data.posts.filter((p) => p.category === category)
     );
+
+    const seoTitle = $derived(category !== 'all' ? `Posts · ${category}` : 'Posts');
     const description = 'Notes, deep-dives and the occasional rant about the things I build.';
 </script>
 
@@ -41,20 +41,19 @@
                 <span class="h-px flex-1 bg-border"></span>
             </div>
             <ul class="mt-4 flex flex-wrap gap-2">
-                {#each data.categories as category (category)}
-                    {@const isActive = data.category === category}
+                {#each data.categories as cat (cat)}
+                    {@const isActive = category === cat}
                     <li>
-                        <a
-                            href={hrefFor(category)}
-                            data-sveltekit-noscroll
-                            data-sveltekit-replacestate
-                            aria-current={isActive ? 'page' : undefined}
+                        <button
+                            type="button"
+                            onclick={() => (category = cat)}
+                            aria-pressed={isActive}
                             class="pointer-events-auto inline-block rounded-full border px-3 py-1 text-[11px] tracking-widest uppercase transition-colors duration-300 {isActive
                                 ? 'border-primary bg-primary/10 text-primary'
                                 : 'border-border text-muted hover:border-muted hover:text-foreground'}"
                         >
-                            {category}
-                        </a>
+                            {cat}
+                        </button>
                     </li>
                 {/each}
             </ul>
@@ -63,13 +62,13 @@
 
     <ul class="bg-card/20 backdrop-blur-sm">
         <div class="container border-t border-border">
-            {#each data.posts as post, index (post.slug)}
+            {#each filteredPosts as post, index (post.slug)}
                 <div {@attach blurIn(index * 0.1)}>
                     <PostCard {post} {index} />
                 </div>
             {:else}
                 <li class="py-16 text-center text-sm text-muted">
-                    No posts in <span class="text-foreground">{data.category}</span> yet.
+                    No posts in <span class="text-foreground">{category}</span> yet.
                 </li>
             {/each}
         </div>
