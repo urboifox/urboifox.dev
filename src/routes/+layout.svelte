@@ -31,7 +31,11 @@
         gsap.ticker.add(rafCallback);
         gsap.ticker.lagSmoothing(0);
 
+        const ro = new ResizeObserver(() => ScrollTrigger.refresh());
+        ro.observe(document.body);
+
         return () => {
+            ro.disconnect();
             gsap.ticker.remove(rafCallback);
             lenis.destroy();
             setLenis(null);
