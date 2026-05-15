@@ -34,31 +34,29 @@
         </p>
     </div>
 
-    {#if data.categories.length > 2}
-        <div class="container mb-8" {@attach blurIn(0.1)}>
-            <div class="flex items-center gap-3 text-xs text-muted">
-                <span class="font-mono tracking-widest uppercase">Filter</span>
-                <span class="h-px flex-1 bg-border"></span>
-            </div>
-            <ul class="mt-4 flex flex-wrap gap-2">
-                {#each data.categories as cat (cat)}
-                    {@const isActive = category === cat}
-                    <li>
-                        <button
-                            type="button"
-                            onclick={() => (category = cat)}
-                            aria-pressed={isActive}
-                            class="pointer-events-auto inline-block rounded-full border px-3 py-1 text-[11px] tracking-widest uppercase transition-colors duration-300 {isActive
-                                ? 'border-primary bg-primary/10 text-primary'
-                                : 'border-border text-muted hover:border-muted hover:text-foreground'}"
-                        >
-                            {cat}
-                        </button>
-                    </li>
-                {/each}
-            </ul>
+    <div class="container mb-8" {@attach blurIn(0.1)}>
+        <div class="flex items-center gap-3 text-xs text-muted">
+            <span class="font-mono tracking-widest uppercase">Filter</span>
+            <span class="h-px flex-1 bg-border"></span>
         </div>
-    {/if}
+        <ul class="mt-4 flex flex-wrap gap-2">
+            {#each data.categories as cat (cat)}
+                {@const isActive = category === cat}
+                <li>
+                    <button
+                        type="button"
+                        onclick={() => (category = cat)}
+                        aria-pressed={isActive}
+                        class="pointer-events-auto inline-block rounded-full border px-3 py-1 text-[11px] tracking-widest uppercase transition-colors duration-300 {isActive
+                            ? 'border-primary bg-primary/10 text-primary'
+                            : 'border-border text-muted hover:border-muted hover:text-foreground'}"
+                    >
+                        {cat}
+                    </button>
+                </li>
+            {/each}
+        </ul>
+    </div>
 
     <ul class="bg-card/20 backdrop-blur-sm">
         <div class="container border-t border-border">
