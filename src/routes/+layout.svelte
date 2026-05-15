@@ -12,6 +12,7 @@
     import Header from '$lib/components/header.svelte';
     import Footer from '$lib/components/footer.svelte';
     import { page } from '$app/state';
+    import { setLenis } from '$lib/lenis';
 
     let { children } = $props();
 
@@ -21,6 +22,7 @@
         const lenis = new Lenis({
             stopInertiaOnNavigate: true
         });
+        setLenis(lenis);
 
         lenis.on('scroll', ScrollTrigger.update);
 
@@ -33,6 +35,7 @@
         return () => {
             gsap.ticker.remove(rafCallback);
             lenis?.destroy();
+            setLenis(null);
         };
     });
 
