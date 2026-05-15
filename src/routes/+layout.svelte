@@ -2,6 +2,7 @@
     import '../app.css';
     import 'lenis/dist/lenis.css';
     import favicon from '$lib/assets/favicon.svg';
+    import { afterNavigate } from '$app/navigation';
     import Lenis from 'lenis';
     import { onMount } from 'svelte';
     import gsap from 'gsap';
@@ -30,6 +31,10 @@
             gsap.ticker.remove(rafCallback);
             lenis.destroy();
         };
+    });
+
+    afterNavigate(() => {
+        ScrollTrigger.refresh();
     });
 </script>
 
