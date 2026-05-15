@@ -23,7 +23,7 @@
     <div class="container flex min-h-screen flex-col justify-between py-12 md:py-20">
         <div
             class="flex flex-col gap-4 text-muted md:flex-row md:items-center md:justify-between"
-            {@attach blurIn()}
+            {@attach blurIn(0, page.url)}
         >
             <div class="flex items-center gap-3">
                 {#if page.url.pathname === '/'}
@@ -37,7 +37,7 @@
             <span class="font-mono text-xs tracking-widest text-muted uppercase"> Let's talk </span>
         </div>
 
-        <div class="space-y-6" {@attach blurIn(0.1)}>
+        <div class="space-y-6" {@attach blurIn(0.1, page.url)}>
             <h2 class="text-9xl leading-[0.85] font-bold md:text-[10rem]">
                 Let's<br />talk<span class="text-primary">.</span>
             </h2>
@@ -64,7 +64,7 @@
 
         <div
             class="flex flex-col gap-6 border-t border-border pt-6 md:flex-row md:items-end md:justify-between"
-            {@attach blurIn(0.2)}
+            {@attach blurIn(0.2, page.url)}
         >
             <div class="space-y-2">
                 <span class="block font-mono text-xs tracking-widest text-muted uppercase">
