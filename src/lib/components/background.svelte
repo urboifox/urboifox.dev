@@ -20,6 +20,7 @@
     `;
 
     const bgFrag = `
+        precision highp float;
         #define GLSLIFY 1
         #define PI 3.14159265359
         #define PI2 6.28318530718
@@ -123,15 +124,22 @@
     `;
 
     onMount(() => {
-        let W = window.innerWidth;
-        let H = window.innerHeight;
+        const getViewport = () => {
+            const vv = window.visualViewport;
+            const w = Math.round(vv?.width ?? window.innerWidth);
+            const h = Math.round(vv?.height ?? window.innerHeight);
+            return { w, h };
+        };
+
+        let { w: W, h: H } = getViewport();
 
         const renderer = new THREE.WebGLRenderer({
             canvas,
             alpha: true,
             antialias: true
         });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        const pixelRatio = Math.min(window.devicePixelRatio, 2);
+        renderer.setPixelRatio(pixelRatio);
         renderer.setSize(W, H, false);
         renderer.autoClear = false;
         renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
@@ -221,7 +229,7 @@
             fragmentShader: bgFrag
         });
 
-        const bgMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 30, 30), bgMat);
+        const bgMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), bgMat);
         bgMesh.scale.set(W, H, 1);
         bgScene.add(bgMesh);
 
@@ -238,10 +246,28 @@
         let rafId = 0;
         let running = true;
 
+        const applySize = (nw: number, nh: number) => {
+            if (nw === W && nh === H) return;
+            W = nw;
+            H = nh;
+            renderer.setSize(W, H, false);
+            fbo.setSize(W, H);
+            cam.left = -W / 2;
+            cam.right = W / 2;
+            cam.top = H / 2;
+            cam.bottom = -H / 2;
+            cam.updateProjectionMatrix();
+            bgMesh.scale.set(W, H, 1);
+            bgMat.uniforms.ps.value.set(W, H);
+        };
+
         const tick = () => {
             if (!running) return;
             rafId = requestAnimationFrame(tick);
             time += 0.016;
+
+            const { w: nw, h: nh } = getViewport();
+            if (nw !== W || nh !== H) applySize(nw, nh);
 
             if (Math.abs(mouse.x - prevMouse.x) >= 1 || Math.abs(mouse.y - prevMouse.y) >= 1) {
                 curSmoke = (curSmoke + 1) % TOTAL;
@@ -276,25 +302,22 @@
         tick();
 
         const onResize = () => {
-            W = window.innerWidth;
-            H = window.innerHeight;
-            renderer.setSize(W, H, false);
-            fbo.setSize(W, H);
-            cam.left = -W / 2;
-            cam.right = W / 2;
-            cam.top = H / 2;
-            cam.bottom = -H / 2;
-            cam.updateProjectionMatrix();
-            bgMesh.scale.set(W, H, 1);
-            bgMat.uniforms.ps.value.set(W, H);
+            const { w, h } = getViewport();
+            applySize(w, h);
         };
         window.addEventListener('resize', onResize);
+        window.addEventListener('orientationchange', onResize);
+        window.visualViewport?.addEventListener('resize', onResize);
+        window.visualViewport?.addEventListener('scroll', onResize);
 
         return () => {
             running = false;
             cancelAnimationFrame(rafId);
             window.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('resize', onResize);
+            window.removeEventListener('orientationchange', onResize);
+            window.visualViewport?.removeEventListener('resize', onResize);
+            window.visualViewport?.removeEventListener('scroll', onResize);
 
             for (const m of dispM) {
                 (m.material as THREE.MeshBasicMaterial).dispose();
