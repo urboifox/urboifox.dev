@@ -34,7 +34,11 @@
     const pageTitle = $derived(title ? `${title} — ${site.name}` : site.title);
     const url = $derived(canonical ?? `${site.url}${page.url.pathname}`);
     const imageUrl = $derived(image.startsWith('http') ? image : `${site.url}${image}`);
-    const jsonLdString = $derived(jsonLd ? JSON.stringify(jsonLd) : '');
+    const jsonLdHtml = $derived(
+        jsonLd
+            ? '<script type="application/ld+json">' + JSON.stringify(jsonLd) + '</' + 'script>'
+            : ''
+    );
 </script>
 
 <svelte:head>
@@ -79,6 +83,7 @@
     {/if}
 
     {#if jsonLd}
-        {@html `<script type="application/ld+json">${jsonLdString}</script>`}
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+        {@html jsonLdHtml}
     {/if}
 </svelte:head>

@@ -88,12 +88,11 @@
                     <p class="max-w-md text-xs text-muted md:text-base">
                         {#each description.split(' ') as word, index (index)}
                             <span
-                                class="whitespace-nowrap opacity-0"
+                                class="inline-block whitespace-nowrap opacity-0"
                                 {@attach blurIn(index * 0.05 + 0.3)}
                             >
-                                {word}
+                                {word}&nbsp;
                             </span>
-                            {' '}
                         {/each}
                     </p>
                 </div>

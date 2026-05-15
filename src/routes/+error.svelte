@@ -4,11 +4,7 @@
     import Seo from '$lib/components/seo.svelte';
 </script>
 
-<Seo
-    title={`${page.status}`}
-    description={page.error?.message ?? 'Page not found.'}
-    noindex
-/>
+<Seo title={`${page.status}`} description={page.error?.message ?? 'Page not found.'} noindex />
 
 <section class="container flex min-h-screen flex-col items-center justify-center py-32">
     <div class="mx-auto flex max-w-xl flex-col items-center gap-8 text-center">
@@ -18,17 +14,11 @@
             <span class="font-mono tracking-widest uppercase">~/lost</span>
         </div>
 
-        <h1
-            class="text-7xl font-bold tracking-tight opacity-0 md:text-9xl"
-            {@attach blurIn(0.1)}
-        >
+        <h1 class="text-7xl font-bold tracking-tight opacity-0 md:text-9xl" {@attach blurIn(0.1)}>
             {page.status}<span class="text-primary">.</span>
         </h1>
 
-        <p
-            class="max-w-md text-base text-muted opacity-0 md:text-lg"
-            {@attach blurIn(0.2)}
-        >
+        <p class="max-w-md text-base text-muted opacity-0 md:text-lg" {@attach blurIn(0.2)}>
             {page.error?.message ?? 'Something went sideways.'}
         </p>
 

@@ -28,9 +28,7 @@
                 <span class="h-px w-8 bg-border"></span>
                 <span class="font-mono">~/contact</span>
             </div>
-            <span class="font-mono text-xs tracking-widest text-muted uppercase">
-                Let's talk
-            </span>
+            <span class="font-mono text-xs tracking-widest text-muted uppercase"> Let's talk </span>
         </div>
 
         <div class="space-y-6" {@attach blurIn(0.1)}>
@@ -66,14 +64,10 @@
                 <span class="block font-mono text-xs tracking-widest text-muted uppercase">
                     © {year} — Mohamed Ashraf
                 </span>
-                <span class="block text-xs text-muted">
-                    Built with Svelte, GSAP & Three.js.
-                </span>
+                <span class="block text-xs text-muted"> Built with Svelte, GSAP & Three.js. </span>
             </div>
 
-            <ul
-                class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted uppercase"
-            >
+            <ul class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted uppercase">
                 {#each nav as { title, href } (href)}
                     <li>
                         <a

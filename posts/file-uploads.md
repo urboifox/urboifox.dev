@@ -36,36 +36,32 @@ Selecting a file and only seeing it's name is not the best, ideally you wanna sh
 Thankfully, there's a simple way to do this with the `URL.createObjectURL` method.
 
 ```tsx title="file-upload-form.tsx"
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 export default function FileUploadForm() {
-  const [files, setFiles] = useState<FileList | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [files, setFiles] = useState<FileList | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (files && files[0] && files[0].type.startsWith("image/")) {
-      const url = URL.createObjectURL(files[0]);
-      setPreviewUrl(url);
+    useEffect(() => {
+        if (files && files[0] && files[0].type.startsWith('image/')) {
+            const url = URL.createObjectURL(files[0]);
+            setPreviewUrl(url);
 
-      // remove the previous file from memory when file changes/unmounts
-      return () => URL.revokeObjectURL(url);
-    } else {
-      setPreviewUrl(null);
-    }
-  }, [files]);
+            // remove the previous file from memory when file changes/unmounts
+            return () => URL.revokeObjectURL(url);
+        } else {
+            setPreviewUrl(null);
+        }
+    }, [files]);
 
-  return (
-    <form action="/upload" method="post" encType="multipart/form-data">
-      <input
-        type="file"
-        name="file"
-        onChange={(e) => setFiles(e.target.files)}
-      />
-      <button type="submit">Upload</button>
+    return (
+        <form action="/upload" method="post" encType="multipart/form-data">
+            <input type="file" name="file" onChange={(e) => setFiles(e.target.files)} />
+            <button type="submit">Upload</button>
 
-      {previewUrl && <img src={previewUrl} alt="Preview" />}
-    </form>
-  );
+            {previewUrl && <img src={previewUrl} alt="Preview" />}
+        </form>
+    );
 }
 ```
 
@@ -81,8 +77,7 @@ And that's where the `<label>` tag comes in. It can be used in two ways:
 - Add an id to an input, and use that id on the `for` attribute of the label.
 
 ```html title="index.html"
-<label for="file">Choose a file</label>
-<input type="file" id="file" />
+<label for="file">Choose a file</label> <input type="file" id="file" />
 ```
 
 - Wrap the input with the label tag. And that's how we'll do it in this example.
@@ -149,15 +144,11 @@ export default function FileUploadForm() {
         <div onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
             Drag and drop or
             <label>
-                <input
-                    type="file"
-                    style={{ display: "none" }}
-                    onChange={handleChange}
-                />
+                <input type="file" style={{ display: 'none' }} onChange={handleChange} />
                 choose a file
             </label>
         </div>
-    )
+    );
 }
 ```
 
@@ -210,12 +201,12 @@ export default function FileEditForm() {
     }
 
     useEffect(() => {
-        fetch("/initial-data")
+        fetch('/initial-data')
             .then((res) => res.json()) // { file: "https://example.com/file.jpg" }
             .then(async (json) => {
                 const fileResponse = await fetch(json.file);
                 const blob = await fileResponse.blob();
-                const newFile = new File([blob], "file.jpg");
+                const newFile = new File([blob], 'file.jpg');
                 setFiles([newFile]);
             });
     }, []);
@@ -223,11 +214,11 @@ export default function FileEditForm() {
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         const formData = new FormData();
-        files.forEach((f) => formData.append("file", f));
+        files.forEach((f) => formData.append('file', f));
 
-        await fetch("/upload", {
-            method: "POST",
-            body: formData,
+        await fetch('/upload', {
+            method: 'POST',
+            body: formData
         });
     }
 
@@ -311,7 +302,7 @@ export function FileInput({ name, multiple, ...rest }: Props) {
                 file,
                 url: URL.createObjectURL(file),
                 progress: 0,
-                status: "idle" as const,
+                status: 'idle' as const
             }));
             setItems(next);
         }
@@ -324,7 +315,7 @@ export function FileInput({ name, multiple, ...rest }: Props) {
                 ref={inputRef}
                 onChange={handleChange}
                 multiple={multiple}
-                style={{ display: "none" }}
+                style={{ display: 'none' }}
                 {...rest}
             />
 
@@ -396,9 +387,9 @@ async function uploadItem(item: FileItem) {
 
     xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
-            patch(item.id, { status: "success", key: signed.key });
+            patch(item.id, { status: 'success', key: signed.key });
         } else {
-            patch(item.id, { status: "error", error: `(${xhr.status})` });
+            patch(item.id, { status: 'error', error: `(${xhr.status})` });
         }
     };
 
@@ -410,7 +401,7 @@ async function uploadItem(item: FileItem) {
 The whole component now looks like this:
 
 ```tsx title="file-input.tsx"
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 
 interface PresignResult {
     url: string;
@@ -425,7 +416,7 @@ interface FileItem {
     file: File;
     url?: string;
     progress: number;
-    status: "idle" | "uploading" | "success" | "error";
+    status: 'idle' | 'uploading' | 'success' | 'error';
     error?: string;
     key?: string;
     xhr?: XMLHttpRequest | null;
@@ -462,9 +453,9 @@ export function FileInput({ name, multiple, presign, ...rest }: Props) {
 
         xhr.onload = () => {
             if (xhr.status >= 200 && xhr.status < 300) {
-                patch(item.id, { status: "success", key: signed.key });
+                patch(item.id, { status: 'success', key: signed.key });
             } else {
-                patch(item.id, { status: "error", error: `(${xhr.status})` });
+                patch(item.id, { status: 'error', error: `(${xhr.status})` });
             }
         };
 
@@ -479,7 +470,7 @@ export function FileInput({ name, multiple, presign, ...rest }: Props) {
             file,
             url: URL.createObjectURL(file),
             progress: 0,
-            status: "idle" as const,
+            status: 'idle' as const
         }));
 
         setItems((prev) => {
@@ -498,7 +489,7 @@ export function FileInput({ name, multiple, presign, ...rest }: Props) {
         setItems((prev) => {
             const next = prev.filter((i) => i.id !== item.id);
 
-            if (item.url?.startsWith("blob:")) URL.revokeObjectURL(item.url);
+            if (item.url?.startsWith('blob:')) URL.revokeObjectURL(item.url);
             if (item.xhr) item.xhr.abort();
 
             return next;
@@ -518,7 +509,7 @@ export function FileInput({ name, multiple, presign, ...rest }: Props) {
                 ref={inputRef}
                 onChange={handleChange}
                 multiple={multiple}
-                style={{ display: "none" }}
+                style={{ display: 'none' }}
                 {...rest}
             />
 
@@ -528,14 +519,14 @@ export function FileInput({ name, multiple, presign, ...rest }: Props) {
 
             {items.map((item) => (
                 <div key={item.id}>
-                    {item.url && (item.mime.startsWith("image/") ?
-                        <img src={item.url} width={80} /> :
-                        <span>File</span>
-                    )}
+                    {item.url &&
+                        (item.mime.startsWith('image/') ? (
+                            <img src={item.url} width={80} />
+                        ) : (
+                            <span>File</span>
+                        ))}
                     <span>{item.file.name}</span>
-                    {item.status === "uploading" && (
-                        <progress value={item.progress} max={100} />
-                    )}
+                    {item.status === 'uploading' && <progress value={item.progress} max={100} />}
                 </div>
             ))}
         </div>
@@ -555,4 +546,3 @@ You would need to start an upload session with the backend, and then upload the 
 But talking about that in this post would be a bit too much, so I'll leave it for another time.
 
 Thanks for reading, and I hope you enjoyed this post!
-

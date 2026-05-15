@@ -36,7 +36,7 @@
                 {/if}
             </div>
             <h3
-                class="truncate text-2xl font-semibold transition-colors duration-300 group-hover:text-primary md:text-4xl leading-normal"
+                class="truncate text-2xl leading-normal font-semibold transition-colors duration-300 group-hover:text-primary md:text-4xl"
             >
                 {post.title}
             </h3>

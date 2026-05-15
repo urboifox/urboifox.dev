@@ -31,7 +31,9 @@ export const GET: RequestHandler = () => {
             <description>${escape(post.description)}</description>
             <link>${site.url}/posts/${post.slug}</link>
             <guid isPermaLink="true">${site.url}/posts/${post.slug}</guid>${
-                post.date ? `\n            <pubDate>${new Date(post.date).toUTCString()}</pubDate>` : ''
+                post.date
+                    ? `\n            <pubDate>${new Date(post.date).toUTCString()}</pubDate>`
+                    : ''
             }${post.category ? `\n            <category>${escape(post.category)}</category>` : ''}
         </item>`
             )
