@@ -6,6 +6,7 @@
     import Posts from './posts.svelte';
     import Seo from '$lib/components/seo.svelte';
     import { site } from '$lib/config';
+    import Footer from '$lib/components/footer.svelte';
 
     let { data } = $props();
 
@@ -30,3 +31,5 @@
     <Posts posts={data.posts} />
     <Skills />
 </main>
+
+<Footer />

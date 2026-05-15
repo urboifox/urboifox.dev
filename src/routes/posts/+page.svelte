@@ -1,5 +1,6 @@
 <script lang="ts">
     import { blurIn } from '$lib/actions/blur-in';
+    import Footer from '$lib/components/footer.svelte';
     import PostCard from '$lib/components/post-card.svelte';
     import Seo from '$lib/components/seo.svelte';
 
@@ -72,3 +73,5 @@
         </div>
     </ul>
 </section>
+
+<Footer />

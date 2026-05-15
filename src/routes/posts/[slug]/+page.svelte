@@ -6,6 +6,7 @@
     import Seo from '$lib/components/seo.svelte';
     import ScrollToTop from '$lib/components/scroll-to-top.svelte';
     import { site } from '$lib/config';
+    import Footer from '$lib/components/footer.svelte';
 
     const { data } = $props();
 
@@ -58,6 +59,8 @@
 <svelte:head>
     <link href="/themes/theme.css" rel="stylesheet" />
 </svelte:head>
+
+<ScrollToTop />
 
 <article class="container min-h-screen py-32">
     <div class="mx-auto max-w-3xl">
@@ -188,4 +191,4 @@
     </div>
 </article>
 
-<ScrollToTop />
+<Footer />
