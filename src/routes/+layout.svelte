@@ -12,6 +12,7 @@
     import Header from '$lib/components/header.svelte';
     import { setLenis } from '$lib/lenis';
     import Footer from '$lib/components/footer.svelte';
+    import { page } from '$app/state';
 
     let { children } = $props();
 
@@ -57,5 +58,7 @@
 
 <div class="relative z-10">
     {@render children()}
-    <Footer />
+    {#key page.url}
+        <Footer />
+    {/key}
 </div>
