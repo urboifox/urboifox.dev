@@ -52,12 +52,3 @@ export function getCategories(): string[] {
         )
     ).sort();
 }
-
-const foo = 'bar';
-
-function baz(): string {
-    return foo;
-}
-
-console.log(foo);
-console.log(baz());
