@@ -19,11 +19,11 @@
     const year = new Date().getFullYear();
 </script>
 
-<footer aria-label="Site footer" class="bg-card/20 backdrop-blur-sm">
+<footer aria-label="Site footer" class="bg-card/20">
     <div class="container flex min-h-screen flex-col justify-between py-12 md:py-20">
         <div
             class="flex flex-col gap-4 text-muted md:flex-row md:items-center md:justify-between"
-            {@attach blurIn(0)}
+            {@attach blurIn()}
         >
             <div class="flex items-center gap-3">
                 {#if page.url.pathname === '/'}

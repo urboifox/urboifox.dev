@@ -92,7 +92,7 @@
 
     <ul bind:this={listEl} class="grid grid-cols-1 gap-6 md:grid-cols-2">
         {#each projects as project, index (project.slug)}
-            <li {@attach blurIn(index * 0.15)} class="backdrop-blur-sm">
+            <li {@attach blurIn(index * 0.15)}>
                 <a
                     href={project.url}
                     target="_blank"

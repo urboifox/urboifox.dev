@@ -12,6 +12,7 @@
     import Header from '$lib/components/header.svelte';
     import { setLenis } from '$lib/lenis';
     import Footer from '$lib/components/footer.svelte';
+    import { page } from '$app/state';
 
     let { children } = $props();
 
@@ -38,7 +39,8 @@
         };
     });
 
-    afterNavigate(() => {
+    afterNavigate(({ from }) => {
+        if (from?.url.pathname === undefined) return;
         void tick().then(() => {
             requestAnimationFrame(() => {
                 ScrollTrigger.refresh();
@@ -57,5 +59,7 @@
 
 <div class="relative z-10">
     {@render children()}
-    <Footer />
+    {#key page.url.pathname}
+        <Footer />
+    {/key}
 </div>

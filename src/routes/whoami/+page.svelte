@@ -31,7 +31,7 @@
         </header>
 
         <article
-            class="overflow-hidden rounded-2xl border border-border bg-card/40 opacity-0 backdrop-blur-sm"
+            class="overflow-hidden rounded-2xl border border-border bg-card/40 opacity-0"
             {@attach blurIn(0.1)}
         >
             <header class="flex items-center gap-1.5 border-b border-border bg-card/60 px-4 py-2.5">
@@ -107,7 +107,7 @@
         </article>
 
         <section class="space-y-12">
-            <div class="space-y-4 opacity-0" {@attach blurIn(0.2)}>
+            <div class="space-y-4" {@attach blurIn(0.2)}>
                 <div class="flex items-center gap-3 text-muted">
                     <span class="font-mono text-primary">02</span>
                     <span class="h-px w-8 bg-border"></span>
@@ -123,10 +123,7 @@
                 ></span>
 
                 {#each experience as exp, i (i)}
-                    <li
-                        class="relative pb-12 pl-10 opacity-0 last:pb-0"
-                        {@attach blurIn(0.25 + i * 0.1)}
-                    >
+                    <li class="relative pb-12 pl-10 last:pb-0" {@attach blurIn(0.25 + i * 0.1)}>
                         <span
                             aria-hidden="true"
                             class="absolute top-2 left-0 h-4 w-4 rounded-full border-2 border-primary bg-background transition-transform duration-300 group-hover:scale-110"

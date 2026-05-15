@@ -20,7 +20,7 @@
         class="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_1px_1px,var(--color-foreground)_1px,transparent_0)] bg-size-[24px_24px] opacity-[0.06]"
     ></div>
 
-    <div class="absolute top-0 left-0 z-0 h-full w-full">
+    <div class="absolute top-0 left-0 z-0 h-full w-full" {@attach blurIn(0.5)}>
         <Canvas>
             <Scene />
         </Canvas>
