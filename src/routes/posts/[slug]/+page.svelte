@@ -122,7 +122,7 @@
                 prose-h2:text-3xl prose-h3:mt-10 prose-h3:mb-3
                 prose-h3:text-xl prose-h4:mt-8 prose-h4:mb-2
                 prose-h4:text-lg prose-p:leading-7
-                prose-p:text-foreground prose-a:font-medium prose-a:text-primary
+                prose-p:text-neutral-400 prose-a:font-medium prose-a:text-primary
                 prose-a:underline prose-a:underline-offset-4
                  prose-blockquote:rounded-r-lg
                 prose-blockquote:border-l-2
