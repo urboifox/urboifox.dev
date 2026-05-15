@@ -18,7 +18,7 @@ export function blurIn(delay = 0) {
                 filter: 'blur(0px)',
                 scrollTrigger: {
                     trigger: node,
-                    toggleActions: 'play none none none'
+                    toggleActions: 'restart none none none'
                 }
             }
         );
