@@ -125,9 +125,8 @@
 
     onMount(() => {
         const getViewport = () => {
-            const vv = window.visualViewport;
-            const w = Math.round(vv?.width ?? window.innerWidth);
-            const h = Math.round(vv?.height ?? window.innerHeight);
+            const w = Math.max(1, Math.round(canvas.clientWidth || window.innerWidth));
+            const h = Math.max(1, Math.round(canvas.clientHeight || window.innerHeight));
             return { w, h };
         };
 
@@ -266,9 +265,6 @@
             rafId = requestAnimationFrame(tick);
             time += 0.016;
 
-            const { w: nw, h: nh } = getViewport();
-            if (nw !== W || nh !== H) applySize(nw, nh);
-
             if (Math.abs(mouse.x - prevMouse.x) >= 1 || Math.abs(mouse.y - prevMouse.y) >= 1) {
                 curSmoke = (curSmoke + 1) % TOTAL;
                 spawnSmoke(mouse.x, mouse.y, curSmoke);
@@ -307,8 +303,9 @@
         };
         window.addEventListener('resize', onResize);
         window.addEventListener('orientationchange', onResize);
-        window.visualViewport?.addEventListener('resize', onResize);
-        window.visualViewport?.addEventListener('scroll', onResize);
+
+        const ro = new ResizeObserver(onResize);
+        ro.observe(canvas);
 
         return () => {
             running = false;
@@ -316,8 +313,7 @@
             window.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('resize', onResize);
             window.removeEventListener('orientationchange', onResize);
-            window.visualViewport?.removeEventListener('resize', onResize);
-            window.visualViewport?.removeEventListener('scroll', onResize);
+            ro.disconnect();
 
             for (const m of dispM) {
                 (m.material as THREE.MeshBasicMaterial).dispose();
