@@ -122,7 +122,7 @@
                 <span aria-hidden="true" class="absolute top-2 bottom-2 left-1.75 w-px bg-border"
                 ></span>
 
-                {#each experience as exp, i (i)}
+                {#each experience.reverse() as exp, i (i)}
                     <li class="relative pb-12 pl-10 last:pb-0" {@attach blurIn(0.25 + i * 0.1)}>
                         <span
                             aria-hidden="true"
